@@ -18,6 +18,7 @@ const RecipeCard = (props) => {
             alert("Recipe saved to your profile!")
         } catch(e) {
             console.log(`Error adding recipe to user-${userName}`)
+            console.log("caught exception")
         }
     }
     return (
