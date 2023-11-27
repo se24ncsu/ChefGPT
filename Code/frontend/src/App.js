@@ -5,9 +5,10 @@ import recipeDB from "./apis/recipeDB";
 import RecipeList from "./components/RecipeList";
 import AddRecipe from "./components/AddRecipe.js";
 import React, { Component } from "react";
-import { Tabs, Tab, TabList,TabPanel, TabPanels, Box } from "@chakra-ui/react";
+import { Tabs, Tab, TabList, TabPanel, TabPanels, Box } from "@chakra-ui/react";
 import RecipeLoading from "./components/RecipeLoading.js";
 import Nav from "./components/Navbar.js";
+import SearchByRecipe from "./components/SearchByRecipe.js";
 import Login from "./components/Login.js";
 import UserProfile from "./components/UserProfile.js";
 
@@ -22,14 +23,20 @@ class App extends Component {
       //NoIngredients : 0,
       ingredients: new Set(),
       recipeList: [],
+      recipeByNameList: [],
       email: "",
       flag: false,
-      isLoading: false,
       isLoading: false,
       isLoggedIn: false,
       isProfileView: false,
       userData: {}
     };
+  }
+
+  handleBookMarks = ()=> {
+    this.setState({
+      isProfileView: true
+    })
   }
 
   handleProfileView = ()=> {
@@ -86,12 +93,6 @@ class App extends Component {
     }
   }
 
-  handleBookMarks = ()=> {
-    this.setState({
-      isProfileView: true
-    })
-  }
-
   // Function to get the user input from the Form component on Submit action
   handleSubmit = async (formDict) => {
     this.setState({
@@ -114,6 +115,23 @@ class App extends Component {
     this.getRecipeDetails(items, cuis, mail, flag);
     //  alert(typeof(ingredientsInput["cuisine"]));
   };
+
+  handleRecipesByName = (recipeName) => {
+    this.setState({
+      isLoading: true
+    })
+    recipeDB.get("/recipes/getRecipeByName", {
+      params: {
+        recipeName: recipeName
+      }
+    }).then(res => {
+      console.log(res.data);
+      this.setState({
+        recipeByNameList: res.data.recipes,
+        isLoading: false
+      })
+    })
+  }
 
   getRecipeDetails = async (ingredient, cuis, mail, flag) => {
     try {
@@ -154,6 +172,7 @@ class App extends Component {
                 <TabList ml={10}>
                   <Tab>Search Recipe</Tab>
                   <Tab>Add Recipe</Tab>
+                  <Tab>Search Recipe By Name</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
@@ -164,6 +183,10 @@ class App extends Component {
                   </TabPanel>
                   <TabPanel>
                     <AddRecipe />
+                  </TabPanel>
+                  <TabPanel>
+                    <SearchByRecipe sendRecipeData={this.handleRecipesByName} />
+                    {this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeByNameList} />}
                   </TabPanel>
                 </TabPanels>
               </Tabs>
