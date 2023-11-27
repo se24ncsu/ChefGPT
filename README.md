@@ -145,10 +145,10 @@ Check out our comprehensive YouTube video demonstrating each step for easy guida
 
 
 ## Release Made in this cycle <br>
-1. Critical release 1.0 - Included the priority fix to improve the accuracy of the text analysis along with the image and tweet analysis features.
-2. Release 1.1 - Minor version release to make UI changes.
-3. Release 2.0 - Included the minor enhancements and the fixes to the issues reported.<br>
-[Read our detailed release notes](https://github.com/karthikmp5/C.E.L.T_pro/releases) <br>
+1. Major release 3.1 - Major release to add search by recipe, user registration, user login and bookmarks.
+2. Hotfix Release 3.1.2 - Minor version release to add test case for login
+3. Major Release 3.2 - Major release- Included test cases addition, user registration, minor bug fixes and documentation updates<br>
+[Read our detailed release notes](https://github.com/pnprathima/Recipe_Recommender/releases) <br>
 <br>
 
 
