@@ -81,6 +81,31 @@ export default class RecipesDAO {
     }
   }
 
+  //Function to get recipe by name
+  static async getRecipeByName({ filters = null } = {}) {
+    let query;
+    if (filters) {
+      if ("recipeName" in filters) {
+        const words = filters["recipeName"].split(" ");
+        const regexPattern = words.map(word => `(?=.*\\b${word}\\b)`).join('');
+        const regex = new RegExp(regexPattern, "i");
+        query = { "TranslatedRecipeName": { $regex: regex } };
+        // query["Cuisine"] = "Indian";
+      }
+      let recipesList;
+      try {
+        recipesList = await recipes
+          .find(query)
+          .collation({ locale: "en", strength: 2 }).toArray();
+        return { recipesList }
+      } catch (e) {
+        console.error(`Unable to issue find command, ${e}`);
+        return { recipesList: [], totalNumRecipess: 0 };
+      }
+    }
+
+  }
+
   //Function to get the Recipe List
   static async getRecipes({
     filters = null,

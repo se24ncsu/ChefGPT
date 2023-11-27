@@ -20,4 +20,6 @@ router.route("/getBookmarks").get(RecipesCtrl.apiGetBookmarks);
 
 router.route("/addRecipeToProfile").post(RecipesCtrl.apiPostRecipeToProfile);
 
+router.route("/getRecipeByName").get(RecipesCtrl.apiGetRecipeByName);
+
 export default router;
