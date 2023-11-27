@@ -1,6 +1,10 @@
-## SaveursSélection Demo Video (Deltas explained):
+# Enhanced Recipe Recommender: Introducing additional features and addressing issues for an improved user experience.
 
-https://github.com/shubham-wawale/Recipe_Recommender/assets/65714335/c7905000-30dc-48b9-af4e-5b5a48f3fc93
+![](Reciperec.gif)
+
+## Watch how our application works: 
+
+[Youtube Video](https://youtu.be/133EWUQWe5Q) <br>
 
 ## SaveursSélection: Find, Cook, Taste, Share 🍔
 
@@ -23,30 +27,75 @@ https://github.com/shubham-wawale/Recipe_Recommender/assets/65714335/c7905000-30
 [![Mark stale issues and pull requests](https://github.com/shubham-wawale/Recipe_Recommender/actions/workflows/stale.yml/badge.svg)](https://github.com/shubham-wawale/Recipe_Recommender/actions/workflows/stale.yml)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shubham-wawale/Recipe_Recommender)
 
-![video1](https://github.com/shubham-wawale/Recipe_Recommender/assets/65714335/16caee96-f400-429d-b043-36456653748b)
+   
+   
+<h2> What is Recipe Recommender? </h2>
 
-![video 3](https://github.com/shubham-wawale/Recipe_Recommender/assets/65714335/5f771834-fa38-4bef-928d-047777a429d2)
+Meet Recipe Recommender, your ultimate kitchen companion! Say goodbye to the dilemma of deciding what to cook with the ingredients on hand. We've revolutionized the cooking experience with an application that effortlessly suggests delicious recipes based on your kitchen inventory.  <br>
+
+Unlock the full potential of your pantry and fridge as our innovative software guides you in selecting perfect dishes tailored to your current ingredients. Cooking is now an exciting adventure rather than a daunting task. Immerse yourself in a realm of limitless culinary possibilities with Recipe Recommender.  <br>
+
+We've added <b> numerous entertaining new features and fixes to enhance user-friendliness.</b> <br>
+1. Craving enchiladas but unsure how to cook Mexican food? Now, you can search for recipes by names! Just type in "enchiladas," choose a recipe based on its features, and enjoy. <br>
+
+2. Imagine finding interesting recipes during your commute. With another new feature, you can save them on the go. We've also introduced dedicated user profiles. Sign up, log in, and save your favorite recipes under your profile in the "bookmarks" section. When you're ready to cook, everything will be waiting for you.  <br>
+
+3. That's not all! We've removed non-functional buttons, technically known as "refactoring the system."  <br>
+4. Your profile, information, and favorite recipes now have a dedicated space. Secure logins and logouts ensure no duplicate entries or exposed credentials, making the system more secure.
 
 
-   <h3>🍔 Our motto: Find, Cook, Taste, Share 🍔</h3>
+<br> <b> More about our new additions in our next section!</b>
 
-  <p>
-    Introducing "SaveursSélection", your ultimate culinary companion! Say goodbye to the hassle of pondering what to prepare with the ingredients on hand. We've revolutionized the way you approach cooking by crafting an application that effortlessly suggests delectable recipes based on the ingredients you have readily available in your kitchen.
+## Feature additions: Enhancements, Upgrades and BugFixes:
+Presenting our latest additions: Here's a comprehensive list of all our new features, enhancements, and upgrades! <br>
+1. User Profile: In our application, users can now establish a profile with a unique username and password, allowing seamless login and logout. This facilitates personalized experiences and customized access to preferences and activities. Further details will be discussed in the following points. Your profile, information, and preferred recipes now inhabit a designated area, simplifying the management of all your belongings in one organized space.
+2. Bookmarks: Picture this scenario: You're commuting, scrolling through intriguing recipes in our app. Thanks to a cutting-edge feature, you can now save them instantly. The introduction of dedicated user profiles elevates your experience. Simply sign up, log in, and curate your favorite recipes in the "bookmarks" section under your profile. When the time comes to cook, everything awaits you – seamlessly organized and easily accessible.
+3. Search for recipes by name: Previously limited to ingredient-based searches only, our system now boasts an exciting upgrade. You can now search for recipes by name! Ever craved enchiladas without knowing the recipe? Simply input "enchiladas," peruse based on features, and relish the culinary journey.
+4. Refactoring the UI: We've eliminated inactive buttons and links, employing a technical process termed "system refactoring" to enhance functionality and optimize the user interface.
+5. System security upgrade: We observed some passwords present in the codebase, which is a major security threat. We have ensured to removed this and move it to the DB. Additionally, we have implemented secure logins and logouts ensuring the prevention of duplicate entries and safeguards credentials, fortifying the overall security of the system.
 
-Unleash the potential of your pantry and refrigerator by allowing our innovative software to guide you in selecting the perfect dishes that match your current ingredient inventory. Cooking is no longer a daunting task; it's a delightful adventure waiting to happen. Dive into the world of endless culinary possibilities with our Recipe Recommender
-  </p>
+## Documentation and Project Flow:
+![](flow-rr.gif) <br><br>
+1. User Registration: Establish a unique username and password; no duplicate usernames allowed, ensuring password confidentiality.
+2. User Authentication: Log in using the correct username and password for secure access.
+3. Search Recipes by Ingredients: Input your available ingredients to discover relevant recipes based on ingredient names.
+4. Search Recipes by Dish Name: Locate recipes by specifying the dish name in the search.
+5. Add a Recipe: Share details such as ingredients, dish name, time, cuisine, instructions, and optional images to contribute your recipe.
+6. Bookmark Favorite Recipes: Save preferred recipes for easy access.
+7. View Bookmarked Recipes in User Profile: Access and review all saved recipes conveniently stored under your user profile.
+8. Logout: Securely log out to protect your profile information and activities. <br><br>
 
-## Documentation
 
-Recipe Recommender is a website that suggests users simple food recipes based on ingredients provided.
 
-- [ ] The interface can take multiple ingredients from user as an input.
-- [ ] The interface can also takes the type of cuisine the user wants.
-- [ ] For each recipe, we show the key ingredients, instructions and a sample image.
-- [ ] Upon user request we also send the list of recipes to the user.
+Source documentation can be found at: [Recipe Recommender Docs] https://github.com/pnprathima/Recipe_Recommender/blob/master/Recipe%20Recommender%20Source%20Documentation.pdf
 
-Source documentation can be found at: [Recipe Recommender Docs] https://github.com/shubham-wawale/Recipe_Recommender/blob/master/docs/Recipe%20Recommender%20Source%20Documentation.pdf
-[Restaurant Recommender Docs] https://github.com/shubham-wawale/Recipe_Recommender/blob/master/docs/Restaurant_Recommendation.pdf
+
+## API Documentation
+**Get Recipes:**
+Retrieve a list of recipes based on specified filters like ingredients, cuisine, and page parameters. Success returns a code of 200 with the recipe list; error returns code 500 with an error message.
+
+**Get Recipe Cuisines:**
+Fetches available cuisines, responding with a code of 200 and an array of cuisine strings on success. In case of an error, it returns a code of 500 with an error message.
+
+**Add Recipe:**
+Allows users to add a new recipe via the /addRecipe endpoint, responding with a code of 200 and the inserted recipe's ID on success. In case of an error, it returns a code of 500 with an error message.
+
+**Get Ingredients:**
+Retrieves a list of distinct ingredients through the /callIngredients endpoint. Success returns a code of 200 with an array of ingredient strings; error returns code 500 with an error message.
+
+**User Signup:**
+Enables user registration at the /signup endpoint. Success returns a code of 200 with a success indicator; error returns code 500 with an error message.
+
+**User Login:**
+Authenticates a user via the /login endpoint, returning a code of 200 with a success indicator and user object on success. In case of an error, it returns a code of 500 with an error message.
+
+**Get Bookmarks:**
+Retrieves bookmarked recipes for a user through the /getBookmarks endpoint. Success returns a code of 200 with an array of bookmarked recipes; error returns code 500 with an error message.
+
+**Add Recipe to User Profile:**
+Adds a recipe to a user's profile bookmarks via the /addRecipeToProfile endpoint. Success returns a code of 200 with the count of modified items; error returns code 500 with an error message.
+
+<br>Detailed documentation can be found at: [API Docs] https://github.com/pnprathima/Recipe_Recommender/blob/master/API_Documentation.pdf
 
 ## Technology Stack
 
@@ -67,7 +116,7 @@ Source documentation can be found at: [Recipe Recommender Docs] https://github.c
 ## Project Setup Steps:
 
 ### Installation:
-
+Check out our comprehensive YouTube video demonstrating each step for easy guidance. [Project Setup](https://youtu.be/uKh-afpUdh0)
 - clone repository using `git clone https://github.com/shubham-wawale/Recipe_Recommender.git`
 - setup for frontend
   open terminal and navigate to the **frontend** folder and execute the following:
@@ -94,94 +143,20 @@ Source documentation can be found at: [Recipe Recommender Docs] https://github.c
 3.  Automatically a browser window is opened which shows frontend.
 4.  run `npm test` for running the tests [Dependencies: Jest, Chai, Supertest]
 
+
+## Release Made in this cycle <br>
+1. Critical release 1.0 - Included the priority fix to improve the accuracy of the text analysis along with the image and tweet analysis features.
+2. Release 1.1 - Minor version release to make UI changes.
+3. Release 2.0 - Included the minor enhancements and the fixes to the issues reported.<br>
+[Read our detailed release notes](https://github.com/karthikmp5/C.E.L.T_pro/releases) <br>
+<br>
+
+
 ### IDE and Code Formatter
 
 - [Visual Studio Code](https://code.visualstudio.com/) IDE
 - [Prettier Formatter for Visual Studio Code](https://github.com/prettier/prettier-vscode/blob/main/README.md)
 
-## Work Flow
-
-<table border="2" bordercolorlight="#b9dcff" bordercolordark="#006fdd">
-
-  <tr style="background: #010203;"> 
-    <td valign="left">
-     <p style="color: #FF7A59"> Current Home Page
-      </p>
-      <a href="./images/current_stage1.png">
-        <img src="./images/current_stage1.png" width="500px;"> 
-      </a> 
-    </td> 
-    <td valign="left">
-     <p style="color: #FF7A59"> Previous Home Page
-      </p>
-     <a href="./images/previous_stage1.png">
-        <img src="./images/previous_stage1.png" width="500px;"> 
-      </a> 
-    </td> 
-  </tr>
-
-   <tr style="background: #010203;"> 
-    <td valign="left">
-     <p style="color: #FF7A59">  
-      </p>
-      <a href="./images/current_stage2.png">
-        <img src="./images/current_stage2.png" width="500px;"> 
-      </a> 
-    </td> 
-    <td valign="left">
-     <p style="color: #FF7A59">
-      </p>
-     <a href="./images/previous_stage2.png">
-        <img src="./images/previous_stage2.png" width="500px;"> 
-      </a> 
-    </td> 
-  </tr>
-
-  <tr style="background: #010203;"> 
-    <td valign="left">
-     <p style="color: #FF7A59">  
-      </p>
-      <a href="./images/current_stage3.png">
-        <img src="./images/current_stage3.png" width="500px;"> 
-      </a> 
-    </td> 
-    <td valign="left">
-     <p style="color: #FF7A59">
-      </p>
-     <a href="./images/previous_stage3.png">
-        <img src="./images/previous_stage3.png" width="500px;"> 
-      </a> 
-    </td> 
-  </tr>
-
-  <tr style="background: #010203;"> 
-    <td valign="left">
-     <p style="color: #FF7A59">  
-      </p>
-      <a href="./images/current_stage4.png">
-        <img src="./images/current_stage4.png" width="500px;"> 
-      </a> 
-    </td> 
-    <td valign="left">
-     <p style="color: #FF7A59">
-      </p>
-     <a href="./images/previous_stage4.png">
-        <img src="./images/previous_stage4.png" width="500px;"> 
-      </a> 
-    </td> 
-  </tr>
-    
- </table>
- <table>
-    <tr style="background: #010203;"> 
-    <td valign="left">
-     <p style="color: #FF7A59">  Add Recipe Page
-      </p>
-      <a href="./images/current_stage5.png">
-        <img src="./images/current_stage5.png" width="500px;"> 
-      </a> 
-  </tr>
- </table>
 
 
 ## :page_facing_up: License <a name="License"></a>
@@ -190,17 +165,31 @@ This project is licensed under the terms of the MIT license. Please check [Licen
 
 ## :pencil2: Contributions <a name="Contributions"></a>
 
-Please see our [CONTRIBUTING.md](https://github.com/shubham-wawale/Recipe_Recommender/blob/master/CONTRIBUTING.md) for instructions on how to contribute to the project by completing some of the issues.
+Please see our [CONTRIBUTING.md](https://github.com/pnprathima/Recipe_Recommender/blob/master/CONTRIBUTING.md) for instructions on how to contribute to the project by completing some of the issues.
 
-## Contributors Phase - 3
+## FUTURE SCOPE
 
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/aj0671"><img src="https://avatars.githubusercontent.com/u/84402767?v=4" width="75px;" alt=""/><br /><sub><b>Atharva Joshi</b></sub></a></td>
-    <td align="center"><a href="https://github.com/shubham-wawale/"><img src="https://avatars.githubusercontent.com/u/63787850?s=400&u=c11a5c9bae68a18540bcb487a3769bd2c4b2ba29&v=4" width="75px;" alt=""/><br /><sub><b>Shubham Wawale</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/sal0ni"><img src="https://avatars.githubusercontent.com/u/64455311?v=4" width="75px;" alt=""/><br /><sub><b>Sahil Purohit</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/Sahil-18"><img src="https://avatars.githubusercontent.com/u/65714335?v=4" width="75px;" alt=""/><br /><sub><b>Shinit Shetty</b></sub></a><br /></td>
-  </tr>
-</table>
+Implement personalized diertary requirements based filtering.
+
+Meal planning- saving data for all meals of the day.
+
+Voice to text integration. 
+
+Chatbot integration- to answer quick queries about the recipe.
+
+## Team Members
+
+Annadurai,Harshitha <br>
+Bhoja Ramamanohara,Pannaga Rao <br>
+Masineni Prasanna Kumar,Karthik <br>
+Niranjana,Prathima Putreddy <br>
+
+## Troubleshooting and Support
+Common issues observed and solutions:<br>
+1. requirements.txt failing: this issue should no longer be seen, as we have used ~= to ensure your systems pick up versions compatible with the other packages. However, if you happen to see the issue, modify the requirements.txt file to use a more recent version.
+2. python was not found: we recommend using python3 as some of the modules are available only on Python3. You may either install Python3 or setup a virtual environment(we suggest the latter if you are currently running other applications on python2)
+Facing other issues with the application? Mail us - [teamsoftwareeng7@gmail.com](teamsoftwareeng7@gmail.com)
+
+
 
 <p align="center">Made with ❤️ on GitHub.</p>
