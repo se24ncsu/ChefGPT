@@ -61,4 +61,11 @@ describe("GET /recipes", function () {
 
     expect(response.text.includes("Recipe-rating")).true;
   });
+  it("is the API fetching the recipe by name", async function () {
+    const response = await request.get(
+      "/recipes/getRecipeByName?recipeName=andhra"
+    );
+
+    expect(response.text.includes("Andhra")).true;
+  });
 });
