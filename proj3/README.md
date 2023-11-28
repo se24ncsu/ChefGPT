@@ -10,7 +10,7 @@ Niranjana,Prathima Putreddy <br>
 [Watch YouTube video](https://youtu.be/133EWUQWe5Q)
 
 ### SCORE CARD
-[Go to project3 score card file](https://github.com/pnprathima/Recipe_Recommender/blob/master/score_card.csv)
+[Go to project3 score card file](https://github.com/pnprathima/Recipe_Recommender/blob/master/proj3/score_card.csv)
 
 Main README [Go to README](https://github.com/pnprathima/Recipe_Recommender#readme) <br>
 Main project [Go to Recipe_Recommender](https://github.com/pnprathima/Recipe_Recommender) <br>
