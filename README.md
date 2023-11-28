@@ -67,7 +67,7 @@ Presenting our latest additions: Here's a comprehensive list of all our new feat
 
 
 
-Source documentation can be found at: [Recipe Recommender Docs] https://github.com/pnprathima/Recipe_Recommender/blob/master/Recipe%20Recommender%20Source%20Documentation.pdf
+Source documentation can be found at: [Recipe Recommender Docs](https://github.com/pnprathima/Recipe_Recommender/blob/master/Recipe%20Recommender%20Source%20Documentation.pdf)
 
 
 ## API Documentation
@@ -95,7 +95,7 @@ Retrieves bookmarked recipes for a user through the /getBookmarks endpoint. Succ
 **Add Recipe to User Profile:**
 Adds a recipe to a user's profile bookmarks via the /addRecipeToProfile endpoint. Success returns a code of 200 with the count of modified items; error returns code 500 with an error message.
 
-<br>Detailed documentation can be found at: [API Docs] https://github.com/pnprathima/Recipe_Recommender/blob/master/API_Documentation.pdf
+<br>Detailed documentation can be found at: [API Docs](https://github.com/pnprathima/Recipe_Recommender/blob/master/API_Documentation.pdf)
 
 ## Technology Stack
 
@@ -108,7 +108,7 @@ Adds a recipe to a user's profile bookmarks via the /addRecipeToProfile endpoint
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-<br>Detailed documentation can be found at: [TechStack Docs] https://github.com/pnprathima/Recipe_Recommender/blob/master/TechStack-Docs
+<br>Detailed documentation can be found at: [TechStack Docs](https://github.com/pnprathima/Recipe_Recommender/blob/master/TechStack-Docs)
 
 ## Key Software Requirements
 
