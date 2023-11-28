@@ -9,7 +9,7 @@ describe("Recipes API Tests", function () {
 
   describe("POST /addRecipeToProfile", function () {
     it("should successfully add a recipe to user's profile", async function () {
-      const recipeData = { recipeId: "123", title: "New Recipe" };
+      const recipeData = { recipeId: "1", title: "Test Recipe" };
       const response = await request.post("/addRecipeToProfile")
         .send(recipeData)
 

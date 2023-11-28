@@ -21,11 +21,10 @@ export default class RecipesController {
       res.json({ success, user });
     }
   }
-  
+
   static async apiGetBookmarks(req, res) {
     if (req.query.userName) {
       const bookmarks = await RecipesDAO.getBookmarks(req.query.userName)
-      console.log("I am here")
       console.log(bookmarks)
       res.json({ bookmarks });
     } else {
@@ -124,7 +123,6 @@ export default class RecipesController {
       let ingredients = await RecipesDAO.getIngredients();
       res.json(ingredients);
     } catch(e) {
-      console.log(`ingredients nahi milra hai , ${e}`);
       res.status(500).json({ error: e });
     }
   }
