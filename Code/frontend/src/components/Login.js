@@ -1,3 +1,7 @@
+/* MIT License
+
+Copyright (c) 2023 Pannaga Rao, Harshitha, Prathima, Karthik  */
+
 import { useState } from "react"
 import {Modal, ModalOverlay, ModalContent, ModalHeader, 
     ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Button} from "@chakra-ui/react"

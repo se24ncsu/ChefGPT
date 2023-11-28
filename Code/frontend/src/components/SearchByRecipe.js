@@ -1,3 +1,6 @@
+/* MIT License
+
+Copyright (c) 2023 Pannaga Rao, Harshitha, Prathima, Karthik  */
 
 import { Box, Input, InputGroup, InputRightElement, Button } from "@chakra-ui/react";
 import { useState } from "react";

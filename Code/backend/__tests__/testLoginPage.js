@@ -1,3 +1,7 @@
+/* MIT License
+
+Copyright (c) 2023 Pannaga Rao, Harshitha, Prathima, Karthik  */
+
 const request = require("supertest")("http://localhost:5000/api/v1/recipes");
 const expect = require("chai").expect;
 

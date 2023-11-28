@@ -1,3 +1,7 @@
+/* MIT License
+
+Copyright (c) 2023 Pannaga Rao, Harshitha, Prathima, Karthik  */
+
 import React, { useState } from "react";
 import { Avatar, Flex, Modal, ModalBody, ModalCloseButton, ModalOverlay, ModalHeader, ModalFooter, ModalContent, Box, SimpleGrid, Text, Button } from "@chakra-ui/react"
 import BookMarksRecipeCard from "./BookMarksRecipeCard";
