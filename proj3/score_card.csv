@@ -1,4 +1,4 @@
-Column 1,Score = 81,Evidence,Observations
+Column 1,Score = 79,Evidence,Observations
 Video,3,https://www.youtube.com/watch?v=133EWUQWe5Q,
 Workload spread - Contributions,3,https://github.com/pnprathima/Recipe_Recommender/graphs/contributors,
 Number of commits,3,https://github.com/pnprathima/Recipe_Recommender/graphs/commit-activity,
@@ -18,11 +18,11 @@ Use of syntax checkers,3,https://github.com/pnprathima/Recipe_Recommender,
 Use of code coverage,3,https://github.com/pnprathima/Recipe_Recommender,Codecov tag
 Other automated analysis tools,3,,CI/CD tag
 Test cases exist,3,,
-Test cases are routinely executed,3,,
+Test cases are routinely executed,2,,
 CONTRIBUTING.md coding standards,3,,
 Issues are discussed before they are closed,3,,
 Chat channel: exists,3,https://discord.com/channels/1145839049509179544/1175496956655698001,
-Test cases: a large proportion of the issues related to handling failing cases.,3,,
+Test cases: a large proportion of the issues related to handling failing cases.,2,,
 "Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people.",3,,There are contributions made by different people to the repo indicating that the same tools were used in order to get the local feature branches working
 Evidence that the members of the team are working across multiple places in the code base,3,,
 Short release cycles,3,https://github.com/pnprathima/Recipe_Recommender/releases,
