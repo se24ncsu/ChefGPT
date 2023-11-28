@@ -109,6 +109,8 @@ Adds a recipe to a user's profile bookmarks via the /addRecipeToProfile endpoint
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
+<br>Detailed documentation can be found at: [TechStack Docs] https://github.com/pnprathima/Recipe_Recommender/blob/master/TechStack-Docs
+
 ## Key Software Requirements
 
 - [Node.js v18.17.1](https://nodejs.org/en/download/)
