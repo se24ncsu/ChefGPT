@@ -1,3 +1,7 @@
+/* MIT License
+
+Copyright (c) 2023 Pannaga Rao, Harshitha, Prathima, Karthik  */
+
 import { useEffect, useState } from "react";
 import BookMarksRecipeList from "./BookMarksRecipeList";
 import { Heading, Flex, Button, Spacer } from "@chakra-ui/react"
