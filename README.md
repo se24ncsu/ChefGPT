@@ -6,7 +6,7 @@
 
 [Youtube Video](https://youtu.be/133EWUQWe5Q) <br>
 
-## SaveursSélection: Find, Cook, Taste, Share 🍔
+
 
 
 [![Made With](https://img.shields.io/badge/made%20with-javascript-gree)](https://www.javascript.com/)
