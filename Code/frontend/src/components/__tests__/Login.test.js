@@ -1,5 +1,5 @@
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
-import Login from "./../Login";
+import Login from "../Login";
 
 // Mock props
 const mockHandleLogin = jest.fn();
