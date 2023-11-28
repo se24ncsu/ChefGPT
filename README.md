@@ -1,11 +1,10 @@
 # Enhanced Recipe Recommender: Introducing additional features and addressing issues for an improved user experience.
 
 ![](Reciperec.gif)
-
+<br><br>
 ## Watch how our application works: 
-
-[Youtube Video](https://youtu.be/133EWUQWe5Q) <br>
-
+### Click here to watch - [Youtube Video](https://youtu.be/133EWUQWe5Q) <br>
+<br><br>
 
 
 
