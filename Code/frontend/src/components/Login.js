@@ -3,30 +3,32 @@
 Copyright (c) 2023 Pannaga Rao, Harshitha, Prathima, Karthik  */
 
 import { useState } from "react"
-import {Modal, ModalOverlay, ModalContent, ModalHeader, 
-    ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Button} from "@chakra-ui/react"
+import {
+  Modal, ModalOverlay, ModalContent, ModalHeader,
+  ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Button
+} from "@chakra-ui/react"
 
-const Login = (props)=> {
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
-    const handleUserName = (e)=>{
-        setUserName(e.target.value)
-    }
-    const handlePassword = (e)=>{
-        setPassword(e.target.value)
-    }
-    const handleLogin = (e)=> {
-        e.preventDefault();
-        props.handleLogin(userName, password);
-    }
-    const handleSignup = (e)=> {
-      props.handleSignup(userName, password);
-    }
-    return (
-        <>
-        <Modal
+const Login = (props) => {
+  const [userName, setUserName] = useState("")
+  const [password, setPassword] = useState("")
+  const handleUserName = (e) => {
+    setUserName(e.target.value)
+  }
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+  }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    props.handleLogin(userName, password);
+  }
+  const handleSignup = (e) => {
+    props.handleSignup(userName, password);
+  }
+  return (
+    <>
+      <Modal
         isOpen={true}
-        >
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>LOG IN</ModalHeader>
@@ -50,8 +52,8 @@ const Login = (props)=> {
           </ModalFooter>
         </ModalContent>
       </Modal>
-        </>
-    )   
+    </>
+  )
 }
 
 export default Login;

@@ -8,6 +8,7 @@ const MongoClient = mongodb.MongoClient;
 const port = process.env.PORT || 8000;
 
 //Connection to MongoDB
+console.log(process.env.RECIPES_DB_URI);
 MongoClient.connect(process.env.RECIPES_DB_URI, {
   maxPoolSize: 50,
   wtimeoutMS: 2500,
