@@ -1,0 +1,27 @@
+.hover_pointer:hover {
+    cursor: pointer;
+}
+
+.hover_border {
+    border: 1px solid #0000;
+}
+
+.hover_border:hover {
+    border: 1px solid #0007;
+}
+
+.hover_rotate_anim {
+    transition: transform 0.3s ease;
+}
+
+.hover_rotate_anim:hover {
+    transform: rotate(180deg);
+}
+
+.hover_scale {
+    transition: transform 0.5s ease;
+}
+
+.hover_scale:hover {
+    transform: scale(1.1);
+}

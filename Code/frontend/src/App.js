@@ -1,16 +1,10 @@
 //  
-import Form from "./components/Form.js";
-import Header from "./components/Header";
 import recipeDB from "./apis/recipeDB";
-import RecipeList from "./components/RecipeList";
-import AddRecipe from "./components/AddRecipe.js";
 import React, { Component } from "react";
-import { Tabs, Tab, TabList, TabPanel, TabPanels, Box } from "@chakra-ui/react";
-import RecipeLoading from "./components/RecipeLoading.js";
 import Nav from "./components/Navbar.js";
-import SearchByRecipe from "./components/SearchByRecipe.js";
 import Login from "./components/Login.js";
-import UserProfile from "./components/UserProfile.js";
+import { doSignInWithEmailAndPassword, doCreateUserWithEmailAndPassword, doSignOut } from "./firebase/auth";
+import SearchBlock from "./components/SearchBlock.js";
 
 // Main component of the project
 class App extends Component {
@@ -29,67 +23,55 @@ class App extends Component {
       isLoading: false,
       isLoggedIn: false,
       isProfileView: false,
+      showLoginModal: false,
       userData: {}
     };
   }
 
-  handleBookMarks = ()=> {
+  handleBookMarks = () => {
     this.setState({
       isProfileView: true
     })
   }
 
-  handleProfileView = ()=> {
+  handleProfileView = () => {
     this.setState({
       isProfileView: false
     })
   }
 
-  handleSignup = async (userName, password)=> {
+  toggleLoginModal = () => {
+    this.setState((prevState) => ({ showLoginModal: !prevState.showLoginModal }));
+  };
+
+  handleSignup = async (email, password) => {
     try {
-      const response = await recipeDB.post("/recipes/signup", {
-          userName,
-          password
+      const userCredential = await doCreateUserWithEmailAndPassword(email, password);
+      this.setState({
+        isLoggedIn: true,
+        currentUser: userCredential.user,
+        showLoginModal: false,
       });
-      console.log(response.data)
-      if (response.data.success) {
-        alert("Successfully Signed up!")
-        this.setState({
-          isLoggedIn: true,
-          userData: response.data.user
-        })
-        localStorage.setItem("userName", response.data.user.userName)
-        console.log(response.data.user)
-      } else {
-        alert("User already exists")
-      }
+      alert("Successfully Signed up!");
     } catch (err) {
       console.log(err);
+      alert(err.message);
     }
   }
 
-  handleLogin = async (userName, password) => {
+  // Handle user login
+  handleLogin = async (email, password) => {
     try {
-      const response = await recipeDB.get("/recipes/login", {
-        params: {
-          userName,
-          password
-        },
+      const userCredential = await doSignInWithEmailAndPassword(email, password);
+      this.setState({
+        isLoggedIn: true,
+        currentUser: userCredential.user,
+        showLoginModal: false,
       });
-      console.log(response.data)
-      if (response.data.success) {
-        this.setState({
-          isLoggedIn: true,
-          userData: response.data.user
-        })
-        localStorage.setItem("userName", response.data.user.userName)
-        console.log(response.data.user)
-        alert("Successfully logged in!")
-      } else {
-        console.log("Credentials are incorrect")
-      }
+      alert("Successfully logged in!");
     } catch (err) {
       console.log(err);
+      alert(err.message);
     }
   }
 
@@ -152,55 +134,64 @@ class App extends Component {
     }
   };
 
-  handleLogout = ()=> {
-    console.log("logged out")
-    this.setState({
-      isLoggedIn: false
-    })
+  // Handle logout
+  handleLogout = async () => {
+    try {
+      await doSignOut();
+      this.setState({
+        isLoggedIn: false,
+        showLoginModal: false,
+        currentUser: null,
+      });
+      alert("Logged out successfully");
+    } catch (err) {
+      console.log(err);
+      alert("Failed to log out");
+    }
   }
 
   render() {
     return (
       <div>
-        <Nav handleLogout={this.handleLogout} handleBookMarks={this.handleBookMarks} user={this.state.userData}/>
-        {this.state.isLoggedIn ?
-          <>
-            {this.state.isProfileView ?
-            <UserProfile handleProfileView={this.handleProfileView} user={this.state.userData} />
-            :
-              <Tabs variant='soft-rounded' colorScheme='green'>
-                <TabList ml={10}>
-                  <Tab>Search Recipe</Tab>
-                  <Tab>Add Recipe</Tab>
-                  <Tab>Search Recipe By Name</Tab>
-                </TabList>
-                <TabPanels>
-                  <TabPanel>
-                    <Box display="flex">
-                      <Form sendFormData={this.handleSubmit} />
-                      {this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeList} />}
-                    </Box>
-                  </TabPanel>
-                  <TabPanel>
-                    <AddRecipe />
-                  </TabPanel>
-                  <TabPanel>
-                    <SearchByRecipe sendRecipeData={this.handleRecipesByName} />
-                    {this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeByNameList} />}
-                  </TabPanel>
-                </TabPanels>
-              </Tabs>
-            }
-          </>
-          : <Login handleSignup={this.handleSignup} handleLogin={this.handleLogin} />
-        }
-        {/* handleSubmit function is being sent as a prop to the form component*/}
-
-
-        {/* RecipeList is the component where results are displayed.
-        App's recipeList state item is being sent as a prop
-        */}
-
+        <Nav
+          handleLogout={this.handleLogout}
+          handleBookMarks={this.handleBookMarks}
+          currentUser={this.state.currentUser}
+          toggleLoginModal={this.toggleLoginModal}
+        />
+        {this.state.showLoginModal && (
+          <Login handleSignup={this.handleSignup} handleLogin={this.handleLogin} toggleLoginModal={this.toggleLoginModal} />
+        )}
+        <SearchBlock />
+        {/*
+        <>
+          {this.state.isProfileView ? (
+            <UserProfile handleProfileView={this.handleProfileView} currentUser={this.state.currentUser} />
+          ) : (
+            <Tabs variant="soft-rounded" colorScheme="green">
+              <TabList ml={10}>
+                <Tab>Search Recipe</Tab>
+                <Tab>Search Recipe By Name</Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <Box display="flex">
+                    <Form sendFormData={this.handleSubmit} />
+                    {this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeList} />}
+                  </Box>
+                </TabPanel>
+								<TabPanel>
+									<AddRecipe />
+								</TabPanel>
+                <TabPanel>
+                  <SearchByRecipe sendRecipeData={this.handleRecipesByName} />
+                  {this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeByNameList} />}
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          )}
+        </>
+          */}
       </div>
     );
   }

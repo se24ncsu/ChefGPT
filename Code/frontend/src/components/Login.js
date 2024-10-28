@@ -6,30 +6,37 @@ import { useState } from "react"
 import {Modal, ModalOverlay, ModalContent, ModalHeader, 
     ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Button} from "@chakra-ui/react"
 
-const Login = (props)=> {
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
-    const handleUserName = (e)=>{
-        setUserName(e.target.value)
-    }
-    const handlePassword = (e)=>{
-        setPassword(e.target.value)
-    }
-    const handleLogin = (e)=> {
-        e.preventDefault();
-        props.handleLogin(userName, password);
-    }
-    const handleSignup = (e)=> {
-      props.handleSignup(userName, password);
-    }
-    return (
-        <>
-        <Modal
-        isOpen={true}
-        >
+const Login = (props) => {
+  const [userName, setUserName] = useState("")
+  const [password, setPassword] = useState("")
+  const handleUserName = (e) => {
+    setUserName(e.target.value)
+  }
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    props.handleLogin(userName, password);
+  }
+
+  const handleSignup = (e) => {
+    props.handleSignup(userName, password);
+  }
+
+  const handleClose = () => {
+    props.toggleLoginModal();
+  }
+
+  return (
+    <>
+      <Modal isOpen={true} onClose={handleClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>LOG IN</ModalHeader>
+          <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>User Name</FormLabel>

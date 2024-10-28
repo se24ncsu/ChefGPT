@@ -18,11 +18,7 @@ import {
   Center,
   Heading
 } from '@chakra-ui/react'
-
-
-// interface Props {
-//   children: React.ReactNode
-// }
+import SearchBar from './SearchBar'
 
 const NavLink = (props) => {
   const { children } = props
@@ -46,56 +42,38 @@ const NavLink = (props) => {
 export default function Nav(props) {
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const handleBookMarks =()=> {
-    props.handleBookMarks();
-  }
-  const handleLogout = ()=> {
-    console.log("logged out")
-    props.handleLogout();
-  }
+
   return (
-    <>
-      <Box color={"black"} mb={5}  bg={"green.300"} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box pl={10}><Heading size={"md"}>Saveurs Sélection</Heading></Box>
-
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
-
+    <Box color={"black"} mb={5} px={4}>
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <Box pl={10}>
+          <Heading size={"md"}>CookSmart</Heading>
+        </Box>
+        <Flex alignItems={"center"}>
+          <Stack direction={"row"} spacing={7}>
+            {props.currentUser ? (
               <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
-                  />
+                <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>
+                  <Avatar size={"sm"} src={"https://avatars.dicebear.com/api/male/username.svg"} />
                 </MenuButton>
-                <MenuList alignItems={'center'}>
-                  <br />
+                <MenuList alignItems={"center"}>
                   <Center>
-                    <Avatar
-                      size={'xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
-                    />
+                    <Avatar size={"xl"} src={"https://avatars.dicebear.com/api/male/username.svg"} />
                   </Center>
-                  <br />
                   <Center>
-                    <p>{localStorage.getItem("userName")}</p>
+                    <p>{props.currentUser.email}</p>
                   </Center>
-                  <br />
                   <MenuDivider />
-                  <MenuItem onClick={handleBookMarks}>Bookmarks</MenuItem>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem onClick={props.handleBookMarks}>Bookmarks</MenuItem>
+                  <MenuItem onClick={props.handleLogout}>Logout</MenuItem>
                 </MenuList>
               </Menu>
-            </Stack>
-          </Flex>
+            ) : (
+              <Button onClick={props.toggleLoginModal}>Login</Button>
+            )}
+          </Stack>
         </Flex>
-      </Box>
-    </>
-  )
+      </Flex>
+    </Box>
+  );
 }
