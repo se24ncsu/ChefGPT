@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@puppeteer/browsers": "^2.4.0",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "firebase-tools": "^13.23.0",
+    "puppeteer": "^23.6.0"
+  }
+}
