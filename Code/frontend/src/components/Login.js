@@ -14,24 +14,31 @@ const Login = (props) => {
   const handleUserName = (e) => {
     setUserName(e.target.value)
   }
+
   const handlePassword = (e) => {
     setPassword(e.target.value)
   }
+
   const handleLogin = (e) => {
     e.preventDefault();
     props.handleLogin(userName, password);
   }
+
   const handleSignup = (e) => {
     props.handleSignup(userName, password);
   }
+
+  const handleClose = () => {
+    props.toggleLoginModal();
+  }
+
   return (
     <>
-      <Modal
-        isOpen={true}
-      >
+      <Modal isOpen={true} onClose={handleClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>LOG IN</ModalHeader>
+          <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>User Name</FormLabel>
