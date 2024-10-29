@@ -11,6 +11,7 @@ import Nav from "./components/Navbar.js";
 import SearchByRecipe from "./components/SearchByRecipe.js";
 import Login from "./components/Login.js";
 import UserProfile from "./components/UserProfile.js";
+import TagFilter from "./components/TagFilter.js";
 
 // Main component of the project
 class App extends Component {
@@ -29,7 +30,9 @@ class App extends Component {
 			isLoading: false,
 			isLoggedIn: false,
 			isProfileView: false,
-			userData: {}
+			userData: {},
+			tags: ["Vegan", "Quick", "Healthy", "Dessert", "Indian"], // Dummy tags
+			filteredRecipes: []
 		};
 	}
 
@@ -160,17 +163,25 @@ class App extends Component {
 		})
 	}
 
+	filterRecipesByTag = (selectedTag) => {
+		const filtered = this.state.recipeList.filter(recipe =>
+			recipe.tags.includes(selectedTag)
+		);
+		this.setState({ filteredRecipes: filtered });
+	};
+
 	render() {
 		return (
 			<div>
 				<Nav handleLogout={this.handleLogout} handleBookMarks={this.handleBookMarks} user={this.state.userData} />
-
+			
 
 				<Tabs variant='soft-rounded' colorScheme='green'>
 					<TabList ml={10}>
 						<Tab>Search Recipe</Tab>
 						{/* <Tab>Add Recipe</Tab> */}
 						<Tab>Search Recipe By Name</Tab>
+						<TagFilter tags={this.state.tags} filterRecipesByTag={this.filterRecipesByTag} />
 					</TabList>
 					<TabPanels>
 						<TabPanel>
