@@ -45,7 +45,7 @@ export default function Nav(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
-    <Box color={"black"} mb={5} px={4}>
+    <Box bg="#D3D3D3" color={"black"} mb={5} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <Box pl={5}>
           <div style={{ display: 'flex', alignItems: 'center', columnGap: 10 }}>
