@@ -19,6 +19,7 @@ import {
   Heading
 } from '@chakra-ui/react'
 import SearchBar from './SearchBar'
+import logo from '../Images/logo.png';
 
 const NavLink = (props) => {
   const { children } = props
@@ -46,8 +47,11 @@ export default function Nav(props) {
   return (
     <Box color={"black"} mb={5} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-        <Box pl={10}>
-          <Heading size={"md"}>CookSmart</Heading>
+        <Box pl={5}>
+          <div style={{ display: 'flex', alignItems: 'center', columnGap: 10 }}>
+            <img src={logo} style={{ height: 50 }} />
+            <div style={{ fontSize: 20, fontStyle: 'italic' }}>CookSmart</div>
+          </div>
         </Box>
         <Flex alignItems={"center"}>
           <Stack direction={"row"} spacing={7}>
