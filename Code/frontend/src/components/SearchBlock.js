@@ -67,6 +67,7 @@ const SearchBlock = (props) => {
             ingredients: items[index].ingredients,
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
+        const allIngredients = response.data.ingredients.split('\n').map(ingredient => ingredient.trim());
         console.log(response.data);
         setDetailedItem(response.data);
     }
@@ -111,15 +112,24 @@ const SearchBlock = (props) => {
                             <div>{detailedItem.name}</div>
                             <div>{detailedItem.time}</div>
                         </div>
+
                         <div style={{ display: 'flex', marginTop: 5 }}>
                             {detailedItem.tags.map((tag, index) => {
                                 return <Tag key={index}>{tag}</Tag>;
                             })}
                         </div>
+
+                        <div style={{ marginTop: 30 }}>Ingredients</div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: 10}}>
+                            {detailedItem.ingredients.map((ingredient, index) => (
+                                <Tag key={index}>{ingredient}</Tag>
+                            ))}
+                        </div>
+
                         <div style={{ marginTop: 30 }}>Steps</div>
                         <div style={{ display: 'flex', flexDirection: 'column', rowGap: 20, marginTop: 10 }}>
                             {detailedItem.process.map((step, index) => {
-                                return <div key={index} style={{ width: '95%', display: 'flex', background: '#eee', borderRadius: 10, overflow: 'hidden' }}>
+                                return <div key={index} style={{ display: 'flex', background: '#eee', borderRadius: 10, overflow: 'hidden' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', padding: 20, background: '#ddd' }}>{index + 1}</div>
                                     <div style={{ padding: 10, display: 'flex', alignItems: 'center' }}>{step.replace(/[0-9]*\./, '')}</div>
                                 </div>;
