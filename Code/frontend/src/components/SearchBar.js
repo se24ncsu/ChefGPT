@@ -21,14 +21,21 @@ const SearchBar = (props) => {
 
     const onIngredientAdded = () => {
         let ingred = searchRef.current.value;
+        searchRef.current.value = '';
         allIngreds.current.push(ingred);
         props.onIngredientAdded(ingred, allIngreds.current);
+    }
+
+    const onKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            onIngredientAdded();
+        }
     }
 
     return (
         <div style={{ width: '100%', padding: 10, display: 'flex', justifyContent: 'center' }}>
             <div style={{ position: 'relative', width: '50%' }}>
-                <input ref={searchRef} onChange={onChange} placeholder='Add ingredients or search by name' type="text" style={{ width: '100%', height: 50, border: '2px solid #0007', borderRadius: 25, paddingLeft: 50, paddingRight: 25 }} />
+                <input ref={searchRef} onKeyDown={onKeyDown} onChange={onChange} placeholder='Add ingredients or search by name' type="text" style={{ width: '100%', height: 50, border: '2px solid #0007', borderRadius: 25, paddingLeft: 50, paddingRight: 25 }} />
                 <div style={{ position: 'absolute', left: 17, top: 0, height: '100%', display: 'flex', alignItems: 'center' }}>
                     <IoIosSearch size={25} color='#333' />
                 </div>
