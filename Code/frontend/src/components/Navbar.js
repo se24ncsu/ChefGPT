@@ -55,7 +55,7 @@ export default function Nav(props) {
         </Box>
         <Flex alignItems={"center"}>
           <Stack direction={"row"} spacing={7}>
-            {props.currentUser ? (
+            {props.userLoggedIn && props.currentUser ? (
               <Menu>
                 <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>
                   <Avatar size={"sm"} src={"https://avatars.dicebear.com/api/male/username.svg"} />

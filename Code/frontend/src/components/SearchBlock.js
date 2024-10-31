@@ -7,6 +7,8 @@ import './css/misc.css';
 import Tag from "./Tag";
 import jsPDF from 'jspdf';
 import { Oval } from "react-loader-spinner";
+import { bookmarkRecipe } from '../service/firestoreService';
+import { useAuth } from "../contexts/authContext/index";
 
 
 const SearchBlock = (props) => {
@@ -16,10 +18,9 @@ const SearchBlock = (props) => {
     const [items, setItems] = useState([]);
     const currentPage = useRef(1);
     const [loading, setLoading] = useState(false);
-
     const [showingDetailed, setShowingDetailed] = useState(-1);
-
     const [detailedItem, setDetailedItem] = useState();
+    const [isBookmarked, setIsBookmarked] = useState(false);
 
     const onChange = (query) => {
         if (searchIngredients.length === 0) {
@@ -83,14 +84,23 @@ const SearchBlock = (props) => {
             ingredients: items[index].ingredients,
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
-        const allIngredients = response.data.ingredients.split('\n').map(ingredient => ingredient.trim());
-        response.data.ingredients = allIngredients;
         setDetailedItem(response.data);
     }
 
+    const handleBookmark = async () => {
+        await bookmarkRecipe("Tom yum soup");
+        // if (isBookmarked) {
+        //     await unbookmarkRecipe(detailedItem.name);
+        //     setIsBookmarked(false);
+        // } else {
+        //     await bookmarkRecipe(detailedItem.name);
+        //     setIsBookmarked(true);
+        // }
+    };
+
     const generatePDF = () => {
         const recipeName = detailedItem.name;
-        const ingredients = String(detailedItem.ingredients).split(',').map(ingredient => ingredient.trim());
+        const ingredients = detailedItem.ingredients;
         const doc = new jsPDF();
         doc.setFontSize(16);
         doc.text("Shopping List", 20, 20);
@@ -100,7 +110,6 @@ const SearchBlock = (props) => {
 
         doc.setFontSize(12);
         let yOffset = 50;
-        console.log("inside generating pdf:"+ ingredients);
         ingredients.forEach((ingredient, index) => {
             doc.text(`${index + 1}. ${ingredient}`, 20, yOffset);
             yOffset += 10;
@@ -108,6 +117,8 @@ const SearchBlock = (props) => {
 
         doc.save(`${recipeName}-shopping-list.pdf`);
     };
+
+    const { userLoggedIn } = useAuth();
 
     return (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -168,7 +179,14 @@ const SearchBlock = (props) => {
                             <div>{detailedItem.name}</div>
                             <div>{detailedItem.time}</div>
                         </div>
-
+                        {userLoggedIn  && (
+                                <button 
+                                    onClick={handleBookmark}
+                                    style={{ padding: '5px 5px', backgroundColor: '#A9A9A9', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', transition: 'background-color 0.3s' }}    
+                                >
+                                    Bookmark this recipe
+                                </button>
+                        )}
                         <div style={{ display: 'flex', marginTop: 5 }}>
                             {detailedItem.tags.map((tag, index) => {
                                 return <Tag key={index}>{tag}</Tag>;
