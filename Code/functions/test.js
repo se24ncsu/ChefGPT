@@ -1,15 +1,18 @@
+const axios = require('axios');
 
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+const data = {
+    name: 'Chicken Tikka'
+};
 
 
-const GEMINI_KEY = "AIzaSyAbGv664iB48XgsrV917cpUc7SVQW4dfWE";
-
-const genAI = new GoogleGenerativeAI(GEMINI_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-const prompt = `Search for an image of Banana Milkshake`;
-model.generateContent(prompt).then(result => {
-    console.log(result.response.text());
-});
-
-//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
+//axios.post('https://get-recipes-from-ingredients-3rhjd2q7dq-uc.a.run.app', data)
+//axios.post('https://get-recipes-by-name-3rhjd2q7dq-uc.a.run.app', data)
+//axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data)
+axios.post('https://get-image-by-name-3rhjd2q7dq-uc.a.run.app', data)
+    .then((response) => {
+        console.log('Response:', JSON.stringify(response.data));
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });

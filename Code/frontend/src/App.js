@@ -1,17 +1,10 @@
 //  
-import Form from "./components/Form.js";
-import Header from "./components/Header";
 import recipeDB from "./apis/recipeDB";
-import RecipeList from "./components/RecipeList";
-import AddRecipe from "./components/AddRecipe.js";
 import React, { Component } from "react";
-import { Tabs, Tab, TabList, TabPanel, TabPanels, Box } from "@chakra-ui/react";
-import RecipeLoading from "./components/RecipeLoading.js";
 import Nav from "./components/Navbar.js";
-import SearchByRecipe from "./components/SearchByRecipe.js";
 import Login from "./components/Login.js";
-import UserProfile from "./components/UserProfile.js";
-import { doSignInWithEmailAndPassword, doCreateUserWithEmailAndPassword, doSignOut } from "./firebase/auth"
+import { doSignInWithEmailAndPassword, doCreateUserWithEmailAndPassword, doSignOut } from "./firebase/auth";
+import SearchBlock from "./components/SearchBlock.js";
 
 // Main component of the project
 class App extends Component {
@@ -19,68 +12,68 @@ class App extends Component {
 	constructor() {
 		super();
 
-		this.state = {
-			cuisine: "",
-			//NoIngredients : 0,
-			ingredients: new Set(),
-			recipeList: [],
-			recipeByNameList: [],
-			email: "",
-			flag: false,
-			isLoading: false,
-			isLoggedIn: false,
-			isProfileView: false,
-			showLoginModal: false,
-			userData: {}
-		};
-	}
+    this.state = {
+      cuisine: "",
+      //NoIngredients : 0,
+      ingredients: new Set(),
+      recipeList: [],
+      recipeByNameList: [],
+      email: "",
+      flag: false,
+      isLoading: false,
+      isLoggedIn: false,
+      isProfileView: false,
+      showLoginModal: false,
+      userData: {}
+    };
+  }
 
-	handleBookMarks = () => {
-		this.setState({
-			isProfileView: true
-		})
-	}
+  handleBookMarks = () => {
+    this.setState({
+      isProfileView: true
+    })
+  }
 
-	handleProfileView = () => {
-		this.setState({
-			isProfileView: false
-		})
-	}
+  handleProfileView = () => {
+    this.setState({
+      isProfileView: false
+    })
+  }
 
-	toggleLoginModal = () => {
-		this.setState((prevState) => ({ showLoginModal: !prevState.showLoginModal }));
-	};
+  toggleLoginModal = () => {
+    this.setState((prevState) => ({ showLoginModal: !prevState.showLoginModal }));
+  };
 
-	handleSignup = async (email, password) => {
-		try {
-			const userCredential = await doCreateUserWithEmailAndPassword(email, password);
-			this.setState({
-				isLoggedIn: true,
-				currentUser: userCredential.user,
-				showLoginModal: false,
-			});
-			alert("Successfully Signed up!");
-		} catch (err) {
-			console.log(err);
-			alert(err.message);
-		}
-	}
+  handleSignup = async (email, password) => {
+    try {
+      const userCredential = await doCreateUserWithEmailAndPassword(email, password);
+      this.setState({
+        isLoggedIn: true,
+        currentUser: userCredential.user,
+        showLoginModal: false,
+      });
+      alert("Successfully Signed up!");
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
+    }
+  }
 
-	// Handle user login
-	handleLogin = async (email, password) => {
-		try {
-			const userCredential = await doSignInWithEmailAndPassword(email, password);
-			this.setState({
-				isLoggedIn: true,
-				currentUser: userCredential.user,
-				showLoginModal: false,
-			});
-			alert("Successfully logged in!");
-		} catch (err) {
-			console.log(err);
-			alert(err.message);
-		}
-	}
+  // Handle user login
+  handleLogin = async (email, password) => {
+    try {
+      const userCredential = await doSignInWithEmailAndPassword(email, password);
+      this.setState({
+        isLoggedIn: true,
+        currentUser: userCredential.user,
+        showLoginModal: false,
+      });
+      alert("Successfully logged in!");
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
+    }
+  }
 
 	// Function to get the user input from the Form component on Submit action
 	handleSubmit = async (formDict) => {
@@ -141,64 +134,67 @@ class App extends Component {
 		}
 	};
 
-	// Handle logout
-	handleLogout = async () => {
-		try {
-			await doSignOut();
-			this.setState({
-				isLoggedIn: false,
-				showLoginModal: false,
-				currentUser: null,
-			});
-			alert("Logged out successfully");
-		} catch (err) {
-			console.log(err);
-			alert("Failed to log out");
-		}
-	}
+  // Handle logout
+  handleLogout = async () => {
+    try {
+      await doSignOut();
+      this.setState({
+        isLoggedIn: false,
+        showLoginModal: false,
+        currentUser: null,
+      });
+      alert("Logged out successfully");
+    } catch (err) {
+      console.log(err);
+      alert("Failed to log out");
+    }
+  }
 
-	render() {
-		return (
-			<div>
-				<Nav
-					handleLogout={this.handleLogout}
-					handleBookMarks={this.handleBookMarks}
-					currentUser={this.state.currentUser}
-					toggleLoginModal={this.toggleLoginModal}
-				/>
-				{this.state.showLoginModal && (
-					<Login handleSignup={this.handleSignup} handleLogin={this.handleLogin} toggleLoginModal={this.toggleLoginModal} />
-				)}
-				<>
-					{this.state.isProfileView ? (
-						<UserProfile handleProfileView={this.handleProfileView} currentUser={this.state.currentUser} />
-					) : (
-						<Tabs variant="soft-rounded" colorScheme="green">
-							<TabList ml={10}>
-								<Tab>Search Recipe</Tab>
-								<Tab>Search Recipe By Name</Tab>
-							</TabList>
-							<TabPanels>
-								<TabPanel>
-									<Box display="flex">
-										<Form sendFormData={this.handleSubmit} />
-										{this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeList} />}
-									</Box>
-								</TabPanel>
+  render() {
+    return (
+      <div>
+        <Nav
+          handleLogout={this.handleLogout}
+          handleBookMarks={this.handleBookMarks}
+          currentUser={this.state.currentUser}
+          toggleLoginModal={this.toggleLoginModal}
+        />
+        {this.state.showLoginModal && (
+          <Login handleSignup={this.handleSignup} handleLogin={this.handleLogin} toggleLoginModal={this.toggleLoginModal} />
+        )}
+        <SearchBlock />
+        {/*
+        <>
+          {this.state.isProfileView ? (
+            <UserProfile handleProfileView={this.handleProfileView} currentUser={this.state.currentUser} />
+          ) : (
+            <Tabs variant="soft-rounded" colorScheme="green">
+              <TabList ml={10}>
+                <Tab>Search Recipe</Tab>
+                <Tab>Search Recipe By Name</Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <Box display="flex">
+                    <Form sendFormData={this.handleSubmit} />
+                    {this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeList} />}
+                  </Box>
+                </TabPanel>
 								<TabPanel>
 									<AddRecipe />
 								</TabPanel>
-								<TabPanel>
-									<SearchByRecipe sendRecipeData={this.handleRecipesByName} />
-									{this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeByNameList} />}
-								</TabPanel>
-							</TabPanels>
-						</Tabs>
-					)}
-				</>
-			</div>
-		);
-	}
+                <TabPanel>
+                  <SearchByRecipe sendRecipeData={this.handleRecipesByName} />
+                  {this.state.isLoading ? <RecipeLoading /> : <RecipeList recipes={this.state.recipeByNameList} />}
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          )}
+        </>
+          */}
+      </div>
+    );
+  }
 }
 
 export default App;
