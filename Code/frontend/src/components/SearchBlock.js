@@ -5,6 +5,7 @@ import RecipeImage from "./RecipeImage";
 import { LuClock4 } from "react-icons/lu";
 import './css/misc.css';
 import Tag from "./Tag";
+import jsPDF from 'jspdf';
 import { Oval } from "react-loader-spinner";
 
 
@@ -82,9 +83,31 @@ const SearchBlock = (props) => {
             ingredients: items[index].ingredients,
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
-        console.log(response.data);
+        const allIngredients = response.data.ingredients.split('\n').map(ingredient => ingredient.trim());
+        response.data.ingredients = allIngredients;
         setDetailedItem(response.data);
     }
+
+    const generatePDF = () => {
+        const recipeName = detailedItem.name;
+        const ingredients = String(detailedItem.ingredients).split(',').map(ingredient => ingredient.trim());
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text("Shopping List", 20, 20);
+
+        doc.setFontSize(14);
+        doc.text(`Recipe: ${recipeName}`, 20, 40);
+
+        doc.setFontSize(12);
+        let yOffset = 50;
+        console.log("inside generating pdf:"+ ingredients);
+        ingredients.forEach((ingredient, index) => {
+            doc.text(`${index + 1}. ${ingredient}`, 20, yOffset);
+            yOffset += 10;
+        });
+
+        doc.save(`${recipeName}-shopping-list.pdf`);
+    };
 
     return (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -145,6 +168,7 @@ const SearchBlock = (props) => {
                             <div>{detailedItem.name}</div>
                             <div>{detailedItem.time}</div>
                         </div>
+
                         <div style={{ display: 'flex', marginTop: 5 }}>
                             {detailedItem.tags.map((tag, index) => {
                                 return <Tag key={index}>{tag}</Tag>;
@@ -159,12 +183,25 @@ const SearchBlock = (props) => {
                         <div style={{ marginTop: 30 }}>Steps</div>
                         <div style={{ display: 'flex', flexDirection: 'column', rowGap: 20, marginTop: 10 }}>
                             {detailedItem.process.map((step, index) => {
-                                return <div key={index} style={{ width: '95%', display: 'flex', background: '#eee', borderRadius: 10, overflow: 'hidden' }}>
+                                return <div key={index} style={{ display: 'flex', background: '#eee', borderRadius: 10, overflow: 'hidden' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', padding: 20, background: '#ddd' }}>{index + 1}</div>
                                     <div style={{ padding: 10, display: 'flex', alignItems: 'center' }}>{step.replace(/[0-9]*\./, '')}</div>
                                 </div>;
                             })}
                         </div>
+                        {detailedItem && (
+                            <div style={{ display: 'flex', flexDirection: 'column', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)', margin: '20px', padding: '20px', alignItems: 'center', }}>
+                                <p>Need a quick shopping list of ingredients? Here's a PDF you can download!</p>
+                                <button
+                                    onClick={() => generatePDF(detailedItem.name, detailedItem.ingredients)}
+                                    style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: '#A9A9A9', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', transition: 'background-color 0.3s', marginTop: '10px' }}
+                                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#808080'}
+                                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#A9A9A9'}
+                                >
+                                    Download Shopping List
+                                </button>
+                            </div>
+                        )}
                         <div style={{ height: 100 }}></div>
                     </div>
                     ))
