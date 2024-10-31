@@ -193,7 +193,7 @@ export const get_detailed_recipe = onRequest(async (request, response) => {
         Return the response in the following JSON format: 
         {
             "name":"name of the recipe", 
-            "ingredients":"list of all the required ingredients sorted by importance", 
+            "ingredients":["list of all the required ingredients with quantities and sorted by importance as array", ...], 
             "time":"cooking time", 
             "tags":"3-6 tags for this recipe",
             "process":["step 1", "step 2", ...]
