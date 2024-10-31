@@ -68,7 +68,7 @@ const SearchBlock = (props) => {
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
         const allIngredients = response.data.ingredients.split('\n').map(ingredient => ingredient.trim());
-        console.log(response.data);
+        response.data.ingredients = allIngredients;
         setDetailedItem(response.data);
     }
 
