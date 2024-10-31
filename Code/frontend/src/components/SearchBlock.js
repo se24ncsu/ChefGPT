@@ -7,7 +7,7 @@ import './css/misc.css';
 import Tag from "./Tag";
 import jsPDF from 'jspdf';
 import { Oval } from "react-loader-spinner";
-import { bookmarkRecipe } from '../service/firestoreService';
+import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked } from '../service/firestoreService';
 import { useAuth } from "../contexts/authContext/index";
 
 
@@ -19,8 +19,9 @@ const SearchBlock = (props) => {
     const currentPage = useRef(1);
     const [loading, setLoading] = useState(false);
     const [showingDetailed, setShowingDetailed] = useState(-1);
-    const [detailedItem, setDetailedItem] = useState();
+    const [detailedItem, setDetailedItem] = useState(null);
     const [isBookmarked, setIsBookmarked] = useState(false);
+    const { userLoggedIn } = useAuth();
 
     const onChange = (query) => {
         if (searchIngredients.length === 0) {
@@ -70,6 +71,19 @@ const SearchBlock = (props) => {
 
     useEffect(() => { searchRecipes() }, [searchName, searchIngredients]);
 
+    useEffect(() => {
+        const checkBookmarkStatus = async () => {
+            if (detailedItem?.name) {
+                const status = await isRecipeBookmarked(detailedItem.name);
+                setIsBookmarked(status);
+            }
+        };
+
+        if (detailedItem) {
+            checkBookmarkStatus();
+        }
+    }, [detailedItem]);
+
     const loadMore = () => {
         if (loading) return;
         currentPage.current = currentPage.current + 1;
@@ -88,14 +102,13 @@ const SearchBlock = (props) => {
     }
 
     const handleBookmark = async () => {
-        await bookmarkRecipe("Tom yum soup");
-        // if (isBookmarked) {
-        //     await unbookmarkRecipe(detailedItem.name);
-        //     setIsBookmarked(false);
-        // } else {
-        //     await bookmarkRecipe(detailedItem.name);
-        //     setIsBookmarked(true);
-        // }
+        if (isBookmarked) {
+            await unbookmarkRecipe(detailedItem.name);
+            setIsBookmarked(false);
+        } else {
+            await bookmarkRecipe(detailedItem.name);
+            setIsBookmarked(true);
+        }
     };
 
     const generatePDF = () => {
@@ -117,8 +130,6 @@ const SearchBlock = (props) => {
 
         doc.save(`${recipeName}-shopping-list.pdf`);
     };
-
-    const { userLoggedIn } = useAuth();
 
     return (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -184,7 +195,7 @@ const SearchBlock = (props) => {
                                     onClick={handleBookmark}
                                     style={{ padding: '5px 5px', backgroundColor: '#A9A9A9', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', transition: 'background-color 0.3s' }}    
                                 >
-                                    Bookmark this recipe
+                                    {isBookmarked ? "Unbookmark this recipe" : "Bookmark this recipe"}
                                 </button>
                         )}
                         <div style={{ display: 'flex', marginTop: 5 }}>
