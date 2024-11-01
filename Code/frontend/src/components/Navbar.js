@@ -18,7 +18,6 @@ import {
   Center,
   Heading
 } from '@chakra-ui/react'
-import SearchBar from './SearchBar'
 import logo from '../Images/logo.png';
 
 const NavLink = (props) => {
@@ -41,8 +40,6 @@ const NavLink = (props) => {
 }
 
 export default function Nav(props) {
-  const { colorMode, toggleColorMode } = useColorMode()
-  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <Box bg="#D3D3D3" color={"black"} mb={5} px={4}>
