@@ -10,6 +10,7 @@ jobs:
 
     steps:
     - name: Test Functions
+      working-directory: ./Code/functions
       run: |
         npm install axios
-        node Code/functions/tests.js
+        node tests.js
