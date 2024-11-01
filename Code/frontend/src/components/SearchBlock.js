@@ -83,7 +83,7 @@ const SearchBlock = (props) => {
             ingredients: items[index].ingredients,
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
-        const allIngredients = response.data.ingredients.split('\n').map(ingredient => ingredient.trim());
+        const allIngredients = response.data.ingredients.map(ingredient => ingredient.trim());
         response.data.ingredients = allIngredients;
         setDetailedItem(response.data);
     }
@@ -100,7 +100,7 @@ const SearchBlock = (props) => {
 
         doc.setFontSize(12);
         let yOffset = 50;
-        console.log("inside generating pdf:"+ ingredients);
+        console.log("inside generating pdf:" + ingredients);
         ingredients.forEach((ingredient, index) => {
             doc.text(`${index + 1}. ${ingredient}`, 20, yOffset);
             yOffset += 10;
