@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Nav from "./components/Navbar.js";
 import Login from "./components/Login.js";
+import BookMarksRecipeList from "./components/BookMarksRecipeList.js";
 import { doSignInWithEmailAndPassword, doCreateUserWithEmailAndPassword, doSignOut } from "./firebase/auth";
 import SearchBlock from "./components/SearchBlock.js";
 import { useAuth, AuthProvider } from "./contexts/authContext/index";
@@ -8,6 +9,7 @@ import { useAuth, AuthProvider } from "./contexts/authContext/index";
 const App = () => {
   const { currentUser, userLoggedIn } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showBookmarks, setShowBookmarks] = useState(false);
 
   const toggleLoginModal = () => {
     setShowLoginModal(prev => !prev);
@@ -45,6 +47,10 @@ const App = () => {
     }
   };
 
+  const handleShowBookmarks = () => {
+    setShowBookmarks(true);
+  };
+
   return (
     <div>
       <Nav
@@ -52,11 +58,12 @@ const App = () => {
         currentUser={currentUser}
         toggleLoginModal={toggleLoginModal}
         userLoggedIn={userLoggedIn}
+        handleBookMarks={handleShowBookmarks}
       />
       {showLoginModal && (
         <Login handleSignup={handleSignup} handleLogin={handleLogin} toggleLoginModal={toggleLoginModal} />
       )}
-      <SearchBlock />
+      {showBookmarks ? <BookMarksRecipeList /> : <SearchBlock />} 
     </div>
   );
 };

@@ -98,8 +98,7 @@ const SearchBlock = (props) => {
             ingredients: items[index].ingredients,
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
-        const allIngredients = response.data.ingredients.map(ingredient => ingredient.trim());
-        response.data.ingredients = allIngredients;
+        console.log("detialed recipe:"+ JSON.stringify(response.data, null, 2));
         setDetailedItem(response.data);
     }
 
@@ -108,7 +107,7 @@ const SearchBlock = (props) => {
             await unbookmarkRecipe(detailedItem.name);
             setIsBookmarked(false);
         } else {
-            await bookmarkRecipe(detailedItem.name);
+            await bookmarkRecipe(detailedItem);
             setIsBookmarked(true);
         }
     };
