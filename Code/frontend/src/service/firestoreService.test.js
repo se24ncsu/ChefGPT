@@ -2,7 +2,6 @@ import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked, fetchBookmarkedRe
 import { auth, db } from "../firebase/firebase";
 import { doc, setDoc, deleteDoc, getDoc, getDocs, query, where, collection } from "firebase/firestore";
 
-// Mock Firebase imports
 jest.mock("firebase/firestore", () => ({
     doc: jest.fn(),
     setDoc: jest.fn(),
@@ -113,7 +112,6 @@ describe("firestoreService", () => {
     });
 
     test('fetchBookmarkedIngredients should return all unique ingredients', async () => {
-        // Arrange
         const bookmarksRef = { id: 'bookmarksRef' };
         const mockData = [
             { userId: 'testUserId', recipeName: 'Recipe 1', ingredients: ['Ingredient 1', 'Ingredient 2'], cookingTime: '30 mins', steps: 'Step 1' },
@@ -124,7 +122,6 @@ describe("firestoreService", () => {
         query.mockReturnValue('mockedQuery');
         where.mockReturnValue('mockedWhere');
         
-        // Mocking getDocs to return an iterable object with a forEach method
         getDocs.mockResolvedValue({
             docs: mockData.map(data => ({
                 data: () => data
@@ -134,10 +131,8 @@ describe("firestoreService", () => {
             }
         });
 
-        // Act
         const ingredients = await fetchBookmarkedIngredients();
 
-        // Assert
         expect(ingredients).toEqual(['Ingredient 1', 'Ingredient 2', 'Ingredient 3']);
         expect(collection).toHaveBeenCalledWith(expect.anything(), "bookmarks");
         expect(query).toHaveBeenCalled();
