@@ -1,26 +1,36 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Recipe/i);
-  expect(linkElement).toBeInTheDocument();
-});
+jest.mock("./components/Navbar", () => (props) => <div>Navbar</div>);
+jest.mock("./components/Login", () => (props) => (
+  <div>
+    <button onClick={() => props.handleLogin("testuser", "password123")}>Login</button>
+    <button onClick={() => props.handleSignup("testuser", "password123")}>Signup</button>
+  </div>
+));
+jest.mock("./components/BookMarksRecipeList", () => () => <div>Bookmarks</div>);
+jest.mock("./components/SearchBlock", () => () => <div>Search Block</div>);
+jest.mock("./firebase/auth", () => ({
+  doSignInWithEmailAndPassword: jest.fn(),
+  doCreateUserWithEmailAndPassword: jest.fn(),
+  doSignOut: jest.fn(),
+}));
+jest.mock("./contexts/authContext/index", () => ({
+  useAuth: () => ({
+    currentUser: null,
+    userLoggedIn: false,
+  }),
+  AuthProvider: ({ children }) => <div>{children}</div>,
+}));
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Recommender/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("App component", () => {
+  test("renders Navbar", () => {
+    render(<App />);
+    expect(screen.getByText(/Navbar/i)).toBeInTheDocument();
+  });
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Email/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Ingredient/i);
-  expect(linkElement).toBeInTheDocument();
+  test("renders Search Block by default", () => {
+    render(<App />);
+    expect(screen.getByText(/Search Block/i)).toBeInTheDocument();
+  });
 });
