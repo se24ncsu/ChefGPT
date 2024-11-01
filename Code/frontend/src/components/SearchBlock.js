@@ -9,6 +9,8 @@ import jsPDF from 'jspdf';
 import { Oval } from "react-loader-spinner";
 import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked } from '../service/firestoreService';
 import { useAuth } from "../contexts/authContext/index";
+import { CiBookmark, CiBookmarkCheck } from "react-icons/ci";
+
 
 
 const SearchBlock = (props) => {
@@ -22,6 +24,8 @@ const SearchBlock = (props) => {
     const [detailedItem, setDetailedItem] = useState(null);
     const [isBookmarked, setIsBookmarked] = useState(false);
     const { userLoggedIn } = useAuth();
+    const [tags, setTags] = useState([]);
+    const [filteredTags, setFilteredTags] = useState([]);
 
     const onChange = (query) => {
         if (searchIngredients.length === 0) {
@@ -56,6 +60,7 @@ const SearchBlock = (props) => {
             };
             const response = await axios.post('https://get-recipes-from-ingredients-3rhjd2q7dq-uc.a.run.app', data);
             setItems([...(page === 0 ? [] : items), ...response.data.recipes]);
+            setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...response.data.recipes.map(i => i.tags)].flat())));
         }
         else {
             const data = {
@@ -64,6 +69,7 @@ const SearchBlock = (props) => {
             };
             const response = await axios.post('https://get-recipes-by-name-3rhjd2q7dq-uc.a.run.app', data);
             setItems([...(page === 0 ? [] : items), ...response.data.recipes]);
+            setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...response.data.recipes.map(i => i.tags)].flat())));
         }
         setLoading(false);
         setShowingDetailed(-1);
@@ -98,7 +104,8 @@ const SearchBlock = (props) => {
             ingredients: items[index].ingredients,
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
-        console.log("detialed recipe:"+ JSON.stringify(response.data, null, 2));
+        const allIngredients = response.data.ingredients.map(ingredient => ingredient.trim());
+        response.data.ingredients = allIngredients;
         setDetailedItem(response.data);
     }
 
@@ -133,6 +140,15 @@ const SearchBlock = (props) => {
         doc.save(`${recipeName}-shopping-list.pdf`);
     };
 
+    const addTagToFilter = (tag) => {
+        if (filteredTags.includes(tag)) {
+            setFilteredTags(filteredTags.filter(i => i !== tag));
+        }
+        else {
+            setFilteredTags([...filteredTags, tag]);
+        }
+    };
+
     return (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <SearchBar onChange={onChange} onIngredientAdded={onIngredientAdded} />
@@ -148,16 +164,31 @@ const SearchBlock = (props) => {
                     ) ||
                     ((items.length > 0) &&
                         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '70%', marginTop: 20 }}>
-                            <div style={{ minHeight: 100, display: 'flex', flexWrap: "wrap", justifyContent: 'center', gap: 10 }}>
+
+                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                {tags.map((tag, i) =>
+                                    <div key={i} className="hover_pointer" onClick={() => addTagToFilter(tag)}>
+                                        <Tag selected={filteredTags.includes(tag)}>{tag}</Tag>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div style={{ marginTop: 30, minHeight: 100, display: 'flex', flexWrap: "wrap", justifyContent: 'center', gap: 10 }}>
                                 {
                                     items.map((item, index) => {
-                                        return <div onClick={() => showDetailedRecipe(index)} key={index} className="hover_pointer" style={{ display: 'flex', flexDirection: 'column', padding: 5, background: '#7771', borderRadius: 10 }}>
+                                        return <div onClick={() => showDetailedRecipe(index)} key={index} className="hover_pointer" style={{
+                                            display: (filteredTags.length > 0 && !item.tags.some(i => filteredTags.includes(i))) ? 'none' : 'flex',
+                                            flexDirection: 'column', padding: 5, background: '#7771', borderRadius: 10
+                                        }}>
                                             <div style={{ borderRadius: 10, overflow: 'hidden' }}>
                                                 <RecipeImage name={item.name} height={300} width={200} />
                                             </div>
-                                            <div style={{ padding: 10, maxWidth: 150, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                                            <div style={{ padding: 10, maxWidth: 200, display: 'flex', flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
                                                 <div>{item.name}</div>
-                                                <div style={{ display: 'flex', alignItems: 'center', columnGap: 4 }}>
+                                                <div style={{ marginTop: 10, display: 'flex', flexWrap: 'wrap' }}>
+                                                    {item.tags.map((t, i) => <Tag key={i}>{t}</Tag>)}
+                                                </div>
+                                                <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', columnGap: 4 }}>
                                                     <LuClock4 size={14} />
                                                     <div style={{ fontSize: 14 }}>
                                                         {item.time.replaceAll(' ', '').replace('hour', 'h ').replace('minutes', 'm')}
@@ -189,17 +220,16 @@ const SearchBlock = (props) => {
                             <RecipeImage name={detailedItem.name} width='100%' height='100%' />
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: 10 }}>
-                            <div>{detailedItem.name}</div>
+                            <div style={{ display: 'flex', alignItems: 'center', columnGap: 10 }}>
+                                <div>{detailedItem.name}</div>
+                                {userLoggedIn && (
+                                    <div className="hover_pointer" onClick={handleBookmark}>
+                                        {isBookmarked ? <CiBookmarkCheck size={24} /> : <CiBookmark size={24} />}
+                                    </div>
+                                )}
+                            </div>
                             <div>{detailedItem.time}</div>
                         </div>
-                        {userLoggedIn  && (
-                                <button 
-                                    onClick={handleBookmark}
-                                    style={{ padding: '5px 5px', backgroundColor: '#A9A9A9', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', transition: 'background-color 0.3s' }}    
-                                >
-                                    {isBookmarked ? "Unbookmark this recipe" : "Bookmark this recipe"}
-                                </button>
-                        )}
                         <div style={{ display: 'flex', marginTop: 5 }}>
                             {detailedItem.tags.map((tag, index) => {
                                 return <Tag key={index}>{tag}</Tag>;
@@ -221,7 +251,7 @@ const SearchBlock = (props) => {
                             })}
                         </div>
                         {detailedItem && (
-                            <div style={{ display: 'flex', flexDirection: 'column', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)', margin: '20px', padding: '20px', alignItems: 'center', }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)', margin: '20px', marginTop: 50, padding: '20px', alignItems: 'center', }}>
                                 <p>Need a quick shopping list of ingredients? Here's a PDF you can download!</p>
                                 <button
                                     onClick={() => generatePDF(detailedItem.name, detailedItem.ingredients)}
