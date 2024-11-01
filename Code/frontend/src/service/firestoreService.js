@@ -1,13 +1,13 @@
-import { doc, setDoc, deleteDoc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, setDoc, deleteDoc, getDoc, collection, query, where, getDocs, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 
 // Function to bookmark a recipe by name
-export const bookmarkRecipe = async (recipeName) => {
+export const bookmarkRecipe = async (recipe) => {
     const user = auth.currentUser;
     if (user) {
-        const documentId = `${user.uid}_${recipeName}`;
+        const documentId = `${user.uid}_${recipe.name}`;
         const bookmarkRef = doc(db, "bookmarks", documentId);
-        await setDoc(bookmarkRef, { userId: user.uid, recipeName });
+        await setDoc(bookmarkRef, { userId: user.uid, recipeName: recipe.name, ingredients: recipe.ingredients, cookingTime: recipe.time, steps: recipe.process });
     }
 };
 
@@ -31,4 +31,25 @@ export const isRecipeBookmarked = async (recipeName) => {
         return bookmarkSnap.exists();
     }
     return false; // Return false if user is not logged in
+};
+
+// Function to fetch all bookmarked recipes for the current user
+export const fetchBookmarkedRecipes = async () => {
+    const user = auth.currentUser;
+    if (user) {
+        try {
+            const bookmarksRef = collection(db, "bookmarks");
+            const q = query(bookmarksRef, where("userId", "==", user.uid));
+            const querySnapshot = await getDocs(q);
+
+            // Return all recipes bookmarked by the user
+            return querySnapshot.docs.map((doc) => doc.data());
+        } catch (error) {
+            console.error("Error fetching bookmarked recipes: ", error);
+            return [];
+        }
+    } else {
+        console.warn("No user is logged in.");
+        return [];
+    }
 };
