@@ -45,12 +45,23 @@ export default function Nav(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
-    <Box bg="#D3D3D3" color={"black"} mb={5} px={4}>
+    <Box bg="#F0F4EC" color={"black"} mb={5} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <Box pl={5}>
           <div style={{ display: 'flex', alignItems: 'center', columnGap: 10 }}>
             <img src={logo} style={{ height: 50 }} />
-            <div style={{ fontSize: 20, fontStyle: 'italic' }}>CookSmart</div>
+            <div style={{ 
+                fontSize: 32, 
+                fontWeight: '600', 
+                color: '#4CAF50', 
+                fontFamily: "'Segoe UI', sans-serif",
+                letterSpacing: '1px',
+                textShadow: '1px 1px 3px rgba(76, 175, 80, 0.3)', 
+                padding: '10px',
+                borderRadius: '8px'
+            }}>
+                CookSmart
+            </div>
           </div>
         </Box>
         <Flex alignItems={"center"}>
