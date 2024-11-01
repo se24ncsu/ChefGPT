@@ -25,6 +25,7 @@ const Login = (props) => {
   }
 
   const handleSignup = (e) => {
+    e.preventDefault(); 
     props.handleSignup(userName, password);
   }
 

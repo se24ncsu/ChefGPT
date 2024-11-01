@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.10.3",
+    "@chakra-ui/utils": "^2.2.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -27,6 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:firestore": "react-scripts test src/service/firestoreService.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -46,5 +48,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@firebase/testing": "^0.20.11",
+    "jest": "^27.5.1"
   }
 }
