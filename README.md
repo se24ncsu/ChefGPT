@@ -1,4 +1,4 @@
-# Enhanced Recipe Recommender: Introducing additional features and addressing issues for an improved user experience.
+# CookSmart: Search by name or ingredients for any recipe.
 
 ![](Reciperec.gif)
 <br><br>
@@ -28,31 +28,23 @@
 
    
    
-<h2> What is Recipe Recommender? </h2>
+<h2> What is CookSmart? </h2>
 
-Meet Recipe Recommender, your ultimate kitchen companion! Say goodbye to the dilemma of deciding what to cook with the ingredients on hand. We've revolutionized the cooking experience with an application that effortlessly suggests delicious recipes based on your kitchen inventory.  <br>
+Say goodbye to the dilemma of deciding what to cook with the ingredients on hand. We’ve revolutionized the cooking experience with an application that effortlessly suggests delicious recipes based on your kitchen inventory. Unlock the full potential of your pantry and fridge as our innovative software guides you in selecting perfect dishes tailored to your current ingredients. Cooking is now an exciting adventure rather than a daunting task. Immerse yourself in a realm of limitless culinary possibilities with CookSmart!  <br>
 
-Unlock the full potential of your pantry and fridge as our innovative software guides you in selecting perfect dishes tailored to your current ingredients. Cooking is now an exciting adventure rather than a daunting task. Immerse yourself in a realm of limitless culinary possibilities with Recipe Recommender.  <br>
-
+## Feature additions: Enhancements, Upgrades and BugFixes:
 We've added <b> numerous entertaining new features and fixes to enhance user-friendliness.</b> <br>
-1. Craving enchiladas but unsure how to cook Mexican food? Now, you can search for recipes by names! Just type in "enchiladas," choose a recipe based on its features, and enjoy. <br>
+AI-Powered Recipe Suggestions
+Recipes are now dynamically fetched using AI via Google’s Gemini APIs, providing unique, high-quality recommendations instead of relying on static database entries. This allows for more accurate, creative suggestions tailored to your preferences and ingredients.
 
-2. Imagine finding interesting recipes during your commute. With another new feature, you can save them on the go. We've also introduced dedicated user profiles. Sign up, log in, and save your favorite recipes under your profile in the "bookmarks" section. When you're ready to cook, everything will be waiting for you.  <br>
+Firebase Authentication
+User login and profile management are now handled by Firebase Authentication, enhancing security and simplifying the login experience. Say goodbye to database-managed credentials and hello to a smoother, safer login process.
 
-3. That's not all! We've removed non-functional buttons, technically known as "refactoring the system."  <br>
-4. Your profile, information, and favorite recipes now have a dedicated space. Secure logins and logouts ensure no duplicate entries or exposed credentials, making the system more secure.
-
+Enhanced Recipe Filtering
+Enjoy better filtering options to quickly find recipes that match your preferences, dietary requirements, or ingredient availability.
 
 <br> <b> More about our new additions in our next section!</b>
 
-## Feature additions: Enhancements, Upgrades and BugFixes:
-Presenting our latest additions: Here's a comprehensive list of all our new features, enhancements, and upgrades! <br>
-1. User Profile: In our application, users can now establish a profile with a unique username and password, allowing seamless login and logout. This facilitates personalized experiences and customized access to preferences and activities. Further details will be discussed in the following points. Your profile, information, and preferred recipes now inhabit a designated area, simplifying the management of all your belongings in one organized space.
-2. Bookmarks: Picture this scenario: You're commuting, scrolling through intriguing recipes in our app. Thanks to a cutting-edge feature, you can now save them instantly. The introduction of dedicated user profiles elevates your experience. Simply sign up, log in, and curate your favorite recipes in the "bookmarks" section under your profile. When the time comes to cook, everything awaits you – seamlessly organized and easily accessible.
-3. Search for recipes by name: Previously limited to ingredient-based searches only, our system now boasts an exciting upgrade. You can now search for recipes by name! Ever craved enchiladas without knowing the recipe? Simply input "enchiladas," peruse based on features, and relish the culinary journey.
-4. Refactoring the UI: We've eliminated inactive buttons and links, employing a technical process termed "system refactoring" to enhance functionality and optimize the user interface.
-5. System security upgrade: We observed some passwords present in the codebase, which is a major security threat. We have ensured to removed this and move it to the DB. Additionally, we have implemented secure logins and logouts ensuring the prevention of duplicate entries and safeguards credentials, fortifying the overall security of the system.
-6. The requirements.txt file has been updated to ensure forward compatibility by specifying package versions greater than or equal to the ones explicitly mentioned. This modification allows for the installation of packages with versions that meet or exceed the specified ones, thus accommodating future updates and maintaining compatibility with evolving dependencies.
 
 ## Documentation and Project Flow:
 ![](flow-rr.gif) <br><br>
@@ -60,7 +52,6 @@ Presenting our latest additions: Here's a comprehensive list of all our new feat
 2. User Authentication: Log in using the correct username and password for secure access.
 3. Search Recipes by Ingredients: Input your available ingredients to discover relevant recipes based on ingredient names.
 4. Search Recipes by Dish Name: Locate recipes by specifying the dish name in the search.
-5. Add a Recipe: Share details such as ingredients, dish name, time, cuisine, instructions, and optional images to contribute your recipe.
 6. Bookmark Favorite Recipes: Save preferred recipes for easy access.
 7. View Bookmarked Recipes in User Profile: Access and review all saved recipes conveniently stored under your user profile.
 8. Logout: Securely log out to protect your profile information and activities. <br><br>
@@ -125,31 +116,26 @@ Check out our comprehensive YouTube video demonstrating each step for easy guida
   ```
   npm install
   ```
-- setup for backend
-  open terminal and navigate to the **backend** folder and execute the following:
-
+- setup for functions
+  open terminal and navigate to the **functions** folder and deploy the functions to your firebase
   ```
-  npm install
+  firebase login
+  firebase deploy
   ```
 
   ## Execution Steps
 
-1.  start backend server using:
-    ```
-    npx nodemon
-    ```
-2.  start frontend server using:
+1.  start frontend server using:
     ```
     npm start
     ```
-3.  Automatically a browser window is opened which shows frontend.
-4.  run `npm test` for running the tests [Dependencies: Jest, Chai, Supertest]
+2.  Automatically a browser window is opened which shows frontend.
+3.  run `npm test` for running the tests [Dependencies: Jest, Chai, Supertest]
 
 
 ## Release Made in this cycle <br>
-1. Major release 3.1 - Major release to add search by recipe, user registration, user login and bookmarks.
-2. Hotfix Release 3.1.2 - Minor version release to add test case for login
-3. Major Release 3.2 - Major release- Included test cases addition, user registration, minor bug fixes and documentation updates<br>
+1. Major release 3.1 - Major release to search recipes using NLP AI instead of database stored recipes.
+2. Major Release 3.2 - Major release to replace login database with firebase auth<br>
 [Read our detailed release notes](https://github.com/pnprathima/Recipe_Recommender/releases) <br>
 <br>
 
@@ -181,10 +167,9 @@ Chatbot integration- to answer quick queries about the recipe.
 
 ## Team Members
 
-Annadurai,Harshitha <br>
-Bhoja Ramamanohara,Pannaga Rao <br>
-Masineni Prasanna Kumar,Karthik <br>
-Niranjana,Prathima Putreddy <br>
+Sharmeen Momin <br>
+Rutvik Kulkarni <br>
+Nishad Tardalkar <br>
 
 ## Troubleshooting and Support
 Common issues observed and solutions:<br>
