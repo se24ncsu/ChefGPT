@@ -94,6 +94,7 @@ export const get_recipes_from_ingredients = onRequest(async (request, response) 
         {"recipes":[
             {
                 "name":"name of the recipe", 
+                "ingredients":["list of important ingredients sorted by importance as array", ...], 
                 "time":"cooking time", 
                 "tags":["3-6 tags for this recipe in array format", ...]
             }, ...]}
@@ -129,6 +130,7 @@ export const get_recipes_by_name = onRequest(async (request, response) => {
         {"recipes":[
             {
                 "name":"name of the recipe", 
+                "ingredients":["list of important ingredients sorted by importance as array", ...], 
                 "time":"cooking time", 
                 "tags":["3-6 tags for this recipe in array format", ...]
             }, ...]}

@@ -11,4 +11,4 @@ jobs:
     steps:
     - name: Test Functions
       run: |
-        node Code/functions/tests.js
+        node ./Code/functions/tests.js

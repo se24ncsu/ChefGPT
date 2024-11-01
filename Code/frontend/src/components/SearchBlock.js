@@ -124,6 +124,7 @@ const SearchBlock = (props) => {
 
         doc.setFontSize(12);
         let yOffset = 50;
+        console.log("inside generating pdf:" + ingredients);
         ingredients.forEach((ingredient, index) => {
             doc.text(`${index + 1}. ${ingredient}`, 20, yOffset);
             yOffset += 10;
