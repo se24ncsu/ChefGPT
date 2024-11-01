@@ -1,0 +1,14 @@
+
+name: Tests
+
+on: [push]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Test Functions
+      run: |
+        node Code/functions/tests.js
