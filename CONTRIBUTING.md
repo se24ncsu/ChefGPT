@@ -98,13 +98,11 @@ You can do this in 2 ways:
 
 3. Install required packages in the front end folder by running npm install in the frontend folder.
 
-4. Install required packages in the backend end folder by running npm install in the backend folder.
+4. Login to firebase using 'firebase login'
+   
+5. Deploy firebase functions using 'firebase deploy'
 
-5. Type in "npm start" in the frontend folder and press enter.
-
-6. Type in "npx nodemon" in the backend folder and press enter.
-
-7. Make sure both are on separate command line interfaces.
+6. Type in "npm start" in the frontend folder and press enter.
 
 ###OR
 
