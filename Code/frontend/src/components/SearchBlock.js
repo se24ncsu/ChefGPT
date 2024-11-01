@@ -98,11 +98,8 @@ const SearchBlock = (props) => {
             ingredients: items[index].ingredients,
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
-<<<<<<< HEAD
         const allIngredients = response.data.ingredients.map(ingredient => ingredient.trim());
         response.data.ingredients = allIngredients;
-=======
->>>>>>> 7a25f1c3dff1a3c05a7fc40abd5e6fa6d48ce539
         setDetailedItem(response.data);
     }
 
@@ -128,10 +125,7 @@ const SearchBlock = (props) => {
 
         doc.setFontSize(12);
         let yOffset = 50;
-<<<<<<< HEAD
         console.log("inside generating pdf:" + ingredients);
-=======
->>>>>>> 7a25f1c3dff1a3c05a7fc40abd5e6fa6d48ce539
         ingredients.forEach((ingredient, index) => {
             doc.text(`${index + 1}. ${ingredient}`, 20, yOffset);
             yOffset += 10;
