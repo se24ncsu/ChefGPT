@@ -7,6 +7,8 @@ import './css/misc.css';
 import Tag from "./Tag";
 import jsPDF from 'jspdf';
 import { Oval } from "react-loader-spinner";
+import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked } from '../service/firestoreService';
+import { useAuth } from "../contexts/authContext/index";
 
 
 const SearchBlock = (props) => {
@@ -16,10 +18,10 @@ const SearchBlock = (props) => {
     const [items, setItems] = useState([]);
     const currentPage = useRef(1);
     const [loading, setLoading] = useState(false);
-
     const [showingDetailed, setShowingDetailed] = useState(-1);
-
-    const [detailedItem, setDetailedItem] = useState();
+    const [detailedItem, setDetailedItem] = useState(null);
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const { userLoggedIn } = useAuth();
 
     const onChange = (query) => {
         if (searchIngredients.length === 0) {
@@ -69,6 +71,19 @@ const SearchBlock = (props) => {
 
     useEffect(() => { searchRecipes() }, [searchName, searchIngredients]);
 
+    useEffect(() => {
+        const checkBookmarkStatus = async () => {
+            if (detailedItem?.name) {
+                const status = await isRecipeBookmarked(detailedItem.name);
+                setIsBookmarked(status);
+            }
+        };
+
+        if (detailedItem) {
+            checkBookmarkStatus();
+        }
+    }, [detailedItem]);
+
     const loadMore = () => {
         if (loading) return;
         currentPage.current = currentPage.current + 1;
@@ -83,14 +98,27 @@ const SearchBlock = (props) => {
             ingredients: items[index].ingredients,
         };
         const response = await axios.post('https://get-detailed-recipe-3rhjd2q7dq-uc.a.run.app', data);
+<<<<<<< HEAD
         const allIngredients = response.data.ingredients.map(ingredient => ingredient.trim());
         response.data.ingredients = allIngredients;
+=======
+>>>>>>> 7a25f1c3dff1a3c05a7fc40abd5e6fa6d48ce539
         setDetailedItem(response.data);
     }
 
+    const handleBookmark = async () => {
+        if (isBookmarked) {
+            await unbookmarkRecipe(detailedItem.name);
+            setIsBookmarked(false);
+        } else {
+            await bookmarkRecipe(detailedItem.name);
+            setIsBookmarked(true);
+        }
+    };
+
     const generatePDF = () => {
         const recipeName = detailedItem.name;
-        const ingredients = String(detailedItem.ingredients).split(',').map(ingredient => ingredient.trim());
+        const ingredients = detailedItem.ingredients;
         const doc = new jsPDF();
         doc.setFontSize(16);
         doc.text("Shopping List", 20, 20);
@@ -100,7 +128,10 @@ const SearchBlock = (props) => {
 
         doc.setFontSize(12);
         let yOffset = 50;
+<<<<<<< HEAD
         console.log("inside generating pdf:" + ingredients);
+=======
+>>>>>>> 7a25f1c3dff1a3c05a7fc40abd5e6fa6d48ce539
         ingredients.forEach((ingredient, index) => {
             doc.text(`${index + 1}. ${ingredient}`, 20, yOffset);
             yOffset += 10;
@@ -168,7 +199,14 @@ const SearchBlock = (props) => {
                             <div>{detailedItem.name}</div>
                             <div>{detailedItem.time}</div>
                         </div>
-
+                        {userLoggedIn  && (
+                                <button 
+                                    onClick={handleBookmark}
+                                    style={{ padding: '5px 5px', backgroundColor: '#A9A9A9', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', transition: 'background-color 0.3s' }}    
+                                >
+                                    {isBookmarked ? "Unbookmark this recipe" : "Bookmark this recipe"}
+                                </button>
+                        )}
                         <div style={{ display: 'flex', marginTop: 5 }}>
                             {detailedItem.tags.map((tag, index) => {
                                 return <Tag key={index}>{tag}</Tag>;
