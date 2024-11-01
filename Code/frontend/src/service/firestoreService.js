@@ -53,3 +53,25 @@ export const fetchBookmarkedRecipes = async () => {
         return [];
     }
 };
+
+// Fetch all ingredients from bookmarked recipes
+export const fetchBookmarkedIngredients = async () => {
+    const user = auth.currentUser;
+    if (user) {
+        const bookmarksRef = collection(db, "bookmarks");
+        const q = query(bookmarksRef, where("userId", "==", user.uid));
+        const querySnapshot = await getDocs(q);
+        
+        let allIngredients = [];
+        querySnapshot.forEach((doc) => {
+            const recipe = doc.data();
+            if (recipe.ingredients) {
+                allIngredients = [...allIngredients, ...recipe.ingredients];
+            }
+        });
+        
+        // Remove duplicates
+        return [...new Set(allIngredients)];
+    }
+    return [];
+};
