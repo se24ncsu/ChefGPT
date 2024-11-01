@@ -12,4 +12,4 @@ jobs:
     - name: Test Functions
       run: |
         npm install axios
-        node ./../Code/functions/tests.js
+        node Code/functions/tests.js
