@@ -15,7 +15,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/SRN-SE-Fall24/CookSmart?style=social)
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/SRN-SE-Fall24/CookSmart/tests.yml)
-![Coverage](https://img.shields.io/codecov/c/github/SRN-SE-Fall24/CookSmart)
+![Coverage](https://img.shields.io/codecov/c/github/SRN-SE-Fall24/CookSmart/Code/functions)
 
 
 [![codecov](https://codecov.io/gh/usmanwardag/dollar_bot/branch/main/graph/badge.svg?token=PYAWX95R67)](https://codecov.io/gh/usmanwardag/dollar_bot)
