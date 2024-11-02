@@ -11,7 +11,7 @@
 [![Made With](https://img.shields.io/badge/made%20with-javascript-gree)](https://www.javascript.com/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027150.svg)](https://doi.org/10.5281/zenodo.14027150)
 [![GitHub issues open](https://img.shields.io/github/issues/SRN-SE-Fall24/CookSmart)](https://github.com/SRN-SE-Fall24/CookSmart/issues)
-[![GitHub stars](https://badgen.net/github/stars/pnprathima/Recipe_Recommender)](https://badgen.net/github/stars/pnprathima/Recipe_Recommender)
+![GitHub Repo stars](https://img.shields.io/github/stars/SRN-SE-Fall24/CookSmart?style=social)
 ![Github closes issues](https://img.shields.io/github/issues-closed-raw/pnprathima/Recipe_Recommender)
 [![Build Status](https://app.travis-ci.com/pnprathima/Recipe_Recommender.svg?branch=master)](https://app.travis-ci.com/pnprathima/Recipe_Recommender)
 [![codecov](https://codecov.io/gh/usmanwardag/dollar_bot/branch/main/graph/badge.svg?token=PYAWX95R67)](https://codecov.io/gh/usmanwardag/dollar_bot)
