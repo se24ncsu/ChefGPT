@@ -7,44 +7,18 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
         fetch-depth: 2 
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-        
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Install Python 3.9.18
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.9.18
-    
-    - name: Install dependencies
+    - name: Run CodeCov
       run: |
-          pip install pytest-cov
-          pip install -r requirements.txt
-          echo requirements installed
-          cd Code/backend
-          npm install nodemailer
-          npm install
-          npx nodemon &
+          npm install jest
+          npx jest --coverage
           
-    - name: Run the tests
-      run: |
-          cd test
-          pytest --cov=./      
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+    - name: Upload results to Codecov
+      uses: codecov/codecov-action@v4
       with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
