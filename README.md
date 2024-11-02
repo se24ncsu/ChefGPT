@@ -10,10 +10,14 @@
 
 [![Made With](https://img.shields.io/badge/made%20with-javascript-gree)](https://www.javascript.com/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027150.svg)](https://doi.org/10.5281/zenodo.14027150)
-[![GitHub issues open](https://img.shields.io/github/issues/SRN-SE-Fall24/CookSmart)](https://github.com/SRN-SE-Fall24/CookSmart/issues)
+![GitHub open issues](https://img.shields.io/github/issues/SRN-SE-Fall24/CookSmart)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/SRN-SE-Fall24/CookSmart)
 ![GitHub Repo stars](https://img.shields.io/github/stars/SRN-SE-Fall24/CookSmart?style=social)
-![Github closes issues](https://img.shields.io/github/issues-closed-raw/pnprathima/Recipe_Recommender)
-[![Build Status](https://app.travis-ci.com/pnprathima/Recipe_Recommender.svg?branch=master)](https://app.travis-ci.com/pnprathima/Recipe_Recommender)
+
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/SRN-SE-Fall24/CookSmart/tests.yml)
+![Coverage](https://img.shields.io/codecov/c/github/SRN-SE-Fall24/CookSmart)
+
+
 [![codecov](https://codecov.io/gh/usmanwardag/dollar_bot/branch/main/graph/badge.svg?token=PYAWX95R67)](https://codecov.io/gh/usmanwardag/dollar_bot)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Respost - Write comment to new Issue event](https://github.com/pnprathima/Recipe_Recommender/actions/workflows/Respost.yml/badge.svg)](https://github.com/pnprathima/Recipe_Recommender/actions/workflows/Respost.yml)
