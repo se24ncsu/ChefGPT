@@ -21,5 +21,13 @@ describe('SearchBar Component', () => {
         expect(onIngredientAddedMock).toHaveBeenCalledWith('orange', ['orange']);
     });
 
+    test('Clears search bar after pressing enter', () => {
+        const input = screen.getByPlaceholderText('Add ingredients or search by name');
+
+        fireEvent.change(input, { target: { value: 'orange' } });
+        fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+
+        expect(input.value).toBe(''); 
+    });
 
 });
