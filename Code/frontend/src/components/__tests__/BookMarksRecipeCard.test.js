@@ -50,5 +50,26 @@ describe("BookMarksRecipeCard Component", () => {
         expect(recipeImage).toHaveAttribute("width", "200");
     });
 
- 
+    test("applies hover style when mouse hovers over card", () => {
+        render(<BookMarksRecipeCard recipe={sampleRecipe} handler={mockHandler} />);
+        const cardElement = screen.getByTestId("recipeCard");
+        fireEvent.mouseOver(cardElement);
+        expect(cardElement).toHaveStyle("background-color: green.300");
+    });
+
+    test("handles empty recipe name gracefully", () => {
+        const emptyRecipe = { recipeName: "" };
+        render(<BookMarksRecipeCard recipe={emptyRecipe} handler={mockHandler} />);
+        const recipeNameElement = screen.queryByText("Spaghetti Bolognese");
+        expect(recipeNameElement).not.toBeInTheDocument();
+    });
+
+    test("calls handler function with different recipe data when card is clicked", () => {
+        const anotherRecipe = { recipeName: "Chicken Alfredo" };
+        render(<BookMarksRecipeCard recipe={anotherRecipe} handler={mockHandler} />);
+        const cardElement = screen.getByTestId("recipeCard");
+        fireEvent.click(cardElement);
+        expect(mockHandler).toHaveBeenCalledTimes(1);
+        expect(mockHandler).toHaveBeenCalledWith(anotherRecipe);
+    });
 });
