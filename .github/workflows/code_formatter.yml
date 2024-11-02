@@ -1,4 +1,4 @@
-name: Check the source code
+name: ESLint Code Formatter
 on:
   pull_request:
     branches:
@@ -12,11 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install packages
+      - name: Lint
         run: |
-            cd Code/backend
-            npm install
-      - name: Code Formatter
-        run: |
-            cd Code/backend
-            npm run format
+            cd Code/frontend
+            npm install babel-eslint eslint eslint-plugin-react
+            npx eslint .
