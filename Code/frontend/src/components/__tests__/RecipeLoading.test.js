@@ -37,7 +37,26 @@ describe('RecipeLoading Component', () => {
         expect(skeletonTexts.length).toBe(4);
 
         skeletonTexts.forEach(skeletonText => {
-            expect(skeletonText.querySelectorAll('span').length).toBe(6); // `noOfLines` is set to 6
+            expect(skeletonText.querySelectorAll('span').length).toBe(6); 
+        });
+    });
+
+    it('renders skeleton text', () => {
+        render(<RecipeLoading />);
+
+        const skeletonTexts = screen.getAllByTestId("skeleton-text");
+        expect(skeletonTexts.length).toBe(4);
+
+    });
+
+    it('renders skeleton text in each box', () => {
+        render(<RecipeLoading />);
+
+        const skeletonTexts = screen.getAllByTestId("skeleton-text");
+        expect(skeletonTexts.length).toBe(4);
+
+        skeletonTexts.forEach(skeletonText => {
+            expect(skeletonText.querySelectorAll('span').length).toBe(6); 
         });
     });
 });
