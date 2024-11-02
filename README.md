@@ -14,23 +14,14 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/SRN-SE-Fall24/CookSmart)
 ![GitHub Repo stars](https://img.shields.io/github/stars/SRN-SE-Fall24/CookSmart?style=social)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/SRN-SE-Fall24/CookSmart/tests.yml)
-![Code Quality](https://img.shields.io/codacy/grade/876409808)
+![GitHub language](https://img.shields.io/github/languages/top/SRN-SE-Fall24/CookSmart)
+![GitHub last commit](https://img.shields.io/github/last-commit/SRN-SE-Fall24/CookSmart)
+![GitHub license](https://img.shields.io/github/license/SRN-SE-Fall24/CookSmart)
+![GitHub contributors](https://img.shields.io/github/contributors/SRN-SE-Fall24/CookSmart)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/SRN-SE-Fall24/CookSmart)
 
 
-
-[![codecov](https://codecov.io/gh/usmanwardag/dollar_bot/branch/main/graph/badge.svg?token=PYAWX95R67)](https://codecov.io/gh/usmanwardag/dollar_bot)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Respost - Write comment to new Issue event](https://github.com/pnprathima/Recipe_Recommender/actions/workflows/Respost.yml/badge.svg)](https://github.com/pnprathima/Recipe_Recommender/actions/workflows/Respost.yml)
-![GitHub contributors](https://img.shields.io/github/contributors/pnprathima/Recipe_Recommender)
-[![Code Formatter and Syntax Check](https://github.com/pnprathima/Recipe_Recommender/actions/workflows/Code_Formatter_and_Syntax_Check.yml/badge.svg)](https://github.com/pnprathima/Recipe_Recommender/actions/workflows/Code_Formatter_and_Syntax_Check.yml)
-[![Running Code Coverage](https://github.com/pnprathima/Recipe_Recommender/actions/workflows/coverage.yml/badge.svg)](https://github.com/pnprathima/Recipe_Recommender/actions/workflows/coverage.yml)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/pnprathima/Recipe_Recommender)
-![Open Issues](https://img.shields.io/github/issues-raw/pnprathima/Recipe_Recommender)
-![Closed Issues](https://img.shields.io/github/issues-closed-raw/pnprathima/Recipe_Recommender)
-![CI/CD](https://img.shields.io/badge/CI/CD-Passing-brightgreen)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-   
+  
    
 <h2> What is CookSmart? </h2>
 
