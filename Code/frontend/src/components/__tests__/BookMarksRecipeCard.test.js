@@ -2,12 +2,10 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import BookMarksRecipeCard from '../BookMarksRecipeCard';
 import '@testing-library/jest-dom';
 
-// Mocking RecipeImage
 jest.mock('../RecipeImage', () => {
     return ({ name, height, width }) => <img alt={name} height={height} width={width} />;
 });
 
-// Mocking Chakra UI components
 jest.mock('@chakra-ui/react', () => ({
     Card: ({ children, ...props }) => <div {...props}>{children}</div>,
     CardHeader: ({ children }) => <div>{children}</div>,
