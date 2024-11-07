@@ -16,5 +16,5 @@ jobs:
         
     - name: Test Functions
       run: |
-        npm install axios
-        node tests.js
+        cd Code/frontend
+        npm test --coverage
