@@ -57,16 +57,16 @@ Source documentation can be found at: [Recipe Recommender Docs](https://github.c
 
 
 ## API Documentation
-**get_image_by_name:**
+**get_image_by_name** <br>
 Scrapes an image of the recipe from bing.com.
 
-**get_recipes_from_ingredients**
+**get_recipes_from_ingredients** <br>
 Gets recipes based on the provided ingredients from Gemini along with some sense of pagination. Recipes might duplicate over multiple pages as it is not real pagination.
 
-**get_recipes_by_name**
+**get_recipes_by_name** <br>
 Gets recipes based on the provided name from Gemini along with some sense of pagination. Recipes might duplicate over multiple pages as it is not real pagination.
 
-**get_detailed_recipe**
+**get_detailed_recipe** <br>
  Gets detailed recipe based on name and ingredients with a list of detailed ingredients along with quantities, cooking time and detailed process to cook.
 
 <br>Detailed documentation can be found at: [API Docs](https://github.com/SRN-SE-Fall24/CookSmart/blob/master/API_Documentation.pdf)
