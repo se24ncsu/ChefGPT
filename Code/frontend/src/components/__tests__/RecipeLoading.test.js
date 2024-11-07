@@ -28,7 +28,7 @@ describe('RecipeLoading Component', () => {
     });
 
     it('renders skeleton circles and skeleton text in each box', () => {
-        const { container } = render(<RecipeLoading />);
+        render(<RecipeLoading />);
         
         const skeletonCircles = screen.getAllByTestId("skeleton-circle");
         expect(skeletonCircles.length).toBe(4);
@@ -38,7 +38,7 @@ describe('RecipeLoading Component', () => {
 
         skeletonTexts.forEach(skeletonText => {
             //expect(skeletonText.querySelectorAll('span').length).toBe(6); 
-            expect(container.querySelectorAll('span').length).toBe(6); 
+            expect(screen.querySelectorAll('span').length).toBe(6); 
         });
     });
 
@@ -51,14 +51,14 @@ describe('RecipeLoading Component', () => {
     });
 
     it('renders skeleton text in each box', () => {
-        const { container } = render(<RecipeLoading />);
+        render(<RecipeLoading />);
 
         const skeletonTexts = screen.getAllByTestId("skeleton-text");
         expect(skeletonTexts.length).toBe(4);
 
         skeletonTexts.forEach(skeletonText => {
             //expect(skeletonText.querySelectorAll('span').length).toBe(6); 
-            expect(container.querySelectorAll('span').length).toBe(6); 
+            expect(screen.querySelectorAll('span').length).toBe(6); 
         });
     });
 });
