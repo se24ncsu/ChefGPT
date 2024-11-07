@@ -9,10 +9,10 @@ describe('SearchBar Component', () => {
     beforeEach(() => {
         onChangeMock = jest.fn();
         onIngredientAddedMock = jest.fn();
-        render(<SearchBar onChange={onChangeMock} onIngredientAdded={onIngredientAddedMock} />);
     });
 
     test('calls onIngredientAdded when pressing Enter key', () => {
+        render(<SearchBar onChange={onChangeMock} onIngredientAdded={onIngredientAddedMock} />);
         const input = screen.getByPlaceholderText('Add ingredients or search by name');
 
         fireEvent.change(input, { target: { value: 'orange' } });
@@ -22,6 +22,7 @@ describe('SearchBar Component', () => {
     });
     
     test('Clears search bar after pressing enter', () => {
+        render(<SearchBar onChange={onChangeMock} onIngredientAdded={onIngredientAddedMock} />);
         const input = screen.getByPlaceholderText('Add ingredients or search by name');
 
         fireEvent.change(input, { target: { value: 'orange' } });
@@ -31,6 +32,7 @@ describe('SearchBar Component', () => {
     });
 
     test('does not call onChange immediately on input change due to debounce', () => {
+        render(<SearchBar onChange={onChangeMock} onIngredientAdded={onIngredientAddedMock} />);
         const input = screen.getByPlaceholderText('Add ingredients or search by name');
         fireEvent.change(input, { target: { value: 'pear' } });
 
