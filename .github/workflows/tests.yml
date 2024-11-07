@@ -17,4 +17,5 @@ jobs:
     - name: Test Functions
       run: |
         cd Code/frontend
+        npm install
         npm test --coverage
