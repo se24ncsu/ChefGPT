@@ -8,13 +8,13 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDtqwh_-5t2ZMLi2zYQ-6s5glQfMcgaY9A",
-  authDomain: "cooksmart-5d74c.firebaseapp.com",
-  projectId: "cooksmart-5d74c",
-  storageBucket: "cooksmart-5d74c.appspot.com",
-  messagingSenderId: "661468581186",
-  appId: "1:661468581186:web:a6df4707e024ea38334cdb",
-  measurementId: "G-KFGPF5K1L5"
+  apiKey: "AIzaSyCJSvYFu_p4DqC1g667Ry9kthOQtysFlKM",
+  authDomain: "chefgpt-736fa.firebaseapp.com",
+  projectId: "chefgpt-736fa",
+  storageBucket: "chefgpt-736fa.firebasestorage.app",
+  messagingSenderId: "365266888390",
+  appId: "1:365266888390:web:f56c9948502186779f59c7",
+  measurementId: "G-LR8JFK1FFE"
 };
 
 // Initialize Firebase
