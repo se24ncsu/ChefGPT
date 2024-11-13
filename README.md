@@ -91,8 +91,7 @@ Gets recipes based on the provided name from Gemini along with some sense of pag
 ## Project Setup Steps:
 
 ### Installation:
-Check out our comprehensive YouTube video demonstrating each step for easy guidance. [Project Setup](https://youtu.be/uKh-afpUdh0)
-- clone repository using `git clone https://github.com/pnprathima/Recipe_Recommender.git`
+- clone repository using `git clone https://github.com/SRN-SE-Fall24/CookSmart.git`
 - setup for frontend
   open terminal and navigate to the **frontend** folder and execute the following:
   ```
