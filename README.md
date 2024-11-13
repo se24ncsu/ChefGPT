@@ -52,7 +52,7 @@ Enjoy better filtering options to quickly find recipes that match your preferenc
 
 
 
-Source documentation can be found at: [Recipe Recommender Docs](https://github.com/pnprathima/Recipe_Recommender/blob/master/Recipe%20Recommender%20Source%20Documentation.pdf)
+Source documentation can be found at: [CookSmart Docs](https://github.com/SRN-SE-Fall24/CookSmart/blob/master/CookSmart%20Source%20Documentation.pdf)
 
 
 ## API Documentation
