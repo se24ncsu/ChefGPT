@@ -82,7 +82,6 @@ Gets recipes based on the provided name from Gemini along with some sense of pag
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-<br>Detailed documentation can be found at: [TechStack Docs](https://github.com/pnprathima/Recipe_Recommender/blob/master/TechStack-Docs)
 
 ## Key Software Requirements
 
@@ -119,7 +118,6 @@ Check out our comprehensive YouTube video demonstrating each step for easy guida
 ## Release Made in this cycle <br>
 1. Major release 3.1 - Major release to search recipes using NLP AI instead of database stored recipes.
 2. Major Release 3.2 - Major release to replace login database with firebase auth<br>
-[Read our detailed release notes](https://github.com/pnprathima/Recipe_Recommender/releases) <br>
 <br>
 
 
@@ -136,7 +134,7 @@ This project is licensed under the terms of the MIT license. Please check [Licen
 
 ## :pencil2: Contributions <a name="Contributions"></a>
 
-Please see our [CONTRIBUTING.md](https://github.com/pnprathima/Recipe_Recommender/blob/master/CONTRIBUTING.md) for instructions on how to contribute to the project by completing some of the issues.
+Please see our [CONTRIBUTING.md](https://github.com/SRN-SE-Fall24/CookSmart/blob/master/CONTRIBUTING.md) for instructions on how to contribute to the project by completing some of the issues.
 
 ## FUTURE SCOPE
 
