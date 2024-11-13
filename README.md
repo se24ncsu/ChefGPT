@@ -1,6 +1,6 @@
 # CookSmart: Search by name or ingredients for any recipe.
 
-![](Reciperec.gif)
+![](images/logo.png)
 <br><br>
 ## Watch how our application works: 
 ### Click here to watch - [Youtube Video](https://youtu.be/Xike19n5li0) <br>
@@ -41,8 +41,7 @@ Enjoy better filtering options to quickly find recipes that match your preferenc
 <br> <b> More about our new additions in our next section!</b>
 
 
-## Documentation and Project Flow:
-![](images/logo.png) <br><br>
+## Documentation and Project Flow: <br>
 1. User Registration: Establish a unique username and password; no duplicate usernames allowed, ensuring password confidentiality.
 2. User Authentication: Log in using the correct username and password for secure access.
 3. Search Recipes by Ingredients: Input your available ingredients to discover relevant recipes based on ingredient names.
