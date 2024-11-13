@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { render, screen, fireEvent } from '@testing-library/react';
 import BookMarksRecipeCard from '../BookMarksRecipeCard';
 import '@testing-library/jest-dom';
