@@ -42,7 +42,7 @@ Enjoy better filtering options to quickly find recipes that match your preferenc
 
 
 ## Documentation and Project Flow:
-![](flow-rr.gif) <br><br>
+![](images/logo.png) <br><br>
 1. User Registration: Establish a unique username and password; no duplicate usernames allowed, ensuring password confidentiality.
 2. User Authentication: Log in using the correct username and password for secure access.
 3. Search Recipes by Ingredients: Input your available ingredients to discover relevant recipes based on ingredient names.
