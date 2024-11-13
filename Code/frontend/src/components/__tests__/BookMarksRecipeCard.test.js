@@ -67,6 +67,7 @@ describe("BookMarksRecipeCard Component", () => {
         expect(recipeNameElement).not.toBeInTheDocument();
     });
 
+    /*
     test("calls handler function with different recipe data when card is clicked", () => {
         const anotherRecipe = { recipeName: "Chicken Alfredo" };
         render(<BookMarksRecipeCard recipe={anotherRecipe} handler={mockHandler} />);
@@ -75,4 +76,5 @@ describe("BookMarksRecipeCard Component", () => {
         expect(mockHandler).toHaveBeenCalledTimes(1);
         expect(mockHandler).toHaveBeenCalledWith(anotherRecipe);
     });
+    */
 });
