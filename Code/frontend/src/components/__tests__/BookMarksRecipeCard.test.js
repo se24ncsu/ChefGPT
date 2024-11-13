@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import BookMarksRecipeCard from '../BookMarksRecipeCard';
 import '@testing-library/jest-dom';
+import React from 'react';
 
 jest.mock('../RecipeImage', () => {
     return ({ name, height, width }) => <img alt={name} height={height} width={width} />;
