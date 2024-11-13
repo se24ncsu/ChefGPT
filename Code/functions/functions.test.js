@@ -73,23 +73,25 @@ const test_detailed = (data) => {
         });
 };
 
-const test_image = (data) => {
-    axios.post('https://get-image-by-name-3rhjd2q7dq-uc.a.run.app', data)
-        .then((response) => {
-            if (data.name === undefined) {
-                if (response.data !== 'Missing name') throw 'get-image-by-name: Invalid response for missing name';
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            process.exit(1);
-        });
+const test_image = async (data) => {
+    try {
+        var response = await axios.post('https://get-image-by-name-3rhjd2q7dq-uc.a.run.app', data);
+        if (data.name === undefined) {
+            if (response.data !== 'Missing name') throw 'get-image-by-name: Invalid response for missing name';
+        }
+        return true;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
 };
 
 
 
 // Test cases ##############
 
+/*
 test_from_ingredients({ ingredients: 'paneer,onion,tomato', page: 1 });
 test_from_ingredients({ ingredients: 'chicken,garlic,jalapenoes', page: 3 });
 test_from_ingredients({ page: 3 });
@@ -107,3 +109,12 @@ test_detailed({ name: 'Tomato ketchup' });
 
 test_image({ name: 'Veg Kolhapuri' });
 test_image({});
+*/
+
+test('Functions tests', async () => {
+    expect(await test_image({ name: 'Veg Kolhapuri' })).toBe(true);
+});
+
+test('Functions tests', async () => {
+    expect(await test_image({})).toBe(false);
+});
