@@ -1,4 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+
+import React from 'react';
 import App from "./App";
 
 jest.mock("./components/Navbar", () => (props) => <div>Navbar</div>);
