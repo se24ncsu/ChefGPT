@@ -10,6 +10,7 @@ import { Oval } from "react-loader-spinner";
 import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked } from '../service/firestoreService';
 import { useAuth } from "../contexts/authContext/index";
 import { CiBookmark, CiBookmarkCheck } from "react-icons/ci";
+import React from 'react';
 
 
 
