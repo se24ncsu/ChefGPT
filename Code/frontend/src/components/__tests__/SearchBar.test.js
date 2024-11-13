@@ -3,9 +3,9 @@
  */
 
 import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
 import SearchBar from '../SearchBar';
 import '@testing-library/jest-dom/extend-expect';
-import React from 'react';
 
 describe('SearchBar Component', () => {
     let onChangeMock;
