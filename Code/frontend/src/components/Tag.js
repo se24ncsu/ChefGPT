@@ -1,5 +1,7 @@
 import './css/misc.css';
 
+import React from 'react';
+
 const Tag = (props) => {
 
     return (

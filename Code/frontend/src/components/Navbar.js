@@ -19,6 +19,7 @@ import {
   Heading
 } from '@chakra-ui/react'
 import logo from '../Images/logo.png';
+import React from 'react';
 
 const NavLink = (props) => {
   const { children } = props

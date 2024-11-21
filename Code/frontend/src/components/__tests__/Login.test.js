@@ -1,5 +1,10 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import Login from "../Login";
+import React from 'react';
 
 // Mock props
 const mockHandleLogin = jest.fn();

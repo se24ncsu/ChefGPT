@@ -1,6 +1,6 @@
 # CookSmart: Search by name or ingredients for any recipe.
 
-![](Reciperec.gif)
+![](images/logo.png)
 <br><br>
 ## Watch how our application works: 
 ### Click here to watch - [Youtube Video](https://youtu.be/Xike19n5li0) <br>
@@ -41,8 +41,7 @@ Enjoy better filtering options to quickly find recipes that match your preferenc
 <br> <b> More about our new additions in our next section!</b>
 
 
-## Documentation and Project Flow:
-![](flow-rr.gif) <br><br>
+## Documentation and Project Flow: <br>
 1. User Registration: Establish a unique username and password; no duplicate usernames allowed, ensuring password confidentiality.
 2. User Authentication: Log in using the correct username and password for secure access.
 3. Search Recipes by Ingredients: Input your available ingredients to discover relevant recipes based on ingredient names.
@@ -53,7 +52,7 @@ Enjoy better filtering options to quickly find recipes that match your preferenc
 
 
 
-Source documentation can be found at: [Recipe Recommender Docs](https://github.com/pnprathima/Recipe_Recommender/blob/master/Recipe%20Recommender%20Source%20Documentation.pdf)
+Source documentation can be found at: [CookSmart Docs](https://github.com/SRN-SE-Fall24/CookSmart/blob/master/CookSmart%20Source%20Documentation.pdf)
 
 
 ## API Documentation
@@ -82,7 +81,6 @@ Gets recipes based on the provided name from Gemini along with some sense of pag
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-<br>Detailed documentation can be found at: [TechStack Docs](https://github.com/pnprathima/Recipe_Recommender/blob/master/TechStack-Docs)
 
 ## Key Software Requirements
 
@@ -92,8 +90,7 @@ Gets recipes based on the provided name from Gemini along with some sense of pag
 ## Project Setup Steps:
 
 ### Installation:
-Check out our comprehensive YouTube video demonstrating each step for easy guidance. [Project Setup](https://youtu.be/uKh-afpUdh0)
-- clone repository using `git clone https://github.com/pnprathima/Recipe_Recommender.git`
+- clone repository using `git clone https://github.com/SRN-SE-Fall24/CookSmart.git`
 - setup for frontend
   open terminal and navigate to the **frontend** folder and execute the following:
   ```
@@ -119,7 +116,6 @@ Check out our comprehensive YouTube video demonstrating each step for easy guida
 ## Release Made in this cycle <br>
 1. Major release 3.1 - Major release to search recipes using NLP AI instead of database stored recipes.
 2. Major Release 3.2 - Major release to replace login database with firebase auth<br>
-[Read our detailed release notes](https://github.com/pnprathima/Recipe_Recommender/releases) <br>
 <br>
 
 
@@ -136,7 +132,7 @@ This project is licensed under the terms of the MIT license. Please check [Licen
 
 ## :pencil2: Contributions <a name="Contributions"></a>
 
-Please see our [CONTRIBUTING.md](https://github.com/pnprathima/Recipe_Recommender/blob/master/CONTRIBUTING.md) for instructions on how to contribute to the project by completing some of the issues.
+Please see our [CONTRIBUTING.md](https://github.com/SRN-SE-Fall24/CookSmart/blob/master/CONTRIBUTING.md) for instructions on how to contribute to the project by completing some of the issues.
 
 ## FUTURE SCOPE
 

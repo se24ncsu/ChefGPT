@@ -7,6 +7,7 @@ import {
   Modal, ModalOverlay, ModalContent, ModalHeader,
   ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Button
 } from "@chakra-ui/react"
+import React from 'react';
 
 const Login = (props) => {
   const [userName, setUserName] = useState("")
