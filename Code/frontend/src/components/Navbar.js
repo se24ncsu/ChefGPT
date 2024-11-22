@@ -67,11 +67,11 @@ export default function Nav(props) {
             {props.userLoggedIn && props.currentUser ? (
               <Menu>
                 <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>
-                  <Avatar size={"sm"} src={"https://avatars.dicebear.com/api/male/username.svg"} />
+                  <Avatar  src={"https://api.dicebear.com/9.x/bottts/svg?baseColor=ffb300"} />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <Center>
-                    <Avatar size={"xl"} src={"https://avatars.dicebear.com/api/male/username.svg"} />
+                    <Avatar size={"xl"} src={"https://api.dicebear.com/9.x/bottts/svg?baseColor=ffb300"} />
                   </Center>
                   <Center>
                     <p>{props.currentUser.email}</p>
