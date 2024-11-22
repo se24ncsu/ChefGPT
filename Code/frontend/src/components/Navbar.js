@@ -16,7 +16,8 @@ import {
   Stack,
   useColorMode,
   Center,
-  Heading
+  Heading,
+  Link
 } from '@chakra-ui/react'
 import logo from '../Images/logo.png';
 import React from 'react';
@@ -46,6 +47,7 @@ export default function Nav(props) {
     <Box bg="#F0F4EC" color={"black"} mb={5} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <Box pl={5}>
+        <Link href='/'>
           <div style={{ display: 'flex', alignItems: 'center', columnGap: 10 }}>
             <img src={logo} style={{ height: 50 }} />
             <div style={{ 
@@ -61,6 +63,7 @@ export default function Nav(props) {
                 CookSmart
             </div>
           </div>
+          </Link>
         </Box>
         <Flex alignItems={"center"}>
           <Stack direction={"row"} spacing={7}>
