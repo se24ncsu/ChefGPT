@@ -12,7 +12,6 @@ import { useAuth } from "../contexts/authContext/index";
 import { CiBookmark, CiBookmarkCheck } from "react-icons/ci";
 import React from 'react';
 
-require('dotenv').config();
 
 const SearchBlock = (props) => {
 
@@ -59,7 +58,8 @@ const SearchBlock = (props) => {
                 ingredients: searchIngredients.toString(),
                 page
             };
-            const response = await axios.post(process.env.GET_RECIPES_FROM_INGREDIENTS_URL, data);
+            console.log(process.env.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL);
+            const response = await axios.post(process.env.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL, data);
             setItems([...(page === 0 ? [] : items), ...response.data.recipes]);
             setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...response.data.recipes.map(i => i.tags)].flat())));
         }
@@ -68,7 +68,7 @@ const SearchBlock = (props) => {
                 name: searchName,
                 page
             };
-            const response = await axios.post(process.env.GET_RECIPES_FROM_NAME_URL, data);
+            const response = await axios.post(process.env.REACT_APP_GET_RECIPES_BY_NAME_URL, data);
             setItems([...(page === 0 ? [] : items), ...response.data.recipes]);
             setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...response.data.recipes.map(i => i.tags)].flat())));
         }
@@ -104,7 +104,7 @@ const SearchBlock = (props) => {
             name: items[index].name,
             ingredients: items[index].ingredients,
         };
-        const response = await axios.post(process.env.GET_DETAILED_RECIPE_URL, data);
+        const response = await axios.post(process.env.REACT_APP_GET_DETAILED_RECIPE_URL, data);
         const allIngredients = response.data.ingredients.map(ingredient => ingredient.trim());
         response.data.ingredients = allIngredients;
         setDetailedItem(response.data);

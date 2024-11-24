@@ -1,7 +1,6 @@
 const axios = require('axios');
-require('dotenv').config();
 const test_from_ingredients = (data) => {
-    axios.post(process.env.GET_RECIPES_FROM_INGREDIENTS_URL, data)
+    axios.post(process.env.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL, data)
         .then((response) => {
             if (data.ingredients === undefined) {
                 if (response.data !== 'Missing ingredients') throw 'get-recipes-from-ingredients: Invalid response for missing ingredients';
@@ -26,7 +25,7 @@ const test_from_ingredients = (data) => {
 };
 
 const test_from_name = (data) => {
-    axios.post(process.env.GET_RECIPES_FROM_NAME_URL, data)
+    axios.post(process.env.REACT_APP_GET_RECIPES_BY_NAME_URL, data)
         .then((response) => {
             if (data.name === undefined) {
                 if (response.data !== 'Missing name') throw 'get-recipes-by-name: Invalid response for missing name';
@@ -51,7 +50,7 @@ const test_from_name = (data) => {
 };
 
 const test_detailed = (data) => {
-    axios.post(process.env.GET_DETAILED_RECIPE_URL, data)
+    axios.post(process.env.REACT_APP_GET_DETAILED_RECIPE_URL, data)
         .then((response) => {
             if (data.name === undefined) {
                 if (response.data !== 'Missing name') throw 'get-recipes-by-name: Invalid response for missing name';
@@ -74,7 +73,7 @@ const test_detailed = (data) => {
 };
 
 const test_image = (data) => {
-    axios.post(process.env.GET_IMAGE_URL, data)
+    axios.post(process.env.REACT_APP_GET_IMAGE_URL, data)
         .then((response) => {
             if (data.name === undefined) {
                 if (response.data !== 'Missing name') throw 'get-image-by-name: Invalid response for missing name';
