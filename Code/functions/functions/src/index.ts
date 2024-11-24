@@ -11,7 +11,7 @@ import { onRequest } from "firebase-functions/v2/https";
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import puppeteer, { Browser, Page } from "puppeteer";
 
-
+require('dotenv').config();
 const chromium = require('chromium');
 
 const cors = require('cors');
@@ -23,7 +23,7 @@ const corsMiddleware = cors(corsOptions);
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 
-const GEMINI_KEY = "AIzaSyAbGv664iB48XgsrV917cpUc7SVQW4dfWE";
+const GEMINI_KEY = process.env.GEMINI_API_KEY;
 
 var browser: Browser;
 var page: Page;

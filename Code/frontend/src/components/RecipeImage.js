@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Oval } from 'react-loader-spinner';
 import { MdErrorOutline } from "react-icons/md";
 import { getCache, setCache } from '../globalcache';
-
+require('dotenv').config();
 
 const RecipeImage = (props) => {
 
@@ -23,7 +23,7 @@ const RecipeImage = (props) => {
                 name: props.name
             };
             setLoading(true);
-            axios.post('https://get-image-by-name-3rhjd2q7dq-uc.a.run.app', data).then(response => {
+            axios.post(process.env.GET_IMAGE_URL, data).then(response => {
                 setUrl(response.data);
                 setLoading(false);
                 setCache(`img:${props.name}`, response.data);

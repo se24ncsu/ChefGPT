@@ -20,7 +20,12 @@ const corsOptions = {
 const corsMiddleware = cors(corsOptions);
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
-const GEMINI_KEY = "AIzaSyAbGv664iB48XgsrV917cpUc7SVQW4dfWE";
+// If using Node.js, install dotenv:
+// npm install dotenv
+
+require('dotenv').config();
+
+const GEMINI_KEY = process.env.GEMINI_API_KEY;
 var browser;
 var page;
 /* Function to scrape image from images.google.com */
