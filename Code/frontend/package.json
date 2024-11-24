@@ -50,10 +50,10 @@
     ]
   },
   "devDependencies": {
-    "@firebase/testing": "^0.20.11",
-    "jest": "^27.5.1",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.25.9",
-    "babel-jest": "^29.7.0"
+    "@firebase/testing": "^0.20.11",
+    "babel-jest": "^29.7.0",
+    "jest": "^27.5.1"
   }
 }

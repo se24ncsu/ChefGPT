@@ -23,9 +23,8 @@ const corsMiddleware = cors(corsOptions);
 // If using Node.js, install dotenv:
 // npm install dotenv
 
-require('dotenv').config();
 
-const GEMINI_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_KEY = process.env.REACT_APP_GEMINI_API_KEY;
 var browser;
 var page;
 /* Function to scrape image from images.google.com */
