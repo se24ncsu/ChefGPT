@@ -62,7 +62,7 @@ export default function Nav(props) {
                 padding: '10px',
                 borderRadius: '8px'
             }}>
-                CookSmart
+                ChefGPT
             </div>
           </div>
           </Link>
