@@ -7,7 +7,7 @@ import './css/misc.css';
 import Tag from "./Tag";
 import jsPDF from 'jspdf';
 import { Oval } from "react-loader-spinner";
-import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked } from '../service/firestoreService';
+import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked, addToCartDB } from '../service/firestoreService';
 import { useAuth } from "../contexts/authContext/index";
 import { CiBookmark, CiBookmarkCheck } from "react-icons/ci";
 import React from 'react';
@@ -149,6 +149,14 @@ const SearchBlock = (props) => {
             setFilteredTags([...filteredTags, tag]);
         }
     };
+    
+    const addToCart = async (detailedItem) => {
+        await addToCartDB(detailedItem);
+        // Example implementation for handling "Add to Cart"
+        console.log("Adding to cart:", detailedItem);
+        // Replace this with the actual functionality, e.g., updating cart state or making an API call
+        alert("Shopping list added to your cart!");
+    };
 
     return (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -252,16 +260,120 @@ const SearchBlock = (props) => {
                             })}
                         </div>
                         {detailedItem && (
-                            <div style={{ display: 'flex', flexDirection: 'column', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)', margin: '20px', marginTop: 50, padding: '20px', alignItems: 'center', }}>
-                                <p>Need a quick shopping list of ingredients? Here's a PDF you can download!</p>
-                                <button
-                                    onClick={() => generatePDF(detailedItem.name, detailedItem.ingredients)}
-                                    style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: '#A9A9A9', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', transition: 'background-color 0.3s', marginTop: '10px' }}
-                                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#808080'}
-                                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#A9A9A9'}
-                                >
-                                    Download Shopping List
-                                </button>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                margin: '20px',
+                                marginTop: 50,
+                                padding: '20px',
+                                borderRadius: '10px',
+                                backgroundColor: '#fff'
+                            }}>
+                                <h3 style={{
+                                    marginBottom: '16px',
+                                    color: '#333',
+                                    textAlign: 'center',
+                                    fontSize: '24px'
+                                }}>
+                                    Shopping List Preview
+                                </h3>
+
+                                <div style={{
+                                    backgroundColor: '#f9f9f9',
+                                    padding: '20px',
+                                    borderRadius: '8px',
+                                    marginBottom: '20px',
+                                    border: '1px solid #ddd'
+                                }}>
+                                    <h4 style={{
+                                        marginBottom: '16px',
+                                        color: '#444',
+                                        fontSize: '20px'
+                                    }}>
+                                        {detailedItem.name}
+                                    </h4>
+                                    <ul style={{
+                                        listStyle: 'none',
+                                        padding: 0,
+                                        margin: 0
+                                    }}>
+                                        {detailedItem.ingredients.map((ingredient, index) => (
+                                            <li key={index} style={{
+                                                padding: '12px 0',
+                                                borderBottom: '1px solid #eee',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                fontSize: '16px',
+                                                color: '#555',
+                                                transition: 'background-color 0.3s, padding 0.3s',
+                                                cursor: 'pointer'
+                                            }}
+                                                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f1f1f1'}
+                                                onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                                            >
+                                                <span style={{
+                                                    width: '30px',
+                                                    height: '30px',
+                                                    backgroundColor: '#FF6F61',
+                                                    color: 'white',
+                                                    borderRadius: '50%',
+                                                    display: 'inline-flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    marginRight: '15px',
+                                                    fontSize: '14px',
+                                                    fontWeight: 'bold'
+                                                }}>
+                                                    {index + 1}
+                                                </span>
+                                                {ingredient}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div style={{
+                                    textAlign: 'center'
+                                }}>
+                                    <button
+                                        onClick={() => addToCart(detailedItem)}
+                                        style={{
+                                            padding: '12px 24px',
+                                            fontSize: '18px',
+                                            backgroundColor: '#007BFF',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background-color 0.3s',
+                                            marginBottom: '20px',
+                                            marginRight: '10px'
+                                        }}
+                                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0056b3'}
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
+                                    >
+                                        Add to Cart
+                                    </button>
+                                    <button
+                                        onClick={() => generatePDF(detailedItem.name, detailedItem.ingredients)}
+                                        style={{
+                                            padding: '12px 24px',
+                                            fontSize: '18px',
+                                            backgroundColor: '#FF6F61',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background-color 0.3s',
+                                            marginTop: '10px'
+                                        }}
+                                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#E95D4F'}
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#FF6F61'}
+                                    >
+                                        Download Shopping List
+                                    </button>
+                                </div>
                             </div>
                         )}
                         <div style={{ height: 100 }}></div>

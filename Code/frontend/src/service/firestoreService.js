@@ -75,3 +75,57 @@ export const fetchBookmarkedIngredients = async () => {
     }
     return [];
 };
+
+// Function to bookmark a recipe by name
+export const addToCartDB = async (recipe) => {
+    const user = auth.currentUser;
+    if (user) {
+        const documentId = `${user.uid}_${recipe.name}`;
+        const bookmarkRef = doc(db, "cart", documentId);
+        await setDoc(bookmarkRef, { userId: user.uid, recipeName: recipe.name, ingredients: recipe.ingredients});
+    }
+};
+
+export const fetchCartList = async () => {
+    const user = auth.currentUser;
+    if (user) {
+        const bookmarksRef = collection(db, "cart");
+        const q = query(bookmarksRef, where("userId", "==", user.uid));
+        const querySnapshot = await getDocs(q);
+        
+        let allIngredients = [];
+        querySnapshot.forEach((doc) => {
+            const recipe = doc.data();
+            if (recipe.ingredients) {
+                allIngredients = [...allIngredients, ...recipe.ingredients];
+            }
+        });
+        
+        // Remove duplicates
+        return [...new Set(allIngredients)];
+    }
+    return [];
+};
+
+
+
+// export const fetchBookmarkedIngredients = async () => {
+//     const user = auth.currentUser;
+//     if (user) {
+//         const bookmarksRef = collection(db, "bookmarks");
+//         const q = query(bookmarksRef, where("userId", "==", user.uid));
+//         const querySnapshot = await getDocs(q);
+        
+//         let allIngredients = [];
+//         querySnapshot.forEach((doc) => {
+//             const recipe = doc.data();
+//             if (recipe.ingredients) {
+//                 allIngredients = [...allIngredients, ...recipe.ingredients];
+//             }
+//         });
+        
+//         // Remove duplicates
+//         return [...new Set(allIngredients)];
+//     }
+//     return [];
+// };

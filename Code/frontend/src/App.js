@@ -5,14 +5,15 @@ import BookMarksRecipeList from "./components/BookMarksRecipeList.js";
 import { doSignInWithEmailAndPassword, doCreateUserWithEmailAndPassword, doSignOut } from "./firebase/auth";
 import SearchBlock from "./components/SearchBlock.js";
 import { useAuth, AuthProvider } from "./contexts/authContext/index";
+import ShoppingCart from "./components/ShoppingCart.js";
 
 const App = () => {
   const { currentUser, userLoggedIn } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showBookmarks, setShowBookmarks] = useState(false);
+  const [activeSection, setActiveSection] = useState("search"); // 'search', 'bookmarks', or 'cart'
 
   const toggleLoginModal = () => {
-    setShowLoginModal(prev => !prev);
+    setShowLoginModal((prev) => !prev);
   };
 
   const handleSignup = async (email, password) => {
@@ -48,7 +49,22 @@ const App = () => {
   };
 
   const handleShowBookmarks = () => {
-    setShowBookmarks(true);
+    setActiveSection("bookmarks");
+  };
+
+  const handleShowCart = () => {
+    setActiveSection("cart");
+  };
+
+  const renderContent = () => {
+    switch (activeSection) {
+      case "bookmarks":
+        return <BookMarksRecipeList />;
+      case "cart":
+        return <ShoppingCart />;
+      default:
+        return <SearchBlock />;
+    }
   };
 
   return (
@@ -59,11 +75,16 @@ const App = () => {
         toggleLoginModal={toggleLoginModal}
         userLoggedIn={userLoggedIn}
         handleBookMarks={handleShowBookmarks}
+        handleCart={handleShowCart}
       />
       {showLoginModal && (
-        <Login handleSignup={handleSignup} handleLogin={handleLogin} toggleLoginModal={toggleLoginModal} />
+        <Login
+          handleSignup={handleSignup}
+          handleLogin={handleLogin}
+          toggleLoginModal={toggleLoginModal}
+        />
       )}
-      {showBookmarks ? <BookMarksRecipeList /> : <SearchBlock />} 
+      {renderContent()}
     </div>
   );
 };
