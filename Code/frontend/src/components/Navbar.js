@@ -95,6 +95,7 @@ export default function Nav(props) {
                   </Center>
                   <MenuDivider />
                   <MenuItem onClick={props.handleBookMarks}>Bookmarks</MenuItem>
+                  <MenuItem onClick={props.handleCart}>Shopping Cart</MenuItem>
                   <MenuItem onClick={props.handleLogout}>Logout</MenuItem>
                 </MenuList>
               </Menu>
