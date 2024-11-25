@@ -17,14 +17,16 @@ import {
   useColorMode,
   Center,
   Heading,
-  Link
+  Link,
+  IconButton,
 } from '@chakra-ui/react'
 import logo from '../Images/logo.png';
 import React from 'react';
+import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 
 const NavLink = (props) => {
   const { children } = props
-
+  
   return (
     <Box
       as="a"
@@ -42,9 +44,9 @@ const NavLink = (props) => {
 }
 
 export default function Nav(props) {
-
+  const {colorMode, toggleColorMode} = useColorMode();
   return (
-    <Box bg="#F0F4EC" color={"black"} mb={5} px={4}>
+    <Box bg={useColorModeValue("#F0F4EC", "gray.800")} color={useColorModeValue("black", "white")} mb={5} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <Box pl={5}>
         <Link href='/'>
@@ -60,13 +62,25 @@ export default function Nav(props) {
                 padding: '10px',
                 borderRadius: '8px'
             }}>
-                CookSmart
+                ChefGPT
             </div>
           </div>
           </Link>
         </Box>
+
         <Flex alignItems={"center"}>
           <Stack direction={"row"} spacing={7}>
+          <IconButton
+              aria-label="Toggle color mode"
+              icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              onClick={toggleColorMode}
+              variant="ghost"
+              size="lg"
+              color={useColorModeValue("gray.600", "yellow.400")}
+              _hover={{
+                bg: useColorModeValue("gray.200", "gray.700"),
+              }}
+            />
             {props.userLoggedIn && props.currentUser ? (
               <Menu>
                 <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>

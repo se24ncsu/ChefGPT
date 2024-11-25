@@ -10,6 +10,8 @@ import { Oval } from "react-loader-spinner";
 import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked } from '../service/firestoreService';
 import { useAuth } from "../contexts/authContext/index";
 import { CiBookmark, CiBookmarkCheck } from "react-icons/ci";
+import { useColorModeValue } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 
@@ -26,6 +28,10 @@ const SearchBlock = (props) => {
     const { userLoggedIn } = useAuth();
     const [tags, setTags] = useState([]);
     const [filteredTags, setFilteredTags] = useState([]);
+    const bgColor = useColorModeValue('gray.100', 'gray.700');
+    const textColor = useColorModeValue('gray.800', 'gray.100');
+    const stepBgColor = useColorModeValue('gray.200', 'gray.600');
+    const stepNumberBgColor = useColorModeValue('gray.300', 'gray.500');
 
     const onChange = (query) => {
         if (searchIngredients.length === 0) {
@@ -239,16 +245,16 @@ const SearchBlock = (props) => {
                         <div style={{ marginTop: 30 }}>Ingredients</div>
                         <div style={{ marginTop: 10, display: 'flex', columnGap: 10, flexWrap: 'wrap', rowGap: 10 }}>
                             {detailedItem.ingredients.map((ing, i) =>
-                                <div key={i} style={{ background: '#eee', borderRadius: 10, padding: 10 }}>{ing}</div>
+                                <Box key={i} bg={bgColor} borderRadius="md" px={2} py={2} >{ing}</Box>
                             )}
                         </div>
                         <div style={{ marginTop: 30 }}>Steps</div>
                         <div style={{ display: 'flex', flexDirection: 'column', rowGap: 20, marginTop: 10 }}>
                             {detailedItem.process.map((step, index) => {
-                                return <div key={index} style={{ display: 'flex', background: '#eee', borderRadius: 10, overflow: 'hidden' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', padding: 20, background: '#ddd' }}>{index + 1}</div>
-                                    <div style={{ padding: 10, display: 'flex', alignItems: 'center' }}>{step.replace(/[0-9]*\./, '')}</div>
-                                </div>;
+                                return <Box display="flex" bg={stepBgColor} borderRadius="md" overflow="hidden" key={index}>
+                                        <Box display="flex" alignItems="center" px={5} py={1} bg={stepNumberBgColor}>{index + 1}</Box>
+                                        <Box px={2} py={3} display="flex" alignItems="center" color={textColor}>{step.replace(/[0-9]*\./, '')}</Box>
+                                </Box>;
                             })}
                         </div>
                         {detailedItem && (
