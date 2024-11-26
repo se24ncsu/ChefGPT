@@ -29,6 +29,8 @@ const MealPlan = () => {
     setIsLoading(true);
     try {
         const userPreferences = await fetchUserPreferences();
+        console.log(userPreferences, days);
+        
     if (!userPreferences) {
       toast({
         title: 'Error',
@@ -40,7 +42,7 @@ const MealPlan = () => {
       return;
     }
       const response = await axios.post(process.env.REACT_APP_GET_MEAL_PLAN_URL, {
-        userdata: userPreferences,
+        userData: userPreferences,
         days: days
       });
       setMealPlan(response.data);

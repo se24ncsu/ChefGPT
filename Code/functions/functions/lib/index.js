@@ -193,7 +193,7 @@ exports.get_meal_plan = (0, https_1.onRequest)(async (request, response) => {
       }
   
       try {
-        const genAI = new GoogleGenerativeAI(GEMINI_KEY);
+        const genAI = new generative_ai_1.GoogleGenerativeAI(GEMINI_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   
         const prompt = `Create a ${days}-day meal plan for a user with the following preferences:

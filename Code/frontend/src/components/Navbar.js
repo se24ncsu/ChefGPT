@@ -94,7 +94,6 @@ export default function Nav(props) {
                     <p>{props.currentUser.email}</p>
                   </Center>
                   <MenuDivider />
-                  <MenuItem >Profile</MenuItem>
                   <MenuItem onClick={props.handleMealplanning}>Meal Planning</MenuItem>
                   <MenuItem onClick={props.handleBookMarks}>Bookmarks</MenuItem>
                   <MenuItem onClick={props.handleCart}>Shopping Cart</MenuItem>
