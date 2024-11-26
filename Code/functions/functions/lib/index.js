@@ -184,7 +184,7 @@ exports.get_detailed_recipe = (0, https_1.onRequest)(async (request, response) =
     });
 });
 
-exports.get_meal_plan = onRequest(async (request, response) => {
+exports.get_meal_plan = (0, https_1.onRequest)(async (request, response) => {
     corsMiddleware(request, response, async () => {
       const { userData, days } = request.body;
       if ( !userData || !days) {
@@ -200,7 +200,8 @@ exports.get_meal_plan = onRequest(async (request, response) => {
           Age: ${userData.age}
           Sex: ${userData.sex}
           Diet: ${userData.dietType}
-          Restrictions: ${userData.dietaryRestrictions.join(', ')}
+          Weight: ${userData.weight}
+          Height: ${userData.height}
   
           For each day, provide 3 meals (breakfast, lunch, dinner).
           Return the response in the following JSON format:
