@@ -71,6 +71,8 @@ const App = () => {
 
   const handleMealplanning = () => {
     setActiveSection("mealplan");
+  }
+
   const handleShowProfile = () => {
     setActiveSection("profile");
   };
