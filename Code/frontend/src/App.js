@@ -12,7 +12,6 @@ const App = () => {
   const { currentUser, userLoggedIn } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [activeSection, setActiveSection] = useState("search"); // 'search', 'bookmarks', or 'cart'
-  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const toggleLoginModal = () => {
     setShowLoginModal((prev) => !prev);
