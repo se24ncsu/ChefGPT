@@ -13,6 +13,7 @@ const https_1 = require("firebase-functions/v2/https");
 const generative_ai_1 = require("@google/generative-ai");
 const puppeteer_1 = require("puppeteer");
 const chromium = require('chromium');
+const { google } = require('googleapis');
 const cors = require('cors');
 const corsOptions = {
     origin: "*", // Allows all origins
@@ -24,7 +25,12 @@ const corsMiddleware = cors(corsOptions);
 // npm install dotenv
 
 
-const GEMINI_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+const GEMINI_KEY = '';
+const youtube = google.youtube({
+    version: 'v3',
+    auth: GEMINI_KEY
+});
+
 var browser;
 var page;
 /* Function to scrape image from images.google.com */
@@ -149,7 +155,7 @@ exports.get_detailed_recipe = (0, https_1.onRequest)(async (request, response) =
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const name = request.body.name;
         const ingredients = request.body.ingredients;
-        const prompt = `Give me a recipe (just one) related (could be a match) to the name: ${name} and
+        const prompt = `Give me a recipe (just one, exactly matching the given name next): ${name} and
         uses the following list of ingredients: [${ingredients}]
         Return the response in the following JSON format: 
         {
@@ -163,8 +169,18 @@ exports.get_detailed_recipe = (0, https_1.onRequest)(async (request, response) =
     `;
         let rawjson = (await model.generateContent(prompt)).response.text();
         rawjson = rawjson.substring(rawjson.indexOf('{') - 1, rawjson.lastIndexOf('}') + 1);
+        const youtubeResponse = await youtube.search.list({
+            key: '',
+            part: 'snippet',
+            q: `${name} recipe`,
+            maxResults: 1,
+            type: 'video'
+        });
+
+        const videoLink = `https://www.youtube.com/watch?v=${youtubeResponse.data.items[0].id.videoId}`;
+        
         // Prepare and send the result
-        response.send(rawjson);
+        response.send({ ...JSON.parse(rawjson), videoLink });
     });
 });
 

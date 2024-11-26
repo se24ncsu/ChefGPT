@@ -8,11 +8,13 @@ import { useAuth, AuthProvider } from "./contexts/authContext/index";
 import ShoppingCart from "./components/ShoppingCart.js";
 import MealPlan from "./components/MealPlan.js";
 import MealPlanDisplay from "./components/MealPlanDisplay.js";
+import Profile from "./components/Profile.js";
 
 const App = () => {
   const { currentUser, userLoggedIn } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [activeSection, setActiveSection] = useState("search"); // 'search', 'bookmarks', or 'cart'
+  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const toggleLoginModal = () => {
     setShowLoginModal((prev) => !prev);
@@ -22,10 +24,15 @@ const App = () => {
     try {
       await doCreateUserWithEmailAndPassword(email, password);
       setShowLoginModal(false);
+      setActiveSection("profile"); // Show profile page after signup
       alert("Successfully Signed up!");
     } catch (err) {
       console.log(err);
-      alert(err.message);
+      if (err.code === 'auth/network-request-failed') {
+        alert("Network error, please try again later.");
+      } else {
+        alert(err.message);
+      }
     }
   };
 
@@ -36,7 +43,11 @@ const App = () => {
       alert("Successfully logged in!");
     } catch (err) {
       console.log(err);
-      alert(err.message);
+      if (err.code === 'auth/network-request-failed') {
+        alert("Network error, please try again later.");
+      } else {
+        alert(err.message);
+      }
     }
   };
 
@@ -60,6 +71,8 @@ const App = () => {
 
   const handleMealplanning = () => {
     setActiveSection("mealplan");
+  const handleShowProfile = () => {
+    setActiveSection("profile");
   };
 
   const renderContent = () => {
@@ -70,6 +83,8 @@ const App = () => {
         return <ShoppingCart />;
       case "mealplan":
         return <MealPlan />
+      case "profile":
+        return <Profile setActiveSection={setActiveSection} />;
       default:
         return <SearchBlock />;
     }
@@ -85,6 +100,7 @@ const App = () => {
         handleBookMarks={handleShowBookmarks}
         handleCart={handleShowCart}
         handleMealplanning={handleMealplanning}
+        handleProfile={handleShowProfile}
       />
       {showLoginModal && (
         <Login
