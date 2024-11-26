@@ -40,7 +40,7 @@ const SearchBar = (props) => {
                 <div style={{ position: 'absolute', left: 17, top: 0, height: '100%', display: 'flex', alignItems: 'center' }}>
                     <IoIosSearch size={25} color='#333' />
                 </div>
-                <div onClick={onIngredientAdded} style={{ position: 'absolute', right: 17, top: 0, height: '100%', display: 'flex', alignItems: 'center' }}>
+                <div onClick={onIngredientAdded} data-testid="add-button" style={{ position: 'absolute', right: 17, top: 0, height: '100%', display: 'flex', alignItems: 'center' }}>
                     <IoIosAdd size={30} className='hover_pointer hover_rotate_anim' style={{ borderRadius: 5 }} />
                 </div>
             </div>
