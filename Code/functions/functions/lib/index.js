@@ -183,4 +183,50 @@ exports.get_detailed_recipe = (0, https_1.onRequest)(async (request, response) =
         response.send({ ...JSON.parse(rawjson), videoLink });
     });
 });
+
+exports.get_meal_plan = (0, https_1.onRequest)(async (request, response) => {
+    corsMiddleware(request, response, async () => {
+      const { userData, days } = request.body;
+      if ( !userData || !days) {
+        response.status(400).send('Missing userData or days');
+        return;
+      }
+  
+      try {
+        const genAI = new generative_ai_1.GoogleGenerativeAI(GEMINI_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  
+        const prompt = `Create a ${days}-day meal plan for a user with the following preferences:
+          Age: ${userData.age}
+          Sex: ${userData.sex}
+          Diet: ${userData.dietType}
+          Weight: ${userData.weight}
+          Height: ${userData.height}
+  
+          For each day, provide 3 meals (breakfast, lunch, dinner).
+          Return the response in the following JSON format:
+          {
+            "mealPlan": [
+              {
+                "day": 1,
+                "meals": [
+                  {"type": "breakfast", "name": "Meal name", "ingredients": ["ingredient1", "ingredient2"], "nutritionalInfo": {"calories": 000, "protein": 00, "carbs": 00, "fat": 00}},
+                  {"type": "lunch", "name": "Meal name", "ingredients": ["ingredient1", "ingredient2"], "nutritionalInfo": {"calories": 000, "protein": 00, "carbs": 00, "fat": 00}},
+                  {"type": "dinner", "name": "Meal name", "ingredients": ["ingredient1", "ingredient2"], "nutritionalInfo": {"calories": 000, "protein": 00, "carbs": 00, "fat": 00}}
+                ]
+              },
+              // Repeat for each day
+            ]
+          }`;
+  
+        let rawJson = (await model.generateContent(prompt)).response.text();
+        rawJson = rawJson.substring(rawJson.indexOf('{'), rawJson.lastIndexOf('}') + 1);
+        
+        response.send(JSON.parse(rawJson));
+      } catch (error) {
+        console.error('Error:', error);
+        response.status(500).send('Internal Server Error');
+      }
+    });
+  });
 //# sourceMappingURL=index.js.map
