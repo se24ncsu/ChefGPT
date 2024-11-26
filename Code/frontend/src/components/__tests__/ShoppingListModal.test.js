@@ -40,5 +40,20 @@ describe('ShoppingListModal', () => {
     expect(listItems[2]).toHaveTextContent('Bananas');
   });
 
+  test('renders checkboxes for each item', () => {
+    const checkboxes = screen.getAllByRole('checkbox');
+    expect(checkboxes).toHaveLength(mockShoppingList.length);
+  });
+
+  test('applies correct text decoration for checked items', () => {
+    const bananasItem = screen.getByText('Bananas').closest('li');
+    expect(bananasItem).toHaveStyle('text-decoration: line-through');
+  });
+
+  test('calls onCheckboxChange with correct item ID when a checkbox is clicked', () => {
+    fireEvent.click(screen.getByLabelText('Apples'));
+    expect(mockOnCheckboxChange).toHaveBeenCalledWith(1);
+  });
+
   
 });
