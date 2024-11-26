@@ -7,7 +7,7 @@ module.exports = {
     },
     moduleNameMapper: {
         '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.js',
-        '\\.(css)$': '<rootDir>/__mocks__/fileMock.js',
-        '^@chakra-ui/(.*)$': '<rootDir>/node_modules/@chakra-ui/$1',
+        '\\.(css)$': '<rootDir>/__mocks__/fileMock.js'
+        //'^@chakra-ui/(.*)$': '<rootDir>/node_modules/@chakra-ui/react/dist/$1',
     },
 };
