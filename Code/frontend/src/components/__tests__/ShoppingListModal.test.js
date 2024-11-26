@@ -55,5 +55,30 @@ describe('ShoppingListModal', () => {
     expect(mockOnCheckboxChange).toHaveBeenCalledWith(1);
   });
 
+  test('renders a close button', () => {
+    expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument();
+  });
+
+  test('calls onClose when the close button is clicked', () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Close' }));
+    expect(mockOnClose).toHaveBeenCalled();
+  });
+
+  test('displays "No items in the shopping list" message when the list is empty', () => {
+    const { rerender } = render(
+      <ShoppingListModal
+        shoppingList={[]}
+        onClose={mockOnClose}
+        onCheckboxChange={mockOnCheckboxChange}
+      />
+    );
+    expect(screen.getByText('No items in the shopping list')).toBeInTheDocument();
+  });
+
+  test('applies correct styling to the modal container', () => {
+    const modalContainer = screen.getByTestId('modal-container');
+    expect(modalContainer).toHaveClass('modal');
+  });
+
   
 });
