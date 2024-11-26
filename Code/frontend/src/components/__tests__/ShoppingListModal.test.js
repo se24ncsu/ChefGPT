@@ -80,5 +80,54 @@ describe('ShoppingListModal', () => {
     expect(modalContainer).toHaveClass('modal');
   });
 
+  test('ensures each list item has a unique key prop', () => {
+    const listItems = screen.getAllByRole('listitem');
+    const keys = listItems.map(item => item.getAttribute('data-key'));
+    expect(new Set(keys).size).toBe(mockShoppingList.length);
+  });
+
+  test('verifies that the component re-renders when shoppingList prop changes', () => {
+    const { rerender } = render(
+      <ShoppingListModal
+        shoppingList={mockShoppingList}
+        onClose={mockOnClose}
+        onCheckboxChange={mockOnCheckboxChange}
+      />
+    );
+
+    const newShoppingList = [...mockShoppingList, { id: 4, name: 'Bread', checked: false }];
+    rerender(
+      <ShoppingListModal
+        shoppingList={newShoppingList}
+        onClose={mockOnClose}
+        onCheckboxChange={mockOnCheckboxChange}
+      />
+    );
+
+    expect(screen.getByText('Bread')).toBeInTheDocument();
+  });
+
+  test('ensures the modal has proper ARIA attributes for accessibility', () => {
+    const modal = screen.getByRole('dialog');
+    expect(modal).toHaveAttribute('aria-labelledby');
+    expect(modal).toHaveAttribute('aria-describedby');
+  });
+
+  test('verifies that long item names are displayed correctly without breaking the layout', () => {
+    const longItemName = 'This is a very long item name that should not break the layout of the shopping list modal';
+    const longShoppingList = [...mockShoppingList, { id: 4, name: longItemName, checked: false }];
+
+    const { rerender } = render(
+      <ShoppingListModal
+        shoppingList={longShoppingList}
+        onClose={mockOnClose}
+        onCheckboxChange={mockOnCheckboxChange}
+      />
+    );
+
+    const longItemElement = screen.getByText(longItemName);
+    expect(longItemElement).toBeInTheDocument();
+    expect(longItemElement.closest('li')).toHaveStyle('word-wrap: break-word');
+  });
   
 });
