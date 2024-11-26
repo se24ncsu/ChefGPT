@@ -44,33 +44,33 @@ const NavLink = (props) => {
 }
 
 export default function Nav(props) {
-  const {colorMode, toggleColorMode} = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box bg={useColorModeValue("#F0F4EC", "gray.800")} color={useColorModeValue("black", "white")} mb={5} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <Box pl={5}>
-        <Link href='/'>
-          <div style={{ display: 'flex', alignItems: 'center', columnGap: 10 }}>
-            <img src={logo} style={{ height: 50 }} />
-            <div style={{ 
-                fontSize: 32, 
-                fontWeight: '600', 
-                color: '#4CAF50', 
+          <Link href='/'>
+            <div style={{ display: 'flex', alignItems: 'center', columnGap: 10 }}>
+              <img src={logo} style={{ height: 50 }} />
+              <div style={{
+                fontSize: 32,
+                fontWeight: '600',
+                color: '#4CAF50',
                 fontFamily: "'Segoe UI', sans-serif",
                 letterSpacing: '1px',
-                textShadow: '1px 1px 3px rgba(76, 175, 80, 0.3)', 
+                textShadow: '1px 1px 3px rgba(76, 175, 80, 0.3)',
                 padding: '10px',
                 borderRadius: '8px'
-            }}>
+              }}>
                 ChefGPT
+              </div>
             </div>
-          </div>
           </Link>
         </Box>
 
         <Flex alignItems={"center"}>
           <Stack direction={"row"} spacing={7}>
-          <IconButton
+            <IconButton
               aria-label="Toggle color mode"
               icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}
@@ -84,7 +84,7 @@ export default function Nav(props) {
             {props.userLoggedIn && props.currentUser ? (
               <Menu>
                 <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>
-                  <Avatar  src={"https://api.dicebear.com/9.x/bottts/svg?baseColor=ffb300"} />
+                  <Avatar src={"https://api.dicebear.com/9.x/bottts/svg?baseColor=ffb300"} />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <Center>
@@ -96,6 +96,7 @@ export default function Nav(props) {
                   <MenuDivider />
                   <MenuItem onClick={props.handleBookMarks}>Bookmarks</MenuItem>
                   <MenuItem onClick={props.handleCart}>Shopping Cart</MenuItem>
+                  <MenuItem onClick={props.handleProfile}>Profile</MenuItem>
                   <MenuItem onClick={props.handleLogout}>Logout</MenuItem>
                 </MenuList>
               </Menu>
