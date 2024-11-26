@@ -48,4 +48,14 @@ describe('SearchBlock Component', () => {
         render(<SearchBlock />);
         expect(screen.getByPlaceholderText(/Add ingredients or search by name/i)).toBeInTheDocument();
     });
+
+    test('renders search bar with correct placeholder', () => {
+        render(<SearchBlock />);
+        expect(screen.getByPlaceholderText(/Add ingredients or search by name/i)).toBeInTheDocument();
+      });
+      
+    test('initially renders with empty search results', () => {
+        render(<SearchBlock />);
+        expect(screen.queryByTestId('recipe-item')).not.toBeInTheDocument();
+    });
 });
