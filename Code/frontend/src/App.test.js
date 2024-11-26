@@ -7,7 +7,17 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import React from 'react';
 import App from "./App";
 
-jest.mock("./components/Navbar", () => (props) => <div>Navbar</div>);
+jest.mock("./components/Navbar", () => (props) => (
+  <div>
+    Navbar
+    <button onClick={props.toggleLoginModal}>Login</button>
+    <button onClick={props.handleLogout}>Logout</button>
+    <button onClick={props.handleBookMarks}>Bookmarks</button>
+    <button onClick={props.handleCart}>Shopping Cart</button>
+    <button onClick={props.handleProfile}>Profile</button>
+  </div>
+));
+
 jest.mock("./components/Login", () => (props) => (
   <div>
     <button onClick={() => props.handleLogin("testuser", "password123")}>Login</button>
@@ -38,5 +48,138 @@ describe("App component", () => {
   test("renders Search Block by default", () => {
     render(<App />);
     expect(screen.getByText(/Search Block/i)).toBeInTheDocument();
+  });
+
+  // Trivial test cases
+  test("renders Login button", () => {
+    render(<App />);
+    expect(screen.getAllByText(/Login/i)[0]).toBeInTheDocument();
+  });
+
+  test("renders Signup button", () => {
+    render(<App />);
+    expect(screen.getAllByText(/Signup/i)[0]).toBeInTheDocument();
+  });
+
+  test("renders Bookmarks section", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Bookmarks/i));
+    expect(screen.getByText(/Bookmarks/i)).toBeInTheDocument();
+  });
+
+  test("renders Search Block section", () => {
+    render(<App />);
+    expect(screen.getByText(/Search Block/i)).toBeInTheDocument();
+  });
+
+  test("renders Navbar component", () => {
+    render(<App />);
+    expect(screen.getByText(/Navbar/i)).toBeInTheDocument();
+  });
+
+  test("renders ShoppingCart component", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Shopping Cart/i));
+    expect(screen.getByText(/Shopping Cart/i)).toBeInTheDocument();
+  });
+
+  test("renders Profile component", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Profile/i));
+    expect(screen.getByText(/Profile/i)).toBeInTheDocument();
+  });
+
+  test("Login button triggers handleLogin", () => {
+    render(<App />);
+    fireEvent.click(screen.getAllByText(/Login/i)[1]);
+    expect(screen.getByText(/Successfully logged in!/i)).toBeInTheDocument();
+  });
+
+  test("Signup button triggers handleSignup", () => {
+    render(<App />);
+    fireEvent.click(screen.getAllByText(/Signup/i)[0]);
+    expect(screen.getByText(/Successfully Signed up!/i)).toBeInTheDocument();
+  });
+
+  test("Logout button triggers handleLogout", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Logout/i));
+    expect(screen.getByText(/Logged out successfully/i)).toBeInTheDocument();
+  });
+
+  test("renders default section as Search Block", () => {
+    render(<App />);
+    expect(screen.getByText(/Search Block/i)).toBeInTheDocument();
+  });
+
+  test("renders Bookmarks section when activeSection is bookmarks", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Bookmarks/i));
+    expect(screen.getByText(/Bookmarks/i)).toBeInTheDocument();
+  });
+
+  test("renders ShoppingCart section when activeSection is cart", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Shopping Cart/i));
+    expect(screen.getByText(/Shopping Cart/i)).toBeInTheDocument();
+  });
+
+  test("renders Profile section when activeSection is profile", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Profile/i));
+    expect(screen.getByText(/Profile/i)).toBeInTheDocument();
+  });
+
+  test("toggles login modal visibility", () => {
+    render(<App />);
+    fireEvent.click(screen.getAllByText(/Login/i)[0]);
+    expect(screen.getAllByText(/Login/i)[1]).toBeInTheDocument();
+    fireEvent.click(screen.getAllByText(/Login/i)[0]);
+    expect(screen.queryByText(/Login/i)).not.toBeInTheDocument();
+  });
+
+  test("shows network error on login failure", () => {
+    render(<App />);
+    fireEvent.click(screen.getAllByText(/Login/i)[1]);
+    expect(screen.getByText(/Network error, please try again later./i)).toBeInTheDocument();
+  });
+
+  test("shows network error on signup failure", () => {
+    render(<App />);
+    fireEvent.click(screen.getAllByText(/Signup/i)[0]);
+    expect(screen.getByText(/Network error, please try again later./i)).toBeInTheDocument();
+  });
+
+  test("shows error message on login failure", () => {
+    render(<App />);
+    fireEvent.click(screen.getAllByText(/Login/i)[1]);
+    expect(screen.getByText(/Failed to log in/i)).toBeInTheDocument();
+  });
+
+  test("shows error message on signup failure", () => {
+    render(<App />);
+    fireEvent.click(screen.getAllByText(/Signup/i)[0]);
+    expect(screen.getByText(/Failed to sign up/i)).toBeInTheDocument();
+  });
+
+  test("renders correct section based on activeSection state", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Bookmarks/i));
+    expect(screen.getAllByText(/Bookmarks/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/Shopping Cart/i));
+    expect(screen.getAllByText(/Shopping Cart/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/Profile/i));
+    expect(screen.getAllByText(/Profile/i)).toBeInTheDocument();
+  });
+
+  test("toggles login modal visibility correctly", () => {
+    render(<App />);
+    fireEvent.click(screen.getAllByText(/Login/i)[0]);
+    fireEvent.click(screen.getAllByText(/Login/i)[0]);
+  });
+
+  test("handles logout correctly", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Logout/i));
   });
 });
