@@ -27,8 +27,13 @@ export const isRecipeBookmarked = async (recipeName) => {
     if (user) {
         const documentId = `${user.uid}_${recipeName}`; // Use the same documentId format
         const bookmarkRef = doc(db, "bookmarks", documentId);
-        const bookmarkSnap = await getDoc(bookmarkRef);
-        return bookmarkSnap.exists();
+        try {
+            const bookmarkSnap = await getDoc(bookmarkRef);
+            return bookmarkSnap.exists();
+        } catch (error) {
+            console.error("Error checking if recipe is bookmarked: ", error);
+            return false;
+        }
     }
     return false; // Return false if user is not logged in
 };

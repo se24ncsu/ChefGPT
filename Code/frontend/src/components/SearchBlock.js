@@ -12,6 +12,7 @@ import { useAuth } from "../contexts/authContext/index";
 import { CiBookmark, CiBookmarkCheck } from "react-icons/ci";
 import { useColorModeValue } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
+import RecipeVideo from './video';
 import React from 'react';
 
 
@@ -364,6 +365,7 @@ const SearchBlock = (props) => {
                             </div>
                         </div>
                     )}
+                        <RecipeVideo videoQuery={detailedItem.videoLink} />
                         <div style={{ marginTop: 30 }}>Steps</div>
                         <div style={{ display: 'flex', flexDirection: 'column', rowGap: 20, marginTop: 10 }}>
                             {detailedItem.process.map((step, index) => {
