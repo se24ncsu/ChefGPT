@@ -105,43 +105,45 @@ const SearchBlock = (props) => {
 
         // Either search by ingredients or by name
         if (searchIngredients.length > 0) {
+            const ingredients = searchIngredients.map(i => i.toLowerCase());
             const data = {
                 ingredients: searchIngredients.toString(),
                 page
             };
 
             // Check Firestore for existing recipes
-            const existingRecipes = await fetchUserRecipes(searchIngredients);
-            console.log("existingRecipes", existingRecipes);
-            const filteredRecipes = existingRecipes.filter(recipe => 
-                searchIngredients.every(ingredient => 
-                    recipe.ingredients.some(recipeIngredient => 
-                        recipeIngredient.toLowerCase().includes(ingredient.toLowerCase())
+            if (ingredients.length === 1) {
+                const existingRecipes = await fetchUserRecipes(searchIngredients);
+                console.log("existingRecipes", existingRecipes);
+                const filteredRecipes = existingRecipes.filter(recipe => 
+                    searchIngredients.every(ingredient => 
+                        recipe.ingredients.some(recipeIngredient => 
+                            recipeIngredient.toLowerCase().includes(ingredient.toLowerCase())
+                        )
                     )
-                )
-            );
-            console.log("existingRecipes", existingRecipes);
-            console.log("filteredRecipes", filteredRecipes);
-            if (filteredRecipes.length > 0) {
-                console.log("Fetched recipes from Firestore:", filteredRecipes);
-                setItems([...(page === 0 ? [] : items), ...filteredRecipes]);
-                setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...filteredRecipes.map(i => i.tags)].flat())));
-            } else {
-                console.log("Fetching recipes from API:", searchIngredients);
-                const response = await axios.post(process.env.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL, data);
-                const recipes = response.data.recipes;
-                setItems([...(page === 0 ? [] : items), ...recipes]);
-                setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...recipes.map(i => i.tags)].flat())));
-                // Save recipes to Firestore
+                );
+                console.log("existingRecipes", existingRecipes);
+                console.log("filteredRecipes", filteredRecipes);
+                if (filteredRecipes.length > 0) {
+                    console.log("Fetched recipes from Firestore:", filteredRecipes);
+                    setItems([...(page === 0 ? [] : items), ...filteredRecipes]);
+                    setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...filteredRecipes.map(i => i.tags)].flat())));
+                } 
+            }
+            console.log("Fetching recipes from API:", searchIngredients);
+            const response = await axios.post(process.env.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL, data);
+            const recipes = response.data.recipes;
+            setItems([...(page === 0 ? [] : items), ...recipes]);
+            setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...recipes.map(i => i.tags)].flat())));
+            if (ingredients.length === 1){
                 recipes.forEach(recipe => saveRecipe(recipe));
             }
+
         } else {
             const data = {
                 name: searchName,
                 page
             };
-
-            // Check Firestore for existing recipes
             const existingRecipes = await fetchUserRecipes([searchName]);
             const filteredRecipes = existingRecipes.filter(recipe => 
                 recipe.name.toLowerCase().includes(searchName.toLowerCase())
