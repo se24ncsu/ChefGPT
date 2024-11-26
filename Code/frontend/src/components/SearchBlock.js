@@ -33,6 +33,51 @@ const SearchBlock = (props) => {
     const stepBgColor = useColorModeValue('gray.200', 'gray.600');
     const stepNumberBgColor = useColorModeValue('gray.300', 'gray.500');
 
+    const [speechSynthesisActive, setSpeechSynthesisActive] = useState(false);
+
+    const startVoiceOver = () => {
+        if (!detailedItem || !detailedItem.process) return;
+    
+        // Stop any ongoing speech
+        if (speechSynthesis.speaking) {
+            speechSynthesis.cancel();
+        }
+    
+        const steps = detailedItem.process.map((step, index) =>
+            `Step ${index + 1}: ${step.replace(/[0-9]*\./, '')}`
+        );
+    
+        let currentStep = 0;
+    
+        const speakStep = () => {
+            if (currentStep >= steps.length) {
+                setSpeechSynthesisActive(false);
+                return;
+            }
+    
+            const utterance = new SpeechSynthesisUtterance(steps[currentStep]);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.7; // Adjust the rate of speech (1 is normal speed)
+            utterance.pitch = 1.0; // Adjusted pitch to be more natural
+            utterance.onend = () => {
+                currentStep++;
+                setTimeout(speakStep, 4000); // 4-second delay before the next step
+            };
+    
+            setSpeechSynthesisActive(true);
+            speechSynthesis.speak(utterance);
+        };
+    
+        speakStep();
+    };
+
+    const stopVoiceOver = () => {
+        if (speechSynthesis.speaking) {
+            speechSynthesis.cancel();
+            setSpeechSynthesisActive(false);
+        }
+    };
+
     const onChange = (query) => {
         if (searchIngredients.length === 0) {
             setSearchName(query);
@@ -256,6 +301,69 @@ const SearchBlock = (props) => {
                                 <Box key={i} bg={bgColor} borderRadius="md" px={2} py={2} >{ing}</Box>
                             )}
                         </div>
+                        {detailedItem && (
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                            margin: '20px',
+                            marginTop: 50,
+                            padding: '20px',
+                            borderRadius: '10px',
+                            backgroundColor: '#fff'
+                        }}>
+                            <h3 style={{
+                                marginBottom: '16px',
+                                color: '#333',
+                                textAlign: 'center',
+                                fontSize: '24px'
+                            }}>
+                                Want to cook hands free? 
+                            </h3>
+
+                            <div style={{
+                                textAlign: 'center'
+                            }}>
+                                <button
+                                    onClick={startVoiceOver}
+                                    style={{
+                                        padding: '12px 24px',
+                                        fontSize: '18px',
+                                        backgroundColor: speechSynthesisActive ? '#E95D4F' : '#007BFF',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '8px',
+                                        cursor: 'pointer',
+                                        transition: 'background-color 0.3s',
+                                        marginBottom: '20px',
+                                        marginRight: '10px'
+                                    }}
+                                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = speechSynthesisActive ? '#D14D43' : '#0056b3'}
+                                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = speechSynthesisActive ? '#E95D4F' : '#007BFF'}
+                                >
+                                    Start Voice Over
+                                </button>
+                                <button
+                                    onClick={stopVoiceOver}
+                                    style={{
+                                        padding: '12px 24px',
+                                        fontSize: '18px',
+                                        backgroundColor: '#FF6F61',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '8px',
+                                        cursor: 'pointer',
+                                        transition: 'background-color 0.3s',
+                                        marginTop: '10px'
+                                    }}
+                                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#E95D4F'}
+                                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#FF6F61'}
+                                >
+                                    Stop Voice Over
+                                </button>
+                            </div>
+                        </div>
+                    )}
                         <div style={{ marginTop: 30 }}>Steps</div>
                         <div style={{ display: 'flex', flexDirection: 'column', rowGap: 20, marginTop: 10 }}>
                             {detailedItem.process.map((step, index) => {
