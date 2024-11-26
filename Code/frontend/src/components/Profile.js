@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Stack, Select, IconButton } from '@chakra-ui/react';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
-import { getProfile, saveProfile } from '../../firebase/auth';
+import { getProfile, saveProfile } from '../firebase/auth';
 import { useAuth } from '../contexts/authContext';
 
 const Profile = ({ setActiveSection }) => {
@@ -135,7 +135,7 @@ const Profile = ({ setActiveSection }) => {
           Save
         </Button>
         <Button onClick={() => setActiveSection("search")} colorScheme="gray">
-          Skip
+          Home
         </Button>
       </Stack>
     </Box>
