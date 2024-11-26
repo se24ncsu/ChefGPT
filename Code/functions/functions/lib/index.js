@@ -155,7 +155,7 @@ exports.get_detailed_recipe = (0, https_1.onRequest)(async (request, response) =
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const name = request.body.name;
         const ingredients = request.body.ingredients;
-        const prompt = `Give me a recipe (just one) related (could be a match) to the name: ${name} and
+        const prompt = `Give me a recipe (just one, exactly matching the given name next): ${name} and
         uses the following list of ingredients: [${ingredients}]
         Return the response in the following JSON format: 
         {

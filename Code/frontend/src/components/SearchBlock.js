@@ -7,7 +7,7 @@ import './css/misc.css';
 import Tag from "./Tag";
 import jsPDF from 'jspdf';
 import { Oval } from "react-loader-spinner";
-import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked, addToCartDB } from '../service/firestoreService';
+import { bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked, addToCartDB, saveRecipe, fetchUserRecipes, fetchDetailedRecipe, saveDetailedRecipe} from '../service/firestoreService';
 import { useAuth } from "../contexts/authContext/index";
 import { CiBookmark, CiBookmarkCheck } from "react-icons/ci";
 import { useColorModeValue } from '@chakra-ui/react';
@@ -98,7 +98,6 @@ const SearchBlock = (props) => {
     }
 
     const searchRecipes = async (page = 0) => {
-
         if (searchIngredients.length === 0 && searchName === '') return;
 
         currentPage.current = page;
@@ -110,19 +109,55 @@ const SearchBlock = (props) => {
                 ingredients: searchIngredients.toString(),
                 page
             };
-            console.log(process.env.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL);
-            const response = await axios.post(process.env.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL, data);
-            setItems([...(page === 0 ? [] : items), ...response.data.recipes]);
-            setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...response.data.recipes.map(i => i.tags)].flat())));
-        }
-        else {
+
+            // Check Firestore for existing recipes
+            const existingRecipes = await fetchUserRecipes(searchIngredients);
+            console.log("existingRecipes", existingRecipes);
+            const filteredRecipes = existingRecipes.filter(recipe => 
+                searchIngredients.every(ingredient => 
+                    recipe.ingredients.some(recipeIngredient => 
+                        recipeIngredient.toLowerCase().includes(ingredient.toLowerCase())
+                    )
+                )
+            );
+            console.log("existingRecipes", existingRecipes);
+            console.log("filteredRecipes", filteredRecipes);
+            if (filteredRecipes.length > 0) {
+                console.log("Fetched recipes from Firestore:", filteredRecipes);
+                setItems([...(page === 0 ? [] : items), ...filteredRecipes]);
+                setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...filteredRecipes.map(i => i.tags)].flat())));
+            } else {
+                console.log("Fetching recipes from API:", searchIngredients);
+                const response = await axios.post(process.env.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL, data);
+                const recipes = response.data.recipes;
+                setItems([...(page === 0 ? [] : items), ...recipes]);
+                setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...recipes.map(i => i.tags)].flat())));
+                // Save recipes to Firestore
+                recipes.forEach(recipe => saveRecipe(recipe));
+            }
+        } else {
             const data = {
                 name: searchName,
                 page
             };
-            const response = await axios.post(process.env.REACT_APP_GET_RECIPES_BY_NAME_URL, data);
-            setItems([...(page === 0 ? [] : items), ...response.data.recipes]);
-            setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...response.data.recipes.map(i => i.tags)].flat())));
+
+            // Check Firestore for existing recipes
+            const existingRecipes = await fetchUserRecipes([searchName]);
+            const filteredRecipes = existingRecipes.filter(recipe => 
+                recipe.name.toLowerCase().includes(searchName.toLowerCase())
+            );
+
+            if (filteredRecipes.length > 0) {
+                setItems([...(page === 0 ? [] : items), ...filteredRecipes]);
+                setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...filteredRecipes.map(i => i.tags)].flat())));
+            } else {
+                const response = await axios.post(process.env.REACT_APP_GET_RECIPES_BY_NAME_URL, data);
+                const recipes = response.data.recipes;
+                setItems([...(page === 0 ? [] : items), ...recipes]);
+                setTags(Array.from(new Set([...(page === 0 ? [] : items.map(i => i.tags)), ...recipes.map(i => i.tags)].flat())));
+                // Save recipes to Firestore
+                recipes.forEach(recipe => saveRecipe(recipe));
+            }
         }
         setLoading(false);
         setShowingDetailed(-1);
@@ -152,14 +187,27 @@ const SearchBlock = (props) => {
     const showDetailedRecipe = async (index) => {
         setShowingDetailed(index);
         setDetailedItem(undefined);
-        const data = {
-            name: items[index].name,
-            ingredients: items[index].ingredients,
-        };
-        const response = await axios.post(process.env.REACT_APP_GET_DETAILED_RECIPE_URL, data);
-        const allIngredients = response.data.ingredients.map(ingredient => ingredient.trim());
-        response.data.ingredients = allIngredients;
-        setDetailedItem(response.data);
+        const recipeName = items[index].name;
+
+        // Check Firestore for existing detailed recipe
+        const savedRecipe = await fetchDetailedRecipe(recipeName);
+        
+        if (savedRecipe) {
+            console.log("Fetched detailed recipe from Firestore:", savedRecipe);
+            setDetailedItem(savedRecipe);
+        } else {
+            console.log("Fetching detailed recipe from API:", recipeName);
+            const data = {
+                name: recipeName,
+                ingredients: items[index].ingredients,
+            };
+            const response = await axios.post(process.env.REACT_APP_GET_DETAILED_RECIPE_URL, data);
+            const allIngredients = response.data.ingredients.map(ingredient => ingredient.trim());
+            response.data.ingredients = allIngredients;
+            setDetailedItem(response.data);
+            // Save detailed recipe to Firestore
+            await saveDetailedRecipe(response.data);
+        }
     }
 
     const handleBookmark = async () => {
@@ -368,7 +416,7 @@ const SearchBlock = (props) => {
                         <RecipeVideo videoQuery={detailedItem.videoLink} />
                         <div style={{ marginTop: 30 }}>Steps</div>
                         <div style={{ display: 'flex', flexDirection: 'column', rowGap: 20, marginTop: 10 }}>
-                            {detailedItem.process.map((step, index) => {
+                            {detailedItem.process && detailedItem.process.map((step, index) => {
                                 return <Box display="flex" bg={stepBgColor} borderRadius="md" overflow="hidden" key={index}>
                                         <Box display="flex" alignItems="center" px={5} py={1} bg={stepNumberBgColor}>{index + 1}</Box>
                                         <Box px={2} py={3} display="flex" alignItems="center" color={textColor}>{step.replace(/[0-9]*\./, '')}</Box>
