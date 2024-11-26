@@ -7,7 +7,13 @@ export const bookmarkRecipe = async (recipe) => {
     if (user) {
         const documentId = `${user.uid}_${recipe.name}`;
         const bookmarkRef = doc(db, "bookmarks", documentId);
-        await setDoc(bookmarkRef, { userId: user.uid, recipeName: recipe.name, ingredients: recipe.ingredients, cookingTime: recipe.time, steps: recipe.process });
+        await setDoc(bookmarkRef, { 
+            userId: user.uid, 
+            recipeName: recipe.name, 
+            ingredients: recipe.ingredients, 
+            cookingTime: recipe.time, 
+            steps: recipe.process || [] // Ensure process is an array
+        });
     }
 };
 
@@ -112,7 +118,63 @@ export const fetchCartList = async () => {
     return [];
 };
 
+// Function to save a recipe to the "recipes" collection
+export const saveRecipe = async (recipe) => {
+    const user = auth.currentUser;
+    if (user) {
+        const documentId = `${user.uid}_${recipe.name}`;
+        const recipeRef = doc(db, "recipes", documentId);
+        await setDoc(recipeRef, { ...recipe, process: recipe.process || [] }); // Ensure process is an array
+    }
+};
 
+export const fetchUserRecipes = async () => {
+    const user = auth.currentUser;
+    if (user) {
+        const recipesRef = collection(db, "recipes");
+        const querySnapshot = await getDocs(recipesRef);
+
+        // Filter the documents to ensure the first part of the ID matches the user UID
+        const userRecipes = querySnapshot.docs.filter(doc => {
+            const [uid] = doc.id.split('_');
+            return uid === user.uid;
+        }).map(doc => doc.data());
+
+        // Return all recipes associated with the current user
+        return userRecipes;
+    }
+    return [];
+};
+
+// Function to save a detailed recipe to the "detailed_recipes" collection
+export const saveDetailedRecipe = async (recipe) => {
+    const user = auth.currentUser;
+    if (user) {
+        const documentId = `${user.uid}_${recipe.name}`;
+        const detailedRecipeRef = doc(db, "detailed_recipes", documentId);
+        await setDoc(detailedRecipeRef, recipe); // Ensure process is an array
+    }
+};
+
+export const fetchDetailedRecipe = async (recipeName) => {
+    const user = auth.currentUser;
+    if (user) {
+        const detailedRecipesRef = collection(db, "detailed_recipes");
+        const querySnapshot = await getDocs(detailedRecipesRef);
+        console.log("querySnapshot", querySnapshot.docs);
+        const detailedRecipe = querySnapshot.docs.find(doc => {
+            const [uid, name] = doc.id.split('_');
+            console.log("uid", uid);
+            console.log("name", name);
+            return uid === user.uid && name === recipeName;
+        });
+        console.log("detailedRecipe", detailedRecipe);
+        if (detailedRecipe) {
+            return detailedRecipe.data();
+        }
+    }
+    return null;
+};
 
 // export const fetchBookmarkedIngredients = async () => {
 //     const user = auth.currentUser;
