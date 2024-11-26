@@ -6,6 +6,8 @@ import { doSignInWithEmailAndPassword, doCreateUserWithEmailAndPassword, doSignO
 import SearchBlock from "./components/SearchBlock.js";
 import { useAuth, AuthProvider } from "./contexts/authContext/index";
 import ShoppingCart from "./components/ShoppingCart.js";
+import MealPlan from "./components/MealPlan.js";
+import MealPlanDisplay from "./components/MealPlanDisplay.js";
 
 const App = () => {
   const { currentUser, userLoggedIn } = useAuth();
@@ -56,12 +58,18 @@ const App = () => {
     setActiveSection("cart");
   };
 
+  const handleMealplanning = () => {
+    setActiveSection("mealplan");
+  };
+
   const renderContent = () => {
     switch (activeSection) {
       case "bookmarks":
         return <BookMarksRecipeList />;
       case "cart":
         return <ShoppingCart />;
+      case "mealplan":
+        return <MealPlan />
       default:
         return <SearchBlock />;
     }
@@ -76,6 +84,7 @@ const App = () => {
         userLoggedIn={userLoggedIn}
         handleBookMarks={handleShowBookmarks}
         handleCart={handleShowCart}
+        handleMealplanning={handleMealplanning}
       />
       {showLoginModal && (
         <Login

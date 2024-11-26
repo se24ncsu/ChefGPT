@@ -107,7 +107,34 @@ export const fetchCartList = async () => {
     return [];
 };
 
-
+export const fetchUserPreferences = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        const userDocRef = doc(db, "profile", user.uid);
+        const userDocSnap = await getDoc(userDocRef);
+  
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          return {
+            age: userData.age,
+            sex: userData.sex,
+            dietType: userData.dietType,
+            dietaryRestrictions: userData.dietaryRestrictions || []
+          };
+        } else {
+          console.warn("No user preferences found for the current user.");
+          return null;
+        }
+      } catch (error) {
+        console.error("Error fetching user preferences: ", error);
+        return null;
+      }
+    } else {
+      console.warn("No user is logged in.");
+      return null;
+    }
+  };
 
 // export const fetchBookmarkedIngredients = async () => {
 //     const user = auth.currentUser;
