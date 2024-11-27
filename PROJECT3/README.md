@@ -5,7 +5,7 @@
   
 
   
-<img src="https://github.com/se24ncsu/ChefGPT/blob/docs/assets/searchResult.jpg" alt="drawing" style="width:1000px;"/>
+![Meal Plan](../assets/searchResult.jpg)
 <b>Wave goodbye to the endless struggle of deciding what to cook with whatever’s in your kitchen. ChefGPT transforms your cooking experience with a smart, easy-to-use app that turns your pantry and fridge into a treasure trove of culinary possibilities. Simply input the ingredients you have, and ChefGPT instantly suggests mouthwatering recipes tailored to your inventory.
 
 But that’s not all! Discover new cuisines, get step-by-step cooking instructions, and customize recipes to suit your dietary preferences or mood. Whether you’re a beginner or a seasoned chef, ChefGPT makes every meal an exciting journey of flavor and creativity.
@@ -14,11 +14,10 @@ Say hello to stress-free cooking and unlock your kitchen’s hidden potential wi
 
 # Contents  
 
-- [Why use ChefGPT?](##why-use-ChefGPT)
+- [Why use ChefGPT?](#why-use-chefgpt)
 - [Project Documentation](#documentation)
-- [Project Presentation Videos](#project-presentation-video)
+- [Project Presentation Videos](#project-presentation-videos)
 - [Brief Overview of Project](#project-description)
-- [What Docs](#what-docs)
 - [How Docs](#how-docs)<br/>
     - [MongoDB](#mongodb-integration)
     - [Docker](#docker-container)
@@ -32,7 +31,7 @@ Say hello to stress-free cooking and unlock your kitchen’s hidden potential wi
     - [Recommendation Mechanism](#movie-recommendation-mechanism)<br/>
     - [Email Notifier](#email-notifier)
 
-- [Improvements Made in the Project](#project-2-delta)
+- [Improvements Made in the Project](#project-3-delta)
 - [TechStack Used for the Development of Project](#tech-stack-used)
 - [Steps for Execution](#getting-started)
 - [Future Scope](#future-scope)
@@ -90,30 +89,34 @@ View our documentation outlining each class and function of ChefGPT here
 ****
 Simplify your week with smart meal planning features, allowing you to create customized weekly menus using your bookmarked recipes and personal preferences
 ****
-
+![Meal Plan](../assets/mealPlan.jpg)
 
 ### Enhanced Multi-Ingredient Search:
 #### NEW in project 3
 ****
 Input multiple ingredients to discover recipes that creatively combine your pantry staples for maximum flavor and efficiency.
 ****
+![Search](../assets/searchResult-Dark.jpg)
 
 ### Voice-Activated Cooking:
 #### NEW in project 3
 ****
 Enjoy hands-free convenience with voice integration, letting you navigate recipes, set timers, and adjust serving sizes—all with simple commands.
 ****
+![alt text](../assets/voice.png)
 ### Smart Shopping Cart:
 #### NEW in project 3
 ****
 Add ingredients from recipes directly to a shopping cart. When it’s time to shop, view and check off items as you purchase them, ensuring a smooth and organized grocery trip.
 ****
+![alt text](../assets/shoppingList.png)
 
 ### Recipe Videos for Immersive Cooking:
 #### NEW in project 3
 ****
 Elevate your cooking skills with embedded YouTube videos in each recipe description. Follow along with visual guides and learn the nuances of each dish like a pro.
 ****
+![alt text](../assets/video.png)
 
 ### Dark Mode for User Comfort:
 #### NEW in project 3
@@ -137,6 +140,11 @@ Experience lightning-fast load times with server optimizations, including intell
 #### NEW in project 3
 ****
 By incorporating user-specific data such as age, weight, height, and dietary preferences (e.g., gym, keto, bulk diet), ChefGPT generates personalized meal plans that align with your fitness goals. The app even tracks macronutrient breakdowns, allowing users to specify the quantity of proteins, fats, and carbs they want to consume. This ensures every meal supports your unique lifestyle and fitness objectives.
+****
+
+### Enhanced Testing Framework:
+****
+App is now rock-solid with extensive tests! Seamless functionality across platforms and scenarios, even under heavy loads!
 ****
 
 ### Sync Across Devices:
@@ -207,7 +215,7 @@ Please refer to the [CONTRIBUTING.md](https://github.com/se24ncsu/ChefGPT/blob/m
 ## Contributors
 <table>
   <tr>
-    <td><a href="https://github.com/se24ncsu/ChefGPT">Project 2</a></td>
+    <td><a href="https://github.com/se24ncsu/ChefGPT">Project 3</a></td>
     <td align="center"><a href="https://github.com/Shrimadh/"><img src="https://avatars.githubusercontent.com/u/64469917?s=400&u=c88c30f494e1e8d5b6251213a2d7cbb2f83910d3&v=4" width="75px;" alt=""/><br /><sub><b>Srimadh V Rao</b></sub></a></td>
     <td align="center"><a href="https://github.com/akuldevali/"><img src="https://avatars.githubusercontent.com/u/64837282?v=4" width="75px;" alt=""/><br /><sub><b>Akul G Devali</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/codemanav/"><img src="https://avatars.githubusercontent.com/u/54708784?v=4" width="75px;" alt=""/><br /><sub><b>Manav D Shah</b></sub></a><br /></td>
