@@ -84,7 +84,8 @@ Simplify your week with smart meal planning features, allowing you to create cus
 ****
 Input multiple ingredients to discover recipes that creatively combine your pantry staples for maximum flavor and efficiency.
 ****
-![Search](/assets/searchResult-Dark.jpg)
+![Search](https://github.com/user-attachments/assets/471fa65e-0210-4776-8ec1-2d89a1df8a89)
+
 
 ### Voice-Activated Cooking:
 #### NEW in project 3
