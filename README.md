@@ -139,7 +139,7 @@ App is now rock-solid with over 90 extensive tests! Seamless functionality acros
 Access your profiles, bookmarks, and shopping lists seamlessly on any device.
 ****
 
-Our grading scorecard can be found [here](https://github.com/user-attachments/files/17929329/Project3_Group34.pdf)
+Our grading scorecard can be found [here](https://github.com/se24ncsu/ChefGPT/blob/main/PROJECT3/Project3_Group34.pdf)
 
 ## API Documentation
 **get_image_by_name** <br>
@@ -157,7 +157,7 @@ Gets recipes based on the provided name from Gemini along with some sense of pag
 **get_meal_plan** <br>
 Generates a multi-day meal plan based on user preferences, including age, sex, diet type, weight, and height. The meal plan contains breakfast, lunch, and dinner for each day, along with detailed nutritional information for each meal.
 
-<br>Detailed documentation can be found at: [API Docs](https://github.com/se24ncsu/ChefGPT/blob/main/API_Doc.pdf)
+<br>Detailed documentation can be found at: [API Docs](https://github.com/se24ncsu/ChefGPT/blob/main/docs/API_Doc.pdf)
 
 ## Tech stack Used👨‍💻:
 
@@ -215,7 +215,7 @@ The future of ChefGPT is full of exciting possibilities, and we invite food enth
 
 ## Contribute to the Project!
 
-Please refer to the [CONTRIBUTING.md](https://github.com/se24ncsu/ChefGPT/blob/main/CONTRIBUTING.md) if you want to contribute to the ChefGPT source code. Follow all the guidelines mentioned in the same and raise a pull request, we would love to look at it ❤️❤️!
+Please refer to the [CONTRIBUTING.md](https://github.com/se24ncsu/ChefGPT/blob/main/docs/CONTRIBUTING.md) if you want to contribute to the ChefGPT source code. Follow all the guidelines mentioned in the same and raise a pull request, we would love to look at it ❤️❤️!
 
 ## Contributors
 <table>
