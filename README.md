@@ -5,7 +5,7 @@
   
 
   
-![Meal Plan](../assets/searchResult.jpg)
+![Meal Plan](/assets/searchResult.jpg)
 <b>Wave goodbye to the endless struggle of deciding what to cook with whatever’s in your kitchen. ChefGPT transforms your cooking experience with a smart, easy-to-use app that turns your pantry and fridge into a treasure trove of culinary possibilities. Simply input the ingredients you have, and ChefGPT instantly suggests mouthwatering recipes tailored to your inventory.
 
 But that’s not all! Discover new cuisines, get step-by-step cooking instructions, and customize recipes to suit your dietary preferences or mood. Whether you’re a beginner or a seasoned chef, ChefGPT makes every meal an exciting journey of flavor and creativity.
@@ -89,34 +89,34 @@ View our documentation outlining each class and function of ChefGPT here
 ****
 Simplify your week with smart meal planning features, allowing you to create customized weekly menus using your bookmarked recipes and personal preferences
 ****
-![Meal Plan](../assets/mealPlan.jpg)
+![Meal Plan](/assets/mealPlan.jpg)
 
 ### Enhanced Multi-Ingredient Search:
 #### NEW in project 3
 ****
 Input multiple ingredients to discover recipes that creatively combine your pantry staples for maximum flavor and efficiency.
 ****
-![Search](../assets/searchResult-Dark.jpg)
+![Search](/assets/searchResult-Dark.jpg)
 
 ### Voice-Activated Cooking:
 #### NEW in project 3
 ****
 Enjoy hands-free convenience with voice integration, letting you navigate recipes, set timers, and adjust serving sizes—all with simple commands.
 ****
-![alt text](../assets/voice.png)
+![alt text](/assets/voice.png)
 ### Smart Shopping Cart:
 #### NEW in project 3
 ****
 Add ingredients from recipes directly to a shopping cart. When it’s time to shop, view and check off items as you purchase them, ensuring a smooth and organized grocery trip.
 ****
-![alt text](../assets/shoppingList.png)
+![alt text](/assets/shoppingList.png)
 
 ### Recipe Videos for Immersive Cooking:
 #### NEW in project 3
 ****
 Elevate your cooking skills with embedded YouTube videos in each recipe description. Follow along with visual guides and learn the nuances of each dish like a pro.
 ****
-![alt text](../assets/video.png)
+![alt text](/assets/video.png)
 
 ### Dark Mode for User Comfort:
 #### NEW in project 3
