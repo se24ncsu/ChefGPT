@@ -44,7 +44,7 @@ ChefGPT is like having a personal chef who never judges your odd ingredient comb
 Save time, reduce food waste, and turn “What’s for dinner?” into “Wow, what’s next?” With ChefGPT, cooking is no longer a chore—it’s your new favorite adventure. Bon appétit to effortless creativity! 🍽
 
 ## Documentation
-Checkout for project documentation [here](https://github.com/se24ncsu/ChefGPT/tree/main/PROJECT3)
+Checkout for project documentation [here](https://github.com/se24ncsu/ChefGPT/tree/main/docs)
 
 ## Project Presentation Videos
 ### Project Overview
