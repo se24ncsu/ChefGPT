@@ -1,11 +1,6 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SearchBlock from '../SearchBlock';
-import { fetchBookmarkedRecipes, fetchBookmarkedIngredients, bookmarkRecipe, unbookmarkRecipe, isRecipeBookmarked } from '../../service/firestoreService';
 import { useAuth } from '../../contexts/authContext/index';
 import axios from 'axios';
 import jsPDF from 'jspdf';
