@@ -6,6 +6,8 @@ import { doSignInWithEmailAndPassword, doCreateUserWithEmailAndPassword, doSignO
 import SearchBlock from "./components/SearchBlock.js";
 import { useAuth, AuthProvider } from "./contexts/authContext/index";
 import ShoppingCart from "./components/ShoppingCart.js";
+import MealPlan from "./components/MealPlan.js";
+import MealPlanDisplay from "./components/MealPlanDisplay.js";
 import Profile from "./components/Profile.js";
 
 const App = () => {
@@ -66,6 +68,10 @@ const App = () => {
     setActiveSection("cart");
   };
 
+  const handleMealplanning = () => {
+    setActiveSection("mealplan");
+  }
+
   const handleShowProfile = () => {
     setActiveSection("profile");
   };
@@ -76,6 +82,8 @@ const App = () => {
         return <BookMarksRecipeList />;
       case "cart":
         return <ShoppingCart />;
+      case "mealplan":
+        return <MealPlan />
       case "profile":
         return <Profile setActiveSection={setActiveSection} />;
       default:
@@ -92,6 +100,7 @@ const App = () => {
         userLoggedIn={userLoggedIn}
         handleBookMarks={handleShowBookmarks}
         handleCart={handleShowCart}
+        handleMealplanning={handleMealplanning}
         handleProfile={handleShowProfile}
       />
       {showLoginModal && (
