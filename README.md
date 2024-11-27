@@ -18,20 +18,8 @@ Say hello to stress-free cooking and unlock your kitchen’s hidden potential wi
 - [Project Documentation](#documentation)
 - [Project Presentation Videos](#project-presentation-videos)
 - [Brief Overview of Project](#project-description)
-- [How Docs](#how-docs)<br/>
-    - [MongoDB](#mongodb-integration)
-    - [Docker](#docker-container)
-    - [Collaborative Filtering](#collaborative-filtering)
-    - [Streaming Links](#streaming-links)
-    - [Dashboard](#dashboard)
-    - [Create an Acccount](#create-an-account)
-    - [Login to Account](#login-to-account)
-    - [Profile and Friends](#profile-and-friends)
-    - [Wall](#wall)
-    - [Recommendation Mechanism](#movie-recommendation-mechanism)<br/>
-    - [Email Notifier](#email-notifier)
-
 - [Improvements Made in the Project](#project-3-delta)
+- [API Documentation](#api-documentation)
 - [TechStack Used for the Development of Project](#tech-stack-used)
 - [Steps for Execution](#getting-started)
 - [Future Scope](#future-scope)
@@ -170,7 +158,7 @@ Gets recipes based on the provided name from Gemini along with some sense of pag
 **get_meal_plan** <br>
 Generates a multi-day meal plan based on user preferences, including age, sex, diet type, weight, and height. The meal plan contains breakfast, lunch, and dinner for each day, along with detailed nutritional information for each meal.
 
-<br>Detailed documentation can be found at: [API Docs](https://github.com/se24ncsu/ChefGPT/blob/main/API_Documentation.pdf)
+<br>Detailed documentation can be found at: [API Docs](https://github.com/se24ncsu/ChefGPT/blob/main/API_Doc.pdf)
 
 ## Tech stack Used👨‍💻:
 
