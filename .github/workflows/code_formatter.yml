@@ -26,4 +26,4 @@ jobs:
         run: |
             cd Code/frontend
             npm install babel-eslint eslint eslint-plugin-react
-            npx eslint .
+            npx eslint . --ignore-pattern build/ --ignore-pattern node_modules/
