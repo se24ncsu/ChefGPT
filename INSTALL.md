@@ -46,11 +46,13 @@ cd ChefGPT
 
 5. **Set Environment Variables**
    Create a `.env` file in the `functions` directory with necessary configurations:
-   ```
+   ```bash
    # Gemini API Key for AI-powered features
-  REACT_APP_GEMINI_API_KEY=key
+   REACT_APP_GEMINI_API_KEY=key
+   ```
   
   # Backend Service URLs
+  ```bash
   REACT_APP_GET_IMAGE_URL=key
   REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL=key
   REACT_APP_GET_RECIPES_BY_NAME_URL=key
