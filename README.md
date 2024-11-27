@@ -51,7 +51,7 @@ Checkout for project documentation [here](https://github.com/se24ncsu/ChefGPT/tr
 https://github.com/user-attachments/assets/4b787424-9cc3-493d-9b2e-04d12866ddb2
 
 ### New Features 2 minute demo
-[![why contribute video](https://img.youtube.com/vi/iwJsUSEoxOA/0.jpg)](https://go.abhirao.in/chefgpt/video)
+[![why contribute video](https://img.youtube.com/vi/iwJsUSEoxOA/0.jpg)](https://youtu.be/iwJsUSEoxOA)
 
 
 
