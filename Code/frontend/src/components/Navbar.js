@@ -4,19 +4,16 @@ import {
   Box,
   Flex,
   Avatar,
-  Text,
   Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
   Center,
-  Heading,
   Link,
   IconButton,
 } from '@chakra-ui/react'
@@ -24,24 +21,24 @@ import logo from '../Images/logo.png';
 import React from 'react';
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 
-const NavLink = (props) => {
-  const { children } = props
+// const NavLink = (props) => {
+//   const { children } = props
   
-  return (
-    <Box
-      as="a"
-      px={2}
-      py={1}
-      rounded={'md'}
-      _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('gray.200', 'gray.700'),
-      }}
-      href={'#'}>
-      {children}
-    </Box>
-  )
-}
+//   return (
+//     <Box
+//       as="a"
+//       px={2}
+//       py={1}
+//       rounded={'md'}
+//       _hover={{
+//         textDecoration: 'none',
+//         bg: useColorModeValue('gray.200', 'gray.700'),
+//       }}
+//       href={'#'}>
+//       {children}
+//     </Box>
+//   )
+// }
 
 export default function Nav(props) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -51,7 +48,7 @@ export default function Nav(props) {
         <Box pl={5}>
           <Link href='/'>
             <div style={{ display: 'flex', alignItems: 'center', columnGap: 10 }}>
-              <img src={logo} style={{ height: 50 }} />
+              <img src={logo} style={{ height: 50 }} alt='Navbar'/>
               <div style={{
                 fontSize: 32,
                 fontWeight: '600',
