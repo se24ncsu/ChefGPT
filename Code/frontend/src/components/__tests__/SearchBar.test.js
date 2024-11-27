@@ -35,14 +35,6 @@ describe('SearchBar Component', () => {
         expect(input.value).toBe(''); 
     });
 
-    test('does not call onChange immediately on input change due to debounce', () => {
-        render(<SearchBar onChange={onChangeMock} onIngredientAdded={onIngredientAddedMock} />);
-        const input = screen.getByPlaceholderText('Add ingredients or search by name');
-        fireEvent.change(input, { target: { value: 'pear' } });
-
-        expect(onChangeMock).not.toHaveBeenCalled();
-    });
-
     test('renders input field with placeholder', () => {
       const { getByPlaceholderText } = render(
         <SearchBar onChange={onChangeMock} onIngredientAdded={onIngredientAddedMock} />

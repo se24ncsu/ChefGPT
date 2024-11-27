@@ -26,12 +26,12 @@ jobs:
       run: |
         cd Code/frontend
         npm install
-        npm test --coverage
+        npx jest --coverage
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./Code/frontend/coverage/*.json
+        files: ./Code/frontend/coverage/coverage-final.json
         flags: unittests
         name: codecov-umbrella
