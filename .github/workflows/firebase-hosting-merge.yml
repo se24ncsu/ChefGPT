@@ -10,8 +10,20 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: npm ci && npm run build
+      - uses: actions/checkout@v2
+
+      - name: Set up environment variables
+        run: |
+          echo "REACT_APP_GEMINI_API_KEY=${{ secrets.REACT_APP_GEMINI_API_KEY }}" >> $GITHUB_ENV
+          echo "REACT_APP_GET_IMAGE_URL=${{ secrets.REACT_APP_GET_IMAGE_URL }}" >> $GITHUB_ENV
+          echo "REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL=${{ secrets.REACT_APP_GET_RECIPES_FROM_INGREDIENTS_URL }}" >> $GITHUB_ENV
+          echo "REACT_APP_GET_RECIPES_BY_NAME_URL=${{ secrets.REACT_APP_GET_RECIPES_BY_NAME_URL }}" >> $GITHUB_ENV
+          echo "REACT_APP_GET_DETAILED_RECIPE_URL=${{ secrets.REACT_APP_GET_DETAILED_RECIPE_URL }}" >> $GITHUB_ENV
+          echo "REACT_APP_GET_MEAL_PLAN_URL=${{ secrets.REACT_APP_GET_MEAL_PLAN_URL }}" >> $GITHUB_ENV
+
+      - run: |
+            cd Code/frontend
+            npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
