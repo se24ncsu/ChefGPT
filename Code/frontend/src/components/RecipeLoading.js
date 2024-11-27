@@ -1,4 +1,4 @@
-import { Box, Text, Wrap, Center, SkeletonCircle, SkeletonText } from "@chakra-ui/react"
+import { Box, Wrap, Center, SkeletonCircle, SkeletonText } from "@chakra-ui/react"
 
 const RecipeLoading = ()=> {
     return (
