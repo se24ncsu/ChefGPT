@@ -154,6 +154,24 @@ Access your profiles, bookmarks, and shopping lists seamlessly on any device.
 
 Our grading scorecard can be found [here](https://github.com/se24ncsu/ChefGPT/blob/main/PROJECT/rubric.md)
 
+## API Documentation
+**get_image_by_name** <br>
+Scrapes an image of the recipe from bing.com.
+
+**get_recipes_from_ingredients** <br>
+Gets recipes based on the provided ingredients from Gemini along with some sense of pagination. Recipes might duplicate over multiple pages as it is not real pagination.
+
+**get_recipes_by_name** <br>
+Gets recipes based on the provided name from Gemini along with some sense of pagination. Recipes might duplicate over multiple pages as it is not real pagination.
+
+**get_detailed_recipe** <br>
+ Gets detailed recipe based on name and ingredients with a list of detailed ingredients along with quantities, cooking time and detailed process to cook.
+
+**get_meal_plan** <br>
+Generates a multi-day meal plan based on user preferences, including age, sex, diet type, weight, and height. The meal plan contains breakfast, lunch, and dinner for each day, along with detailed nutritional information for each meal.
+
+<br>Detailed documentation can be found at: [API Docs](https://github.com/SRN-SE-Fall24/CookSmart/blob/master/API_Documentation.pdf)
+
 ## Tech stack Used👨‍💻:
 
 <p>
