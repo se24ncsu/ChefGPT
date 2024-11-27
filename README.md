@@ -1,8 +1,8 @@
 # <i> ChefGPT: Where every ingredient into a masterpiece!!🍳 </i>
-![](../images/logo.png)</br>
+![](/assets/chef.jpg)</br>
+
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/se24ncsu/ChefGPT/graphs/commit-activity) [![Contributors Activity](https://img.shields.io/github/commit-activity/m/se24ncsu/ChefGPT)](https://github.com/se24ncsu/ChefGPT/pulse) [![GitHub issues](https://img.shields.io/github/issues/se24ncsu/ChefGPT.svg)](https://github.com/se24ncsu/ChefGPT/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/se24ncsu/ChefGPT.svg)](https://github.com/se24ncsu/ChefGPT/issues?q=is%3Aissue+is%3Aclosed) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/se24ncsu/ChefGPT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT) [![Unittest](https://github.com/se24ncsu/ChefGPT/actions/workflows/unittest.yml/badge.svg?branch=main&event=push)](https://github.com/se24ncsu/ChefGPT/actions/workflows/unittest.yml) [![codecov](https://codecov.io/gh/se24ncsu/ChefGPT/graph/badge.svg?token=0XN6K2DMGS)](https://codecov.io/gh/se24ncsu/ChefGPT) [![GitHub release](https://img.shields.io/github/release/se24ncsu/ChefGPT.svg)](https://github.com/se24ncsu/ChefGPTreleases/) [![StyleCheck: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint) [![HitCount](https://hits.dwyl.com/se24ncsu/ChefGPT.svg)](https://hits.dwyl.com/se24ncsu/ChefGPT) ![GitHub contributors](https://img.shields.io/github/contributors/se24ncsu/ChefGPT) ![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/se24ncsu/ChefGPT) ![GitHub repo size](https://img.shields.io/github/repo-size/se24ncsu/ChefGPT)  [![Maintainability](https://api.codeclimate.com/v1/badges/260d558f17ae5e1027e5/maintainability)](https://codeclimate.com/github/se24ncsu/ChefGPT/maintainability) [![GitHub closed issues by-label](https://img.shields.io/github/issues-closed-raw/se24ncsu/ChefGPT/bug?color=green&label=Squished%20bugs)](https://github.com/se24ncsu/ChefGPT/issues?q=is%3Aissue+label%3Abug+is%3Aclosed) ![Discord](https://img.shields.io/discord/1143966088695124110) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14028522.svg)](https://doi.org/10.5281/zenodo.14028522)
-  
 
   
 ![Meal Plan](/assets/searchResult.jpg)
@@ -144,7 +144,7 @@ By incorporating user-specific data such as age, weight, height, and dietary pre
 
 ### Enhanced Testing Framework:
 ****
-App is now rock-solid with extensive tests! Seamless functionality across platforms and scenarios, even under heavy loads!
+App is now rock-solid with over 90 extensive tests! Seamless functionality across platforms and scenarios, even under heavy loads!
 ****
 
 ### Sync Across Devices:
@@ -170,7 +170,7 @@ Gets recipes based on the provided name from Gemini along with some sense of pag
 **get_meal_plan** <br>
 Generates a multi-day meal plan based on user preferences, including age, sex, diet type, weight, and height. The meal plan contains breakfast, lunch, and dinner for each day, along with detailed nutritional information for each meal.
 
-<br>Detailed documentation can be found at: [API Docs](https://github.com/SRN-SE-Fall24/CookSmart/blob/master/API_Documentation.pdf)
+<br>Detailed documentation can be found at: [API Docs](https://github.com/se24ncsu/ChefGPT/blob/main/API_Documentation.pdf)
 
 ## Tech stack Used👨‍💻:
 
