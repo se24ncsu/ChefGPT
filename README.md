@@ -239,10 +239,10 @@ Our team of developers monitors this e-mail address and would be happy to answer
 ## Join the ChefGPT Community:
 
 Contribute to the project and help us improve recommendations.
-Share your experience and film discoveries with us.
-Together, let's make ChefGPT the ultimate movie companion!
-ChefGPT is more than just code; it's a passion for cinema, and we invite you to be a part of this exciting journey. Start exploring, sharing, and discovering movies like never before with ChefGPT!
-Let's make movie nights extraordinary together!
+Share your experience and food discoveries with us.
+Together, let's make ChefGPT the ultimate food companion!
+ChefGPT is more than just code; it's a passion for food, and we invite you to be a part of this exciting journey. Start exploring, sharing, and discovering food like never before with ChefGPT!
+Let's make eating extraordinary together!
 
 ## License
 This project is under the MIT License.
