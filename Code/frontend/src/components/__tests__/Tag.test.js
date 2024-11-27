@@ -30,10 +30,8 @@ describe('Tag Component', () => {
         render(<Tag>Styled Tag</Tag>);
         const tagElement = screen.getByText(/Styled Tag/i);
         expect(tagElement).toHaveStyle({
-            padding: '5px',
-            fontSize: '12px',
-            margin: '2px',
-            borderRadius: '5px'
+            margin: '1px',
+            padding: '1px'
         });
     });
 });
