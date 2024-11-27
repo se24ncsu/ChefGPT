@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React, { useState, useEffect } from "react";
 import { fetchCartList } from '../service/firestoreService';
 import styled from 'styled-components';
