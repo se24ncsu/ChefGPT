@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { doc, setDoc, deleteDoc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 

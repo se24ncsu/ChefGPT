@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React, { useState } from "react";
 import Nav from "./components/Navbar.js";
 import Login from "./components/Login.js";

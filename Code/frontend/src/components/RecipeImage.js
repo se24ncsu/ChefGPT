@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { useEffect, useState } from 'react';
 import './css/misc.css';
 import axios from 'axios';

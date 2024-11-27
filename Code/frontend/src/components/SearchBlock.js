@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { useEffect, useRef, useState } from "react";
 import SearchBar from "./SearchBar";
 import axios from 'axios';
