@@ -31,4 +31,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHEFGPT_736FA }}
           projectId: chefgpt-736fa
-          entryPoint: Code/functions
+          entryPoint: Code/frontend

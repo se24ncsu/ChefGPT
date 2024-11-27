@@ -30,4 +30,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHEFGPT_736FA }}
           channelId: live
           projectId: chefgpt-736fa
-          entryPoint: Code/functions
+          entryPoint: Code/frontend
