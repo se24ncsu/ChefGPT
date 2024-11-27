@@ -7,14 +7,12 @@ import SearchBlock from "./components/SearchBlock.js";
 import { useAuth, AuthProvider } from "./contexts/authContext/index";
 import ShoppingCart from "./components/ShoppingCart.js";
 import MealPlan from "./components/MealPlan.js";
-import MealPlanDisplay from "./components/MealPlanDisplay.js";
 import Profile from "./components/Profile.js";
 
 const App = () => {
   const { currentUser, userLoggedIn } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [activeSection, setActiveSection] = useState("search"); // 'search', 'bookmarks', or 'cart'
-  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const toggleLoginModal = () => {
     setShowLoginModal((prev) => !prev);

@@ -4,7 +4,7 @@ Copyright (c) 2023 Pannaga Rao, Harshitha, Prathima, Karthik  */
 
 import React from "react";
 import RecipeImage from "./RecipeImage";
-import { Card, CardHeader, Heading, Text, CardBody, CardFooter, Button, Image, Tag } from "@chakra-ui/react"
+import { Card, CardHeader, Heading, CardBody } from "@chakra-ui/react"
 
 const BookMarksRecipeCard = (props) => {
     const handleClick = () => {

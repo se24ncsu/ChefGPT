@@ -1,4 +1,4 @@
-import { doc, setDoc, deleteDoc, getDoc, collection, query, where, getDocs, onSnapshot } from "firebase/firestore";
+import { doc, setDoc, deleteDoc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 
 // Function to bookmark a recipe by name
