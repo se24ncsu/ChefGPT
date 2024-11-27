@@ -48,6 +48,9 @@ Checkout for project documentation [here](https://github.com/se24ncsu/ChefGPT/tr
 
 ## Project Presentation Videos
 ### Project Overview
+
+https://github.com/user-attachments/assets/2534de64-e595-42de-812d-cd6f88620e79
+
 [https://github.com/se24ncsu/ChefGPT/blob/main/asset/animated_video.mp4
 ](https://github.com/user-attachments/assets/ed0c3f79-b31f-4876-ba03-b2e640cf8333
 )
