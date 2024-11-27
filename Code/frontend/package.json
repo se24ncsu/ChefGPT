@@ -65,6 +65,7 @@
   },
   "eslintIgnore": [
     "src/components/SearchBlock.js",
-    "src/components/__tests__/*.test.js"
+    "src/components/__tests__/*.test.js",
+    "src/components/node_mpdules"
   ]
 }
