@@ -140,7 +140,7 @@ App is now rock-solid with over 90 extensive tests! Seamless functionality acros
 Access your profiles, bookmarks, and shopping lists seamlessly on any device.
 ****
 
-Our grading scorecard can be found [here](https://github.com/se24ncsu/ChefGPT/blob/main/PROJECT/rubric.md)
+Our grading scorecard can be found [here](https://github.com/user-attachments/files/17929329/Project3_Group34.pdf)
 
 ## API Documentation
 **get_image_by_name** <br>
