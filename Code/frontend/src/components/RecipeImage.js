@@ -3,7 +3,6 @@ import './css/misc.css';
 import axios from 'axios';
 import { Oval } from 'react-loader-spinner';
 import { MdErrorOutline } from "react-icons/md";
-import { fetchRecipeImage, saveRecipeImage } from '../service/firestoreService';
 
 const RecipeImage = (props) => {
     const [url, setUrl] = useState('');
@@ -13,22 +12,14 @@ const RecipeImage = (props) => {
     useEffect(() => {
         const loadImage = async () => {
             // Check Firestore for existing image URL
-            const cachedImage = await fetchRecipeImage(props.name);
-            if (cachedImage) {
-                setUrl(cachedImage);
+            const data = { name: props.name };
+            setLoading(true);
+            axios.post(process.env.REACT_APP_GET_IMAGE_URL, data).then(response => {
+                setUrl(response.data);
                 setLoading(false);
-            } else {
-                const data = { name: props.name };
-                setLoading(true);
-                axios.post(process.env.REACT_APP_GET_IMAGE_URL, data).then(response => {
-                    setUrl(response.data);
-                    setLoading(false);
-                    // Save image URL to Firestore
-                    saveRecipeImage(props.name, response.data);
-                }).catch(() => {
-                    setLoading(false);
-                });
-            }
+            }).catch(() => {
+                setLoading(false);
+            });
         };
 
         loadImage();
