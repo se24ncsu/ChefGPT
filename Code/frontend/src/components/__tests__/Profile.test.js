@@ -33,21 +33,63 @@ describe('Profile Component', () => {
     // Wait for the component to fetch and render data
     await waitFor(() => {
       expect(screen.getByLabelText(/age/i)).toBeInTheDocument();
+    });
+  });
+
+  test('renders Profile component gender', async () => {
+    render(<Profile setActiveSection={jest.fn()} />);
+
+    // Wait for the component to fetch and render data
+    await waitFor(() => {
       expect(screen.getByLabelText(/gender/i)).toBeInTheDocument();
     });
   });
 
-  test('loads and displays profile data', async () => {
+  test('loads and displays age', async () => {
     render(<Profile setActiveSection={jest.fn()} />);
-
     await waitFor(() => {
-      // Verify fields are populated with the mock data
       expect(screen.getByLabelText(/age/i)).toHaveValue(25);
+    });
+  });
+
+  test('loads and displays gender', async () => {
+    render(<Profile setActiveSection={jest.fn()} />);
+    await waitFor(() => {
       expect(screen.getByLabelText(/gender/i)).toHaveValue('male');
+    });
+  });
+
+  test('loads and displays height', async () => {
+    render(<Profile setActiveSection={jest.fn()} />);
+    await waitFor(() => {
       expect(screen.getByLabelText(/height/i)).toHaveValue('180');
+    });
+  });
+
+  test('loads and displays weight', async () => {
+    render(<Profile setActiveSection={jest.fn()} />);
+    await waitFor(() => {
       expect(screen.getByLabelText(/weight/i)).toHaveValue('75');
+    });
+  });
+
+  test('loads and displays diet type', async () => {
+    render(<Profile setActiveSection={jest.fn()} />);
+    await waitFor(() => {
       expect(screen.getByLabelText(/type of diet/i)).toHaveValue('gym_diet');
+    });
+  });
+
+  test('loads and displays macro names', async () => {
+    render(<Profile setActiveSection={jest.fn()} />);
+    await waitFor(() => {
       expect(screen.getAllByPlaceholderText(/macro name/i)).toHaveLength(2);
+    });
+  });
+
+  test('loads and displays macro values', async () => {
+    render(<Profile setActiveSection={jest.fn()} />);
+    await waitFor(() => {
       expect(screen.getAllByPlaceholderText(/macro value/i)).toHaveLength(2);
     });
   });
